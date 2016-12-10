@@ -130,7 +130,7 @@ public class CreateNewController implements Initializable {
         String productName = objectsCombo.getValue();
         boolean valid = true;
         
-        if (productName.equals(null)) {
+        if (productName.equals("Esineet")) {
             String[] parts = sizeField.getText().split("*");
             size.add(Double.parseDouble(parts[0]));
             size.add(Double.parseDouble(parts[1]));
