@@ -17,4 +17,12 @@ public class GeoPoint {
         lat = a;
         lng = b;
     }
+    
+    public double getLat() {
+        return Double.parseDouble(lat);
+    }
+    
+    public double getLng() {
+        return Double.parseDouble(lng);
+    }
 }

@@ -53,4 +53,12 @@ public class SmartPost {
         return postoffice;
     }
     
+    public double getLat() {
+        return GP.getLat();
+    }
+    
+    public double getLng() {
+        return GP.getLng();
+    }
+    
 }

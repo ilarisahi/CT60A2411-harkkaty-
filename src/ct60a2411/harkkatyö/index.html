@@ -40,28 +40,21 @@
     };
   }
  
-  document.goToLocation = function goToLocation(searchString, infoString, color) {
-    document.geocoder.geocode( {'address': searchString}, function(results, status) {
-      if (status === google.maps.GeocoderStatus.OK) {
-        var icon = 'http://maps.google.com/mapfiles/ms/icons/' + color + '-dot.png';
-        var marker = new google.maps.Marker({
-          map: document.map,
-          position: results[0].geometry.location,
-          icon: icon
-        });
-        var info = new google.maps.InfoWindow({
-          content: infoString
-        });
-
-        google.maps.event.addListener(marker, "click", function() {
-          info.open(document.map, marker);
-        });
-        alert(i);
-      } else {
-        alert("Geocode was not successful for the following reason: " + status);
-      }
+  document.goToLocation = function goToLocation(lat, lon, infoString, color) {
+    var icon = 'http://maps.google.com/mapfiles/ms/icons/' + color + '-dot.png';
+    var marker = new google.maps.Marker({
+      map: document.map,
+      position: new google.maps.LatLng(lat, lon),
+      icon: icon
     });
-  }
+    var info = new google.maps.InfoWindow({
+      content: infoString
+    });
+
+    google.maps.event.addListener(marker, "click", function() {
+      info.open(document.map, marker);
+    });
+  };
 
   document.createPath = function createPath(pathArray, pathColor, speed) {
     var src = new google.maps.LatLng(pathArray[0], pathArray[1]);

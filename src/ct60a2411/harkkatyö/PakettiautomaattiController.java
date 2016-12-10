@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
@@ -67,8 +68,8 @@ public class PakettiautomaattiController implements Initializable {
         String name = autoCombo.getValue();
         for (SmartPost sPost : smartPosts.getCitySmartPosts(name)) {
             String point = sPost.getAddress() + ", " + sPost.getCode() + " " + sPost.getCity();
-            String open = "Auki: " + sPost.getAvailability();
-            web.getEngine().executeScript("document.goToLocation('" + point + "', '" + open + "', 'blue')");
+            String open = sPost.getPostoffice() + "Auki: " + sPost.getAvailability();
+            web.getEngine().executeScript("document.goToLocation(" + sPost.getLat() + "," + sPost.getLng() + ",'" + open + "', 'blue')");
         }
         
         
