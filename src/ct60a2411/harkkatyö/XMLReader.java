@@ -12,6 +12,7 @@ import java.io.StringReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -67,10 +68,9 @@ public class XMLReader {
             name = name.toUpperCase();
             if (!city.contains(name)) {
                 city.add(name);
-            }
-                
-            
-        }   
+            }               
+        }
+        Collections.sort(city);
     }
     
     public ArrayList<SmartPost> getList() {
