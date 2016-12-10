@@ -40,7 +40,7 @@ public class CreateNewController implements Initializable {
     @FXML
     private CheckBox fragile;
     @FXML
-    private ComboBox<?> packageClass;
+    private ComboBox<String> packageClass;
     @FXML
     private ComboBox<?> startCityCombo;
     @FXML
@@ -62,6 +62,9 @@ public class CreateNewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         objectsCombo.getItems().addAll(Product.getProductList());
+        packageClass.getItems().add("1. luokka");
+        packageClass.getItems().add("2. luokka");
+        packageClass.getItems().add("3. luokka");
     }    
 
     @FXML
