@@ -198,9 +198,11 @@ public class CreateNewController implements Initializable {
             } else if (parcelGrade.equals("3. luokka")) {
                 parcel = new ParcelGrade3();
             } else {
-                System.out.println("ilari on homo");
                 return;
             }
+            
+            parcel.startPost = startAutoCombo.getValue();
+            parcel.endPost = endAutoCombo.getValue();
             
             if (parcel.limit_map.get("weight") >= pro.dimension.get("weight")) {
                 size.clear();
