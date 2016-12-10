@@ -16,7 +16,7 @@ import java.util.Map;
  * Opiskelijanumero: 0438594
  * 10.12.2016
  */
-abstract public class Product {
+public class Product {
     String name;
     boolean fragile;
     int fragile_factor;
@@ -27,6 +27,14 @@ abstract public class Product {
         dimension.put("height", 0.0);
         dimension.put("width", 0.0);
         dimension.put("depth", 0.0);
+    }
+    
+    public Product(Double a, Double b, Double c, Double d, String e) {
+        name = e;
+        dimension.put("weight", a);
+        dimension.put("height", b);
+        dimension.put("width", c);
+        dimension.put("depth", d);
     }
     
     static public ArrayList<String> getProductList() {

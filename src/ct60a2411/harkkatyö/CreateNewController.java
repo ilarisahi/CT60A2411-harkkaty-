@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,6 +39,7 @@ import org.xml.sax.SAXException;
 public class CreateNewController implements Initializable {
     
     private SmartPosts smartPosts = SmartPosts.getInstance();
+    ArrayList<Double> size;
     
     @FXML
     private ComboBox<String> objectsCombo;
@@ -99,6 +101,7 @@ public class CreateNewController implements Initializable {
         packageClass.getItems().add("1. luokka");
         packageClass.getItems().add("2. luokka");
         packageClass.getItems().add("3. luokka");
+        fragile.setSelected(true);
     }    
 
     @FXML
@@ -121,9 +124,34 @@ public class CreateNewController implements Initializable {
 
     @FXML
     private void createButAction(ActionEvent event) {
+        ArrayList<Double> size = new ArrayList<>();
+        ArrayList<Double> size2 = new ArrayList<>();
         if(objectsCombo.getValue().equals(null)) {
+            String[] parts = sizeField.getText().split("*");
+            size.add(Double.parseDouble(parts[0]));
+            size.add(Double.parseDouble(parts[1]));
+            size.add(Double.parseDouble(parts[2]));
+            Collections.sort(size);
             if (packageClass.getValue().equals("1. luokka")) {
-                
+                ParcelGrade1 p1 = new ParcelGrade1();
+                if (p1.limit_map.get("weight") >= Double.parseDouble(massField.getText())) {
+                    size2.add(p1.limit_map.get("depth"));
+                    size2.add(p1.limit_map.get("width"));
+                    size2.add(p1.limit_map.get("height"));
+                    Collections.sort(size2);
+                    for (int i = 0; size.get(i) != null; i++) {
+                        if (size2.get(i) >= size.get(i)) {
+                            
+                        } else {
+                            return;
+                        }
+                    }
+                    
+                    Product pro = new Product(Double.parseDouble(massField.getText()), size.get(0), size.get(1), size.get(2), nameField.getText());
+                    
+                } else {
+                    return;
+                }
             } else if (packageClass.getValue().equals("2. luokka")) {
                 
             } else if (packageClass.getValue().equals("3. luokka")) {
