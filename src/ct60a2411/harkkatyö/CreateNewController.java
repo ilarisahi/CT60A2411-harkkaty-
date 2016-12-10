@@ -127,25 +127,37 @@ public class CreateNewController implements Initializable {
     private void createButAction(ActionEvent event) {
         ArrayList<Double> size = new ArrayList<>();
         ArrayList<Double> size2 = new ArrayList<>();
-        Product pro;
+        Product pro = null;
         String productName = objectsCombo.getValue();
         boolean valid = true;
         
-        if (productName.equals("Valkoiset Vansit")) {
-            pro = new Vans();
-        } else if (productName.equals("Haramben luut")) {
-            pro = new HarambeBones();
-        } else if (productName.equals("Muutama risu")) {
-            pro = new Twigs();
-        } else if (productName.equals("Trumpin tupee")) {
-            pro = new TrumpWig();
+        if (!objectsCombo.getSelectionModel().isEmpty()) {
+            switch (objectsCombo.getValue()) {
+                case "Valkoiset Vansit":
+                    pro = new Vans();
+                    break;
+                case "Haramben luut":
+                    pro = new HarambeBones();
+                    break;
+                case "Muutama risu":
+                    pro = new Twigs();
+                    break;
+                case "Trumpin tupee":
+                    pro = new TrumpWig();
+                    break;
+            }
         } else {
             String[] parts = sizeField.getText().split(",");
-            size.add(Double.parseDouble(parts[0]));
-            size.add(Double.parseDouble(parts[1]));
-            size.add(Double.parseDouble(parts[2]));
-            Collections.sort(size);
-            pro = new Product(Double.parseDouble(massField.getText()), size.get(0), size.get(1), size.get(2), nameField.getText());
+            if ((parts.length == 3) && (!massField.getText().isEmpty()) && (!nameField.getText().isEmpty())) {
+                size.add(Double.parseDouble(parts[0]));
+                size.add(Double.parseDouble(parts[1]));
+                size.add(Double.parseDouble(parts[2]));
+                Collections.sort(size);                
+                pro = new Product(Double.parseDouble(massField.getText()), size.get(0), size.get(1), size.get(2), nameField.getText());
+            } else {
+                System.out.println("Olet huono ihminen");
+                return;
+            }
         }
         
         String parcelGrade = packageClass.getValue();
@@ -183,6 +195,7 @@ public class CreateNewController implements Initializable {
                 }
 
             } else {
+                System.out.println("Ei täytä painoa!");
                 valid = false;
             }
             
