@@ -79,6 +79,25 @@
     });
     return Math.round(google.maps.geometry.spherical.computeLength([src, dest])/1000 * 100) / 100;
   };
+  
+  document.pathDist = function pathDist(pathArray, pathColor, speed) {
+    var src = new google.maps.LatLng(pathArray[0], pathArray[1]);
+    var dest = new google.maps.LatLng(pathArray[2], pathArray[3]);
+    var path = new google.maps.MVCArray();
+    var service = new google.maps.DirectionsService();
+    var poly = new google.maps.Polyline({map: document.map, strokeColor: pathColor});
+    polyMarkerArray.push(poly);
+
+    path.push(src);
+    poly.setPath(path);
+    service.route({
+      origin: src,
+      destination: dest,
+      travelMode: google.maps.DirectionsTravelMode.DRIVING
+    }, function (result, status) {
+    });
+    return Math.round(google.maps.geometry.spherical.computeLength([src, dest])/1000 * 100) / 100;
+  };
 
   disp_route = function(path, i, loc, speed) {
     setTimeout(function() {
