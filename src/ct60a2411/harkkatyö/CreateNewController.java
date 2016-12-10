@@ -7,9 +7,13 @@ package ct60a2411.harkkatyö;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +24,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.ContextMenuEvent;
+import javafx.scene.input.InputMethodEvent;
 import javafx.stage.Stage;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
@@ -34,7 +40,7 @@ public class CreateNewController implements Initializable {
     private SmartPosts smartPosts = SmartPosts.getInstance();
     
     @FXML
-    private ComboBox<?> objectsCombo;
+    private ComboBox<String> objectsCombo;
     @FXML
     private TextField nameField;
     @FXML
@@ -48,11 +54,11 @@ public class CreateNewController implements Initializable {
     @FXML
     private ComboBox<String> startCityCombo;
     @FXML
-    private ComboBox<?> startAutoCombo;
+    private ComboBox<String> startAutoCombo;
     @FXML
     private ComboBox<String> endCityCombo;
     @FXML
-    private ComboBox<?> endAutoCombo;
+    private ComboBox<String> endAutoCombo;
     @FXML
     private Button infoBut;
     @FXML
@@ -72,6 +78,27 @@ public class CreateNewController implements Initializable {
         }
         startCityCombo.getItems().addAll(smartPosts.getCities());
         endCityCombo.getItems().addAll(smartPosts.getCities());
+        objectsCombo.getItems().addAll(Product.getProductList());
+        startCityCombo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue ov, Object t, Object t1) {
+                
+                String place = t1.toString();
+                for (SmartPost sPost : smartPosts.getCitySmartPosts(place)) {
+                    startAutoCombo.getItems().add(sPost.getPostoffice() + " " + sPost.getAddress());    
+                }
+            }
+        });
+        endCityCombo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue ov, Object t, Object t1) {
+                
+                String place = t1.toString();
+                for (SmartPost sPost : smartPosts.getCitySmartPosts(place)) {
+                    endAutoCombo.getItems().add(sPost.getPostoffice() + " " + sPost.getAddress());    
+                }
+            }
+        });
     }    
 
     @FXML
@@ -94,6 +121,17 @@ public class CreateNewController implements Initializable {
 
     @FXML
     private void createButAction(ActionEvent event) {
+    }
+
+    private void startAutoAction(InputMethodEvent event) {
+        String place = startCityCombo.getValue();
+        for (SmartPost sPost : smartPosts.getCitySmartPosts(place)) {
+            startAutoCombo.getItems().add(sPost.getPostoffice() + " " + sPost.getAddress());    
+        }
+    }
+
+    @FXML
+    private void startAutoAction(ContextMenuEvent event) {
     }
     
 }
