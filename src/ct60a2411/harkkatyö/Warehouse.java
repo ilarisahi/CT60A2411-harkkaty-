@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class Warehouse {
     static Warehouse wh = null;
-    private ArrayList<Parcel> parcels;
+    static private ArrayList<Parcel> parcels = null;
     
     private Warehouse() {
         parcels = new ArrayList<>();
@@ -27,5 +27,13 @@ public class Warehouse {
             wh = new Warehouse();
         }
         return wh;
+    }
+    
+    public ArrayList<Parcel> getParcels() {
+        return parcels;
+    }
+    
+    public void addParcel(Parcel p) {
+        parcels.add(p);
     }
 }

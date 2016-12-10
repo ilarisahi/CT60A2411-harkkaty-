@@ -33,6 +33,7 @@ public class PakettiautomaattiController implements Initializable {
     
     private ArrayList<SmartPost> SPList;
     private SmartPosts smartPosts = SmartPosts.getInstance();
+    private Warehouse warehouse = Warehouse.getInstance(); 
     
     @FXML
     private ComboBox<String> autoCombo;
@@ -41,7 +42,7 @@ public class PakettiautomaattiController implements Initializable {
     @FXML
     private Button createBut;
     @FXML
-    private ComboBox<?> packageCombo;
+    private ComboBox<Parcel> packageCombo;
     @FXML
     private Button removeRoute;
     @FXML
@@ -83,14 +84,32 @@ public class PakettiautomaattiController implements Initializable {
 
     @FXML
     private void removeRouteAction(ActionEvent event) {
+        web.getEngine().executeScript("document.deletePaths()");
     }
 
     @FXML
     private void refreshAction(ActionEvent event) {
+        packageCombo.getItems().clear();
+        Parcel parcel = new ParcelGrade1();
+        parcel.item = new Twigs();
+        parcel.startPost = SmartPosts.getInstance().getCitySmartPosts("ESPOO").get(0);
+        parcel.endPost = SmartPosts.getInstance().getCitySmartPosts("TORNIO").get(0);
+        warehouse.addParcel(parcel);
+        packageCombo.getItems().addAll(warehouse.getParcels());
+        
     }
 
     @FXML
     private void sendButAction(ActionEvent event) {
+        Parcel parcel = packageCombo.getValue();
+        ArrayList<Double> array = new ArrayList();
+        array.add(parcel.startPost.getLat());
+        array.add(parcel.startPost.getLng());
+        array.add(parcel.endPost.getLat());
+        array.add(parcel.endPost.getLng());
+        String color = "blue";
+        
+        web.getEngine().executeScript("document.createPath(" + array + ",'" + color + "'," + parcel.grade + ")");
     }
     
 }
