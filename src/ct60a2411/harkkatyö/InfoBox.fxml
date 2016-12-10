@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" maxHeight="308.0" maxWidth="455.0" minHeight="308.0" minWidth="455.0" prefHeight="308.0" prefWidth="455.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="ct60a2411.harkkatyö.InfoBoxController">
+<AnchorPane id="AnchorPane" maxHeight="308.0" maxWidth="455.0" minHeight="308.0" minWidth="455.0" prefHeight="308.0" prefWidth="455.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ct60a2411.harkkatyö.InfoBoxController">
    <children>
       <Button fx:id="returnBut" layoutX="199.0" layoutY="269.0" mnemonicParsing="false" onAction="#returnButAction" text="Peruuta" />
       <GridPane layoutY="-2.0" prefHeight="264.0" prefWidth="455.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="223.0" minWidth="10.0" prefWidth="124.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="331.0" minWidth="10.0" prefWidth="331.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="223.0" minWidth="10.0" prefWidth="99.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="331.0" minWidth="10.0" prefWidth="196.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="331.0" minWidth="10.0" prefWidth="164.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -37,6 +38,12 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
+            <Label fx:id="class1info1" prefHeight="82.0" prefWidth="192.0" GridPane.columnIndex="1" />
+            <Label fx:id="class2info1" prefHeight="86.0" prefWidth="193.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="class3info1" prefHeight="86.0" prefWidth="194.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="class1info2" prefHeight="79.0" prefWidth="195.0" GridPane.columnIndex="2" />
+            <Label fx:id="class2info2" prefHeight="83.0" prefWidth="162.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label fx:id="class3info2" prefHeight="84.0" prefWidth="161.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </children>
