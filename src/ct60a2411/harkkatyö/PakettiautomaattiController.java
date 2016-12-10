@@ -89,6 +89,13 @@ public class PakettiautomaattiController implements Initializable {
 
     @FXML
     private void refreshAction(ActionEvent event) {
+        ArrayList<String> lel = new ArrayList<>();
+        lel.add("60.96122");
+        lel.add("25.6582995");
+        lel.add("60.867886");
+        lel.add("26.7041295");
+        Object s = web.getEngine().executeScript("document.pathDist('" + lel + "')");
+        System.out.println(s);
         packageCombo.getItems().clear();
         Parcel parcel = new ParcelGrade1();
         parcel.item = new Twigs();

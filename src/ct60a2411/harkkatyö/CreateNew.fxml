@@ -14,12 +14,12 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="41.0" text="Valitse esine:">
+      <Label layoutX="15.0" layoutY="43.0" text="Valitse esine:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <ComboBox fx:id="objectsCombo" layoutX="12.0" layoutY="62.0" prefHeight="25.0" prefWidth="299.0" promptText="Esineet" />
+      <ComboBox fx:id="objectsCombo" layoutX="11.0" layoutY="62.0" prefHeight="25.0" prefWidth="299.0" promptText="Esineet" />
       <Label layoutX="12.0" layoutY="106.0" text="Luo uusi esine:">
          <font>
             <Font size="14.0" />
@@ -47,5 +47,10 @@
       <Button fx:id="infoBut" layoutX="11.0" layoutY="328.0" mnemonicParsing="false" onAction="#infoButAction" text="Infoa luokista" />
       <Button fx:id="returnBut" layoutX="344.0" layoutY="328.0" mnemonicParsing="false" onAction="#returnButAction" text="Peruuta" />
       <Button fx:id="createBut" layoutX="506.0" layoutY="328.0" mnemonicParsing="false" onAction="#createButAction" text="Luo paketti" />
+      <Label layoutX="11.0" layoutY="89.0" text="Tai">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
