@@ -23,7 +23,7 @@ public class PakettiautomaattiController implements Initializable {
     
     @FXML
     private void handleButtonAction(ActionEvent event) {
-        
+        System.out.println("LUL");
     }
     
     @Override
