@@ -78,6 +78,7 @@ public class CreateNewController implements Initializable {
         startCityCombo.getItems().addAll(smartPosts.getCities());
         endCityCombo.getItems().addAll(smartPosts.getCities());
         objectsCombo.getItems().addAll(Product.getProductList());
+        objectsCombo.getItems().add("Oma");
         startCityCombo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue ov, Object t, Object t1) {
@@ -130,21 +131,23 @@ public class CreateNewController implements Initializable {
         String productName = objectsCombo.getValue();
         boolean valid = true;
         
-        if (productName.equals("Esineet")) {
-            String[] parts = sizeField.getText().split("*");
-            size.add(Double.parseDouble(parts[0]));
-            size.add(Double.parseDouble(parts[1]));
-            size.add(Double.parseDouble(parts[2]));
-            Collections.sort(size);
-            pro = new Product(Double.parseDouble(massField.getText()), size.get(0), size.get(1), size.get(2), nameField.getText());
-        } else if (productName.equals("Valkoiset Vansit")) {
+        if (productName.equals("Valkoiset Vansit")) {
             pro = new Vans();
         } else if (productName.equals("Haramben luut")) {
             pro = new HarambeBones();
         } else if (productName.equals("Muutama risu")) {
             pro = new Twigs();
-        } else {
+        } else if (productName.equals("Trumpin tupee")) {
             pro = new TrumpWig();
+        } else if (productName.equals("Oma")) {
+            String[] parts = sizeField.getText().split(",");
+            size.add(Double.parseDouble(parts[0]));
+            size.add(Double.parseDouble(parts[1]));
+            size.add(Double.parseDouble(parts[2]));
+            Collections.sort(size);
+            pro = new Product(Double.parseDouble(massField.getText()), size.get(0), size.get(1), size.get(2), nameField.getText());
+        } else {
+            return;
         }
         
         String parcelGrade = packageClass.getValue();
