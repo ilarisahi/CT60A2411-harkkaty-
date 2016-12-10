@@ -58,7 +58,7 @@ public class XMLReader {
             Node node = nodes.item(i);
             Element e = (Element) node;
             
-            SP = new SmartPost(getValue("code", e), getValue("city", e), 
+            SP = new SmartPost(getValue("code", e), getValue("city", e).toUpperCase(), 
                     getValue("address", e), getValue("availability", e), 
                     getValue("postoffice", e), getValue("lat", e), 
                     getValue("lng", e));
