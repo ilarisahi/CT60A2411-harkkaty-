@@ -17,6 +17,7 @@ public class SmartPost {
     private String postoffice;
     private String lat;
     private String lng;
+    GeoPoint GP;
     
     public SmartPost(String a, String b, String c, String d, String e, String f, String g) {
         code = a;
@@ -24,8 +25,7 @@ public class SmartPost {
         address = c;
         availability = d;
         postoffice = e;
-        lat = f;
-        lng = g;
+        GP = new GeoPoint(f, g);
         
     }
     
