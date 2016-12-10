@@ -10,6 +10,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +24,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.ContextMenuEvent;
+import javafx.scene.input.InputMethodEvent;
 import javafx.stage.Stage;
+import javax.xml.parsers.ParserConfigurationException;
+import org.xml.sax.SAXException;
 
 /**
  * FXML Controller class
@@ -28,7 +36,9 @@ import javafx.stage.Stage;
  * @author Petri
  */
 public class CreateNewController implements Initializable {
-
+    
+    private SmartPosts smartPosts = SmartPosts.getInstance();
+    
     @FXML
     private ComboBox<String> objectsCombo;
     @FXML
@@ -42,13 +52,13 @@ public class CreateNewController implements Initializable {
     @FXML
     private ComboBox<String> packageClass;
     @FXML
-    private ComboBox<?> startCityCombo;
+    private ComboBox<String> startCityCombo;
     @FXML
-    private ComboBox<?> startAutoCombo;
+    private ComboBox<String> startAutoCombo;
     @FXML
-    private ComboBox<?> endCityCombo;
+    private ComboBox<String> endCityCombo;
     @FXML
-    private ComboBox<?> endAutoCombo;
+    private ComboBox<String> endAutoCombo;
     @FXML
     private Button infoBut;
     @FXML
@@ -61,7 +71,34 @@ public class CreateNewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        try {
+            XMLReader xmlr = new XMLReader();
+        } catch (IOException | ParserConfigurationException | SAXException ex) {
+            Logger.getLogger(CreateNewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        startCityCombo.getItems().addAll(smartPosts.getCities());
+        endCityCombo.getItems().addAll(smartPosts.getCities());
         objectsCombo.getItems().addAll(Product.getProductList());
+        startCityCombo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue ov, Object t, Object t1) {
+                
+                String place = t1.toString();
+                for (SmartPost sPost : smartPosts.getCitySmartPosts(place)) {
+                    startAutoCombo.getItems().add(sPost.getPostoffice() + " " + sPost.getAddress());    
+                }
+            }
+        });
+        endCityCombo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue ov, Object t, Object t1) {
+                
+                String place = t1.toString();
+                for (SmartPost sPost : smartPosts.getCitySmartPosts(place)) {
+                    endAutoCombo.getItems().add(sPost.getPostoffice() + " " + sPost.getAddress());    
+                }
+            }
+        });
         packageClass.getItems().add("1. luokka");
         packageClass.getItems().add("2. luokka");
         packageClass.getItems().add("3. luokka");
@@ -87,6 +124,18 @@ public class CreateNewController implements Initializable {
 
     @FXML
     private void createButAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void startAutoAction(InputMethodEvent event) {
+        String place = startCityCombo.getValue();
+        for (SmartPost sPost : smartPosts.getCitySmartPosts(place)) {
+            startAutoCombo.getItems().add(sPost.getPostoffice() + " " + sPost.getAddress());    
+        }
+    }
+
+    @FXML
+    private void startAutoAction(ContextMenuEvent event) {
     }
     
 }
