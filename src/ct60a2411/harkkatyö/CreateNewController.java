@@ -143,5 +143,4 @@ public class CreateNewController implements Initializable {
             startAutoCombo.getItems().add(sPost.getPostoffice() + " " + sPost.getAddress());    
         }
     }
-    
 }
