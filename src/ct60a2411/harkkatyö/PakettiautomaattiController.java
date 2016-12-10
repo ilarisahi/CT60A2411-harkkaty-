@@ -40,7 +40,7 @@ public class PakettiautomaattiController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        web.getEngine().load(getClass().getResource("index.html").toExternalForm());
     }    
 
     @FXML
