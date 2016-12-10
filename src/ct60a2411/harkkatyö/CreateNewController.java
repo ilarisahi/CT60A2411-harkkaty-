@@ -7,6 +7,8 @@ package ct60a2411.harkkatyö;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,7 +30,7 @@ import javafx.stage.Stage;
 public class CreateNewController implements Initializable {
 
     @FXML
-    private ComboBox<?> objectsCombo;
+    private ComboBox<String> objectsCombo;
     @FXML
     private TextField nameField;
     @FXML
@@ -59,7 +61,7 @@ public class CreateNewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        objectsCombo.getItems().addAll(Product.getProductList());
     }    
 
     @FXML

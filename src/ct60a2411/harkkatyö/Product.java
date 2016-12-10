@@ -6,6 +6,7 @@
 
 package ct60a2411.harkkatyö;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,5 +27,14 @@ abstract public class Product {
         dimension.put("height", 0.0);
         dimension.put("width", 0.0);
         dimension.put("depth", 0.0);
+    }
+    
+    static public ArrayList<String> getProductList() {
+        ArrayList<String> list = new ArrayList<String>();
+        list.add("Haramben luut");
+        list.add("Muutama risu");
+        list.add("Valkoiset Vansit");
+        list.add("Trumpin tupee");
+        return list;
     }
 }
