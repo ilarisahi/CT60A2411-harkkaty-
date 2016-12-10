@@ -67,7 +67,6 @@ public class PakettiautomaattiController implements Initializable {
     private void addToMapAction(ActionEvent event) {
         String name = autoCombo.getValue();
         for (SmartPost sPost : smartPosts.getCitySmartPosts(name)) {
-            String point = sPost.getAddress() + ", " + sPost.getCode() + " " + sPost.getCity();
             String open = sPost.getPostoffice() + "Auki: " + sPost.getAvailability();
             web.getEngine().executeScript("document.goToLocation(" + sPost.getLat() + "," + sPost.getLng() + ",'" + open + "', 'blue')");
         }
