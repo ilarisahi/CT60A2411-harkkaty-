@@ -30,7 +30,7 @@ public class SmartPost {
     
     @Override
     public String toString() {
-        return city;
+        return postoffice + ", " + address;
     }
     
     public String getCity() {

@@ -57,11 +57,11 @@ public class CreateNewController implements Initializable {
     @FXML
     private ComboBox<String> startCityCombo;
     @FXML
-    private ComboBox<String> startAutoCombo;
+    private ComboBox<SmartPost> startAutoCombo;
     @FXML
     private ComboBox<String> endCityCombo;
     @FXML
-    private ComboBox<String> endAutoCombo;
+    private ComboBox<SmartPost> endAutoCombo;
     @FXML
     private Button infoBut;
     @FXML
@@ -87,7 +87,7 @@ public class CreateNewController implements Initializable {
                 startAutoCombo.getItems().clear();
                 String place = t1.toString();
                 for (SmartPost sPost : smartPosts.getCitySmartPosts(place)) {
-                    startAutoCombo.getItems().add(sPost.getPostoffice() + " " + sPost.getAddress());    
+                    startAutoCombo.getItems().add(sPost);    
                 }
             }
         });
@@ -97,7 +97,7 @@ public class CreateNewController implements Initializable {
                 endAutoCombo.getItems().clear();
                 String place = t1.toString();
                 for (SmartPost sPost : smartPosts.getCitySmartPosts(place)) {
-                    endAutoCombo.getItems().add(sPost.getPostoffice() + " " + sPost.getAddress());    
+                    endAutoCombo.getItems().add(sPost);    
                 }
             }
         });
@@ -136,6 +136,15 @@ public class CreateNewController implements Initializable {
         Product pro = null;
         String productName = objectsCombo.getValue();
         boolean valid = true;
+        
+        if (startAutoCombo.getSelectionModel().isEmpty() || endAutoCombo.getSelectionModel().isEmpty()){
+            return;
+        }
+        
+        SmartPost start = startAutoCombo.getValue();
+        SmartPost end = endAutoCombo.getValue();
+        
+        
         
         if (!objectsCombo.getSelectionModel().isEmpty()) {
             switch (objectsCombo.getValue()) {
@@ -215,10 +224,4 @@ public class CreateNewController implements Initializable {
         
     }
 
-    private void startAutoAction(InputMethodEvent event) {
-        String place = startCityCombo.getValue();
-        for (SmartPost sPost : smartPosts.getCitySmartPosts(place)) {
-            startAutoCombo.getItems().add(sPost.getPostoffice() + " " + sPost.getAddress());    
-        }
-    }
 }
