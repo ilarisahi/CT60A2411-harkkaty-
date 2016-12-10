@@ -78,7 +78,7 @@ public class CreateNewController implements Initializable {
         startCityCombo.getItems().addAll(smartPosts.getCities());
         endCityCombo.getItems().addAll(smartPosts.getCities());
         objectsCombo.getItems().addAll(Product.getProductList());
-        objectsCombo.getItems().add("Oma");
+        objectsCombo.getItems().add("Luo uusi esine");
         startCityCombo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue ov, Object t, Object t1) {
