@@ -10,7 +10,9 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.web.WebView;
 
 /**
  *
@@ -19,16 +21,46 @@ import javafx.scene.control.Label;
 public class PakettiautomaattiController implements Initializable {
     
     @FXML
-    private Label label;
-    
+    private ComboBox<?> autoCombo;
     @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("LUL");
-    }
+    private Button addToMap;
+    @FXML
+    private Button createBut;
+    @FXML
+    private ComboBox<?> packageCombo;
+    @FXML
+    private Button removeRoute;
+    @FXML
+    private Button refreshBut;
+    @FXML
+    private Button sendBut;
+    @FXML
+    private WebView web;
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void addToMapAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void createButAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void removeRouteAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void refreshAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void sendButAction(ActionEvent event) {
+    }
     
 }
