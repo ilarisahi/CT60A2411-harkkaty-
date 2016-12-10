@@ -6,6 +6,8 @@
 
 package ct60a2411.harkkatyö;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Ilari Sahi
@@ -13,5 +15,17 @@ package ct60a2411.harkkatyö;
  * 10.12.2016
  */
 public class Warehouse {
-
+    static Warehouse wh = null;
+    private ArrayList<Parcel> parcels;
+    
+    private Warehouse() {
+        parcels = new ArrayList<>();
+    }
+    
+    public Warehouse getInstance() {
+        if (wh == null) {
+            wh = new Warehouse();
+        }
+        return wh;
+    }
 }
