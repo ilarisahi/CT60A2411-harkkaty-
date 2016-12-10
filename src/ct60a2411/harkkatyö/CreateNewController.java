@@ -8,6 +8,8 @@ package ct60a2411.harkkatyö;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +21,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javax.xml.parsers.ParserConfigurationException;
+import org.xml.sax.SAXException;
 
 /**
  * FXML Controller class
@@ -26,7 +30,9 @@ import javafx.stage.Stage;
  * @author Petri
  */
 public class CreateNewController implements Initializable {
-
+    
+    private SmartPosts smartPosts = SmartPosts.getInstance();
+    
     @FXML
     private ComboBox<?> objectsCombo;
     @FXML
@@ -40,11 +46,11 @@ public class CreateNewController implements Initializable {
     @FXML
     private ComboBox<?> packageClass;
     @FXML
-    private ComboBox<?> startCityCombo;
+    private ComboBox<String> startCityCombo;
     @FXML
     private ComboBox<?> startAutoCombo;
     @FXML
-    private ComboBox<?> endCityCombo;
+    private ComboBox<String> endCityCombo;
     @FXML
     private ComboBox<?> endAutoCombo;
     @FXML
@@ -59,7 +65,13 @@ public class CreateNewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        try {
+            XMLReader xmlr = new XMLReader();
+        } catch (IOException | ParserConfigurationException | SAXException ex) {
+            Logger.getLogger(CreateNewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        startCityCombo.getItems().addAll(smartPosts.getCities());
+        endCityCombo.getItems().addAll(smartPosts.getCities());
     }    
 
     @FXML
