@@ -13,10 +13,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.web.WebView;
+import javafx.stage.Stage;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
@@ -51,7 +55,7 @@ public class PakettiautomaattiController implements Initializable {
         
         try {
             XMLReader xmlr = new XMLReader();
-            
+            SPList = xmlr.getList();
             autoCombo.getItems().addAll(xmlr.city);
         } catch (IOException | ParserConfigurationException | SAXException ex) {
             Logger.getLogger(PakettiautomaattiController.class.getName()).log(Level.SEVERE, null, ex);
@@ -61,10 +65,19 @@ public class PakettiautomaattiController implements Initializable {
 
     @FXML
     private void addToMapAction(ActionEvent event) {
+        String name = autoCombo.getValue();
+        
     }
 
     @FXML
-    private void createButAction(ActionEvent event) {
+    private void createButAction(ActionEvent event) throws IOException {
+        Stage newPackage = new Stage();
+        
+        Parent page = FXMLLoader.load(getClass().getResource("CreateNew.fxml"));
+        Scene scene = new Scene(page);
+        
+        newPackage.setScene(scene);
+        newPackage.show();
     }
 
     @FXML

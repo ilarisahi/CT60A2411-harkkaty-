@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="367.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="ct60a2411.harkkatyö.CreateNewController">
+   <children>
+      <Label layoutX="14.0" layoutY="14.0" text="Luo paketti">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="41.0" text="Valitse esine:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="objectsCombo" layoutX="14.0" layoutY="61.0" prefHeight="25.0" prefWidth="299.0" promptText="Esineet" />
+      <Label layoutX="14.0" layoutY="86.0" text="TAI">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="12.0" layoutY="106.0" text="Luo uusi esine:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nameField" layoutX="12.0" layoutY="126.0" prefHeight="25.0" prefWidth="299.0" promptText="Nimi" />
+      <TextField fx:id="sizeField" layoutX="12.0" layoutY="157.0" prefHeight="25.0" prefWidth="299.0" promptText="Koko          cm*cm*cm" />
+      <TextField fx:id="massField" layoutX="12.0" layoutY="188.0" prefHeight="25.0" prefWidth="299.0" promptText="Massa          kg" />
+      <CheckBox fx:id="fragile" layoutX="12.0" layoutY="220.0" mnemonicParsing="false" text="Särkyvää" />
+      <Label layoutX="15.0" layoutY="251.0" text="Valitse pakettiluokka:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="packageClass" layoutX="12.0" layoutY="279.0" prefHeight="25.0" prefWidth="299.0" />
+      <Label layoutX="344.0" layoutY="43.0" text="Paketin lähetystiedot:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="startCityCombo" layoutX="344.0" layoutY="74.0" prefHeight="25.0" prefWidth="238.0" promptText="Lähtökaupunki" />
+      <ComboBox fx:id="startAutoCombo" layoutX="344.0" layoutY="104.0" prefHeight="25.0" prefWidth="238.0" promptText="Automaatti" />
+      <ComboBox fx:id="endCityCombo" layoutX="344.0" layoutY="157.0" prefHeight="25.0" prefWidth="238.0" promptText="Kohdekaupunki" />
+      <ComboBox fx:id="endAutoCombo" layoutX="344.0" layoutY="188.0" prefHeight="25.0" prefWidth="238.0" promptText="Automaatti" />
+      <Button fx:id="infoBut" layoutX="11.0" layoutY="328.0" mnemonicParsing="false" onAction="#infoButAction" text="Infoa luokista" />
+      <Button fx:id="returnBut" layoutX="344.0" layoutY="328.0" mnemonicParsing="false" onAction="#returnButAction" text="Peruuta" />
+      <Button fx:id="createBut" layoutX="506.0" layoutY="328.0" mnemonicParsing="false" onAction="#createButAction" text="Luo paketti" />
+   </children>
+</AnchorPane>
