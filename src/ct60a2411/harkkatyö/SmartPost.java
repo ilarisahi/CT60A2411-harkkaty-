@@ -17,15 +17,17 @@ public class SmartPost {
     private String postoffice;
     private String lat;
     private String lng;
+    private int id;
     GeoPoint GP;
     
-    public SmartPost(String a, String b, String c, String d, String e, String f, String g) {
+    public SmartPost(String a, String b, String c, String d, String e, String f, String g, int i) {
         code = a;
         city = b;
         address = c;
         availability = d;
         postoffice = e;
         GP = new GeoPoint(f, g);
+        id = i;
     }    
     
     @Override
@@ -59,6 +61,10 @@ public class SmartPost {
     
     public double getLng() {
         return GP.getLng();
+    }
+    
+    public int getId() {
+        return id;
     }
     
 }

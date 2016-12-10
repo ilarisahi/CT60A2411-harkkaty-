@@ -60,4 +60,8 @@ public class SmartPosts {
         
         return sp;
     }
+    
+    public SmartPost getSmartPost(int i) {
+        return smartPosts.get(i);
+    }
 }

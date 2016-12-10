@@ -201,8 +201,8 @@ public class CreateNewController implements Initializable {
                 return;
             }
             
-            parcel.startPost = startAutoCombo.getValue();
-            parcel.endPost = endAutoCombo.getValue();
+            parcel.startPost = startAutoCombo.getValue().getId();
+            parcel.endPost = endAutoCombo.getValue().getId();
             
             if (parcel.limit_map.get("weight") >= pro.dimension.get("weight")) {
                 size.clear();

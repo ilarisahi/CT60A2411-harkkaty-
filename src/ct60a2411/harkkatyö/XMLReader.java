@@ -64,7 +64,7 @@ public class XMLReader {
             SP = new SmartPost(getValue("code", e), getValue("city", e).toUpperCase(), 
                     getValue("address", e), getValue("availability", e), 
                     getValue("postoffice", e), getValue("lat", e), 
-                    getValue("lng", e));
+                    getValue("lng", e), i);
             
             smartPosts.addSmartPost(SP);
             smartPosts.addCity(getValue("city", e).toUpperCase());

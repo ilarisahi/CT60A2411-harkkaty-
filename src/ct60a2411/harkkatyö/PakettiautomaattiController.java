@@ -98,11 +98,13 @@ public class PakettiautomaattiController implements Initializable {
     @FXML
     private void sendButAction(ActionEvent event) {
         Parcel parcel = packageCombo.getValue();
+        SmartPost startPost = SmartPosts.getInstance().getSmartPost(parcel.startPost);
+        SmartPost endPost = SmartPosts.getInstance().getSmartPost(parcel.endPost);
         ArrayList<Double> array = new ArrayList();
-        array.add(parcel.startPost.getLat());
-        array.add(parcel.startPost.getLng());
-        array.add(parcel.endPost.getLat());
-        array.add(parcel.endPost.getLng());
+        array.add(startPost.getLat());
+        array.add(startPost.getLng());
+        array.add(endPost.getLat());
+        array.add(endPost.getLng());
         String color = "blue";
         
         web.getEngine().executeScript("document.createPath(" + array + ",'" + color + "'," + parcel.grade + ")");

@@ -20,8 +20,8 @@ abstract public class Parcel {
     int fragile_factor;
     Map<String, Double> limit_map = new HashMap<>();
     Product item;
-    SmartPost startPost;
-    SmartPost endPost;
+    int startPost;
+    int endPost;
     
     public Parcel() {
         limit_map.put("distance", 0.0);
