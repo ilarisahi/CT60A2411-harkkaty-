@@ -51,8 +51,7 @@ public class PakettiautomaattiController implements Initializable {
         
         try {
             XMLReader xmlr = new XMLReader();
-            
-            autoCombo.getItems().addAll(xmlr.city);
+            autoCombo.getItems().addAll(xmlr.getSmartPosts().getCities());
         } catch (IOException | ParserConfigurationException | SAXException ex) {
             Logger.getLogger(PakettiautomaattiController.class.getName()).log(Level.SEVERE, null, ex);
         }
