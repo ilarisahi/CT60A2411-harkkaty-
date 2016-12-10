@@ -78,7 +78,7 @@ public class CreateNewController implements Initializable {
         startCityCombo.getItems().addAll(smartPosts.getCities());
         endCityCombo.getItems().addAll(smartPosts.getCities());
         objectsCombo.getItems().addAll(Product.getProductList());
-        objectsCombo.getItems().add("Oma");
+        objectsCombo.getItems().add("Luo uusi esine");
         startCityCombo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue ov, Object t, Object t1) {
@@ -139,7 +139,7 @@ public class CreateNewController implements Initializable {
             pro = new Twigs();
         } else if (productName.equals("Trumpin tupee")) {
             pro = new TrumpWig();
-        } else if (productName.equals("Oma")) {
+        } else if (productName.equals("Luo uusi esine")) {
             String[] parts = sizeField.getText().split(",");
             size.add(Double.parseDouble(parts[0]));
             size.add(Double.parseDouble(parts[1]));
