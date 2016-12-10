@@ -139,22 +139,20 @@ public class CreateNewController implements Initializable {
             pro = new Twigs();
         } else if (productName.equals("Trumpin tupee")) {
             pro = new TrumpWig();
-        } else if (productName.equals("Oma")) {
+        } else {
             String[] parts = sizeField.getText().split(",");
             size.add(Double.parseDouble(parts[0]));
             size.add(Double.parseDouble(parts[1]));
             size.add(Double.parseDouble(parts[2]));
             Collections.sort(size);
             pro = new Product(Double.parseDouble(massField.getText()), size.get(0), size.get(1), size.get(2), nameField.getText());
-        } else {
-            return;
         }
         
         String parcelGrade = packageClass.getValue();
         System.out.println(parcelGrade);
         Parcel parcel;
         
-        if (!parcelGrade.equals("")) {
+        if (!packageClass.getSelectionModel().isEmpty()) {
             if (parcelGrade.equals("1. luokka")) {
                 parcel = new ParcelGrade1();
             } else if (parcelGrade.equals("2. luokka")) {
