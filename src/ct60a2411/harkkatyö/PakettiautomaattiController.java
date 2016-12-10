@@ -49,15 +49,14 @@ public class PakettiautomaattiController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         try {
-            SPList = XMLR.XMLReader();
+            XMLReader xmlr = new XMLReader();
+            autoCombo.getItems().addAll(xmlr.getList());
         } catch (IOException | ParserConfigurationException | SAXException ex) {
             Logger.getLogger(PakettiautomaattiController.class.getName()).log(Level.SEVERE, null, ex);
         }
         web.getEngine().load(getClass().getResource("index.html").toExternalForm());
-        autoCombo.getItems().addAll(SPList);
-            
-        
     }    
 
     @FXML

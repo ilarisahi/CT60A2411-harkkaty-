@@ -32,7 +32,7 @@ public class XMLReader {
     public SmartPost SP;
     public ArrayList<SmartPost> SPList = new ArrayList<>();
     
-    public ArrayList<SmartPost> XMLReader() throws MalformedURLException, IOException, ParserConfigurationException, SAXException {
+    public XMLReader() throws MalformedURLException, IOException, ParserConfigurationException, SAXException {
         
         URL url = new URL("http://smartpost.ee/fi_apt.xml");
         
@@ -63,10 +63,11 @@ public class XMLReader {
                     getValue("lng", e));
             SPList.add(SP);
             
-        }
-        
+        }   
+    }
+    
+    public ArrayList<SmartPost> getList() {
         return SPList;
-        
     }
     
     private String getValue(String tag, Element e) {
