@@ -26,9 +26,7 @@ public class SmartPost {
         availability = d;
         postoffice = e;
         GP = new GeoPoint(f, g);
-        
-    }
-    
+    }    
     
     @Override
     public String toString() {
