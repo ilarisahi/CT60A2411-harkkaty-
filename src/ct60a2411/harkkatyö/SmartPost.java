@@ -29,4 +29,9 @@ public class SmartPost {
         
     }
     
+    @Override
+    public String toString() {
+        return city;
+    }
+    
 }
