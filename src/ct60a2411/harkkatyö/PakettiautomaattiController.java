@@ -26,11 +26,10 @@ import org.xml.sax.SAXException;
  */
 public class PakettiautomaattiController implements Initializable {
     
-    XMLReader XMLR;
     private ArrayList<SmartPost> SPList;
     
     @FXML
-    private ComboBox<SmartPost> autoCombo;
+    private ComboBox<String> autoCombo;
     @FXML
     private Button addToMap;
     @FXML
@@ -52,7 +51,8 @@ public class PakettiautomaattiController implements Initializable {
         
         try {
             XMLReader xmlr = new XMLReader();
-            autoCombo.getItems().addAll(xmlr.getList());
+            
+            autoCombo.getItems().addAll(xmlr.city);
         } catch (IOException | ParserConfigurationException | SAXException ex) {
             Logger.getLogger(PakettiautomaattiController.class.getName()).log(Level.SEVERE, null, ex);
         }

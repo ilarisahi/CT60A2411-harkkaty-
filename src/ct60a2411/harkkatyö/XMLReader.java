@@ -30,6 +30,7 @@ public class XMLReader {
     
     private Document doc;
     public SmartPost SP;
+    public ArrayList<String> city = new ArrayList<>();
     public ArrayList<SmartPost> SPList = new ArrayList<>();
     
     public XMLReader() throws MalformedURLException, IOException, ParserConfigurationException, SAXException {
@@ -62,6 +63,12 @@ public class XMLReader {
                     getValue("postoffice", e), getValue("lat", e), 
                     getValue("lng", e));
             SPList.add(SP);
+            String name = getValue("city", e);
+            name = name.toUpperCase();
+            if (!city.contains(name)) {
+                city.add(name);
+            }
+                
             
         }   
     }
@@ -69,6 +76,7 @@ public class XMLReader {
     public ArrayList<SmartPost> getList() {
         return SPList;
     }
+    
     
     private String getValue(String tag, Element e) {
         return e.getElementsByTagName(tag).item(0).getTextContent();
