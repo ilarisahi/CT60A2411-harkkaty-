@@ -35,4 +35,8 @@ public class SmartPost {
         return city;
     }
     
+    public String getCity() {
+        return city;
+    }
+    
 }
