@@ -178,14 +178,28 @@ public class CreateNewController implements Initializable {
         String parcelGrade = packageClass.getValue();
         System.out.println(parcelGrade);
         Parcel parcel;
+        ArrayList<Double> s = new ArrayList<>();
+        
+        s.add(start.getLat());
+        s.add(start.getLng());
+        s.add(end.getLat());
+        s.add(end.getLng());
+        
+        String dist = web.getEngine().executeScript("document.pathDist(" + s + ")").toString();
+        
+        Double km = Double.parseDouble(dist);
+        
         
         if (!packageClass.getSelectionModel().isEmpty()) {
-            if (parcelGrade.equals("1. luokka")) {
+            if (parcelGrade.equals("1. luokka") && km <= 150) {
                 parcel = new ParcelGrade1();
             } else if (parcelGrade.equals("2. luokka")) {
                 parcel = new ParcelGrade2();
-            } else {
+            } else if (parcelGrade.equals("3. luokka")) {
                 parcel = new ParcelGrade3();
+            } else {
+                System.out.println("ilari on homo");
+                return;
             }
             
             if (parcel.limit_map.get("weight") >= pro.dimension.get("weight")) {
