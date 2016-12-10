@@ -91,11 +91,6 @@ public class PakettiautomaattiController implements Initializable {
     @FXML
     private void refreshAction(ActionEvent event) {
         packageCombo.getItems().clear();
-        Parcel parcel = new ParcelGrade1();
-        parcel.item = new Twigs();
-        parcel.startPost = SmartPosts.getInstance().getCitySmartPosts("ESPOO").get(0);
-        parcel.endPost = SmartPosts.getInstance().getCitySmartPosts("TORNIO").get(0);
-        warehouse.addParcel(parcel);
         packageCombo.getItems().addAll(warehouse.getParcels());
         
     }
