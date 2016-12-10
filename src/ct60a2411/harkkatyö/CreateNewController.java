@@ -71,18 +71,14 @@ public class CreateNewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
-            XMLReader xmlr = new XMLReader();
-        } catch (IOException | ParserConfigurationException | SAXException ex) {
-            Logger.getLogger(CreateNewController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        XMLReader xmlr = XMLReader.getInstance();
         startCityCombo.getItems().addAll(smartPosts.getCities());
         endCityCombo.getItems().addAll(smartPosts.getCities());
         objectsCombo.getItems().addAll(Product.getProductList());
         startCityCombo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue ov, Object t, Object t1) {
-                
+                startAutoCombo.getItems().clear();
                 String place = t1.toString();
                 for (SmartPost sPost : smartPosts.getCitySmartPosts(place)) {
                     startAutoCombo.getItems().add(sPost.getPostoffice() + " " + sPost.getAddress());    
@@ -92,7 +88,7 @@ public class CreateNewController implements Initializable {
         endCityCombo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue ov, Object t, Object t1) {
-                
+                endAutoCombo.getItems().clear();
                 String place = t1.toString();
                 for (SmartPost sPost : smartPosts.getCitySmartPosts(place)) {
                     endAutoCombo.getItems().add(sPost.getPostoffice() + " " + sPost.getAddress());    

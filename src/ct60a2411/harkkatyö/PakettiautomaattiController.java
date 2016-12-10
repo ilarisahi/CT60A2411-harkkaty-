@@ -54,11 +54,7 @@ public class PakettiautomaattiController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
-            XMLReader xmlr = new XMLReader();
-        } catch (IOException | ParserConfigurationException | SAXException ex) {
-            Logger.getLogger(PakettiautomaattiController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        XMLReader xmlr = XMLReader.getInstance();
         autoCombo.getItems().addAll(smartPosts.getCities());
         web.getEngine().load(getClass().getResource("index.html").toExternalForm());
     }    

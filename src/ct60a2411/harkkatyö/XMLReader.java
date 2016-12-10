@@ -13,6 +13,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -32,8 +34,9 @@ public class XMLReader {
     private Document doc;
     public SmartPost SP;
     private SmartPosts smartPosts = SmartPosts.getInstance();
+    static private XMLReader xmlr = null;
     
-    public XMLReader() throws MalformedURLException, IOException, ParserConfigurationException, SAXException {
+    private XMLReader() throws MalformedURLException, IOException, ParserConfigurationException, SAXException {
         
         URL url = new URL("http://smartpost.ee/fi_apt.xml");
         
@@ -68,7 +71,16 @@ public class XMLReader {
         }
     }
     
-    
+    static public XMLReader getInstance() {
+        if (xmlr == null) {
+            try {
+                xmlr = new XMLReader();
+            } catch (IOException | ParserConfigurationException | SAXException ex) {
+                Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return xmlr;        
+    }
     
     private String getValue(String tag, Element e) {
         return e.getElementsByTagName(tag).item(0).getTextContent();
