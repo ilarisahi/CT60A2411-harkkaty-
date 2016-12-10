@@ -65,8 +65,7 @@ public class PakettiautomaattiController implements Initializable {
     @FXML
     private void addToMapAction(ActionEvent event) {
         String name = autoCombo.getValue();
-        SPList = smartPosts.getCitySmartPosts(name);
-        for (SmartPost sPost : SPList) {
+        for (SmartPost sPost : smartPosts.getCitySmartPosts(name)) {
             String point = sPost.getAddress() + ", " + sPost.getCode() + " " + sPost.getCity();
             String open = "Auki: " + sPost.getAvailability();
             web.getEngine().executeScript("document.goToLocation('" + point + "', '" + open + "', 'blue')");

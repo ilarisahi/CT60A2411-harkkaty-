@@ -52,8 +52,8 @@ public class SmartPosts {
     public ArrayList<SmartPost> getCitySmartPosts(String s) {
         ArrayList<SmartPost> sp = new ArrayList();
         s = s.toUpperCase();
-        for(SmartPost sPost : smartPosts) {
-            if (sPost.getCity() == s) {
+        for(SmartPost sPost : smartPosts) {            
+            if (sPost.getCity().equals(s)) {
                 sp.add(sPost);
             }
         }
