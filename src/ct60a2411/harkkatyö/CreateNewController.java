@@ -126,45 +126,75 @@ public class CreateNewController implements Initializable {
     private void createButAction(ActionEvent event) {
         ArrayList<Double> size = new ArrayList<>();
         ArrayList<Double> size2 = new ArrayList<>();
-        if(objectsCombo.getValue().equals(null)) {
+        Product pro;
+        String productName = objectsCombo.getValue();
+        boolean valid = true;
+        
+        if (productName.equals(null)) {
             String[] parts = sizeField.getText().split("*");
             size.add(Double.parseDouble(parts[0]));
             size.add(Double.parseDouble(parts[1]));
             size.add(Double.parseDouble(parts[2]));
             Collections.sort(size);
-            if (packageClass.getValue().equals("1. luokka")) {
-                ParcelGrade1 p1 = new ParcelGrade1();
-                if (p1.limit_map.get("weight") >= Double.parseDouble(massField.getText())) {
-                    size2.add(p1.limit_map.get("depth"));
-                    size2.add(p1.limit_map.get("width"));
-                    size2.add(p1.limit_map.get("height"));
-                    Collections.sort(size2);
-                    for (int i = 0; size.get(i) != null; i++) {
-                        if (size2.get(i) >= size.get(i)) {
-                            
-                        } else {
-                            return;
-                        }
-                    }
-                    
-                    Product pro = new Product(Double.parseDouble(massField.getText()), size.get(0), size.get(1), size.get(2), nameField.getText());
-                    
-                } else {
-                    return;
-                }
-            } else if (packageClass.getValue().equals("2. luokka")) {
-                
-            } else if (packageClass.getValue().equals("3. luokka")) {
-                
+            pro = new Product(Double.parseDouble(massField.getText()), size.get(0), size.get(1), size.get(2), nameField.getText());
+        } else if (productName.equals("Valkoiset Vansit")) {
+            pro = new Vans();
+        } else if (productName.equals("Haramben luut")) {
+            pro = new HarambeBones();
+        } else if (productName.equals("Muutama risu")) {
+            pro = new Twigs();
+        } else {
+            pro = new TrumpWig();
+        }
+        
+        String parcelGrade = packageClass.getValue();
+        System.out.println(parcelGrade);
+        Parcel parcel;
+        
+        if (!parcelGrade.equals("")) {
+            if (parcelGrade.equals("1. luokka")) {
+                parcel = new ParcelGrade1();
+            } else if (parcelGrade.equals("2. luokka")) {
+                parcel = new ParcelGrade2();
             } else {
-                System.out.println("Olet huono ihminen");
+                parcel = new ParcelGrade3();
+            }
+            
+            if (parcel.limit_map.get("weight") >= pro.dimension.get("weight")) {
+                size.clear();
+                size.add(pro.dimension.get("depth"));
+                size.add(pro.dimension.get("width"));
+                size.add(pro.dimension.get("height"));
+                Collections.sort(size);
+                
+                size2.add(parcel.limit_map.get("depth"));
+                size2.add(parcel.limit_map.get("width"));
+                size2.add(parcel.limit_map.get("height"));
+                Collections.sort(size2);
+                
+                for (int i = 0; i < 3; i++) {
+                    if (size2.get(i) >= size.get(i)) {
+                    } else {
+                        System.out.println("Ei täytä mittoja!");
+                        valid = false;
+                        break;
+                    }
+                }
+
+            } else {
+                valid = false;
+            }
+            
+            if (valid == true) {
+                Warehouse.wh.addParcel(parcel);
             }
         } else {
-            
+            System.out.println("Olet huono ihminen");
         }
+        
+        
     }
 
-    @FXML
     private void startAutoAction(InputMethodEvent event) {
         String place = startCityCombo.getValue();
         for (SmartPost sPost : smartPosts.getCitySmartPosts(place)) {
