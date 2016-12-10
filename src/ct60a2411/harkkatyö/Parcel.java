@@ -19,6 +19,7 @@ abstract public class Parcel {
     int grade;
     int fragile_factor;
     Map<String, Double> limit_map = new HashMap<>();
+    Product item;
     
     public Parcel() {
         limit_map.put("distance", 0.0);
