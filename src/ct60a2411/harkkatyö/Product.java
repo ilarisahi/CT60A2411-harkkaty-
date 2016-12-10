@@ -12,6 +12,13 @@ package ct60a2411.harkkatyö;
  * Opiskelijanumero: 0438594
  * 10.12.2016
  */
-public class Product {
-
+abstract public class Product {
+    String name;
+    double weigth;
+    double height;
+    double width;
+    double depth;
+    
+    public Product() {
+    }
 }
