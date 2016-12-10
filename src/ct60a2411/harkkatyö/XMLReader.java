@@ -68,9 +68,6 @@ public class XMLReader {
         }
     }
     
-    public SmartPosts getSmartPosts() {
-        return smartPosts;
-    }
     
     
     private String getValue(String tag, Element e) {

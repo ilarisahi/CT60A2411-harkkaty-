@@ -39,4 +39,20 @@ public class SmartPost {
         return city;
     }
     
+    public String getCode() {
+        return code;
+    }
+    
+    public String getAddress() {
+        return address;
+    }
+    
+    public String getAvailability() {
+        return availability;
+    }
+    
+    public String getPostoffice() {
+        return postoffice;
+    }
+    
 }

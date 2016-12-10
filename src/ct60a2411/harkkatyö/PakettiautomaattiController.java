@@ -31,6 +31,7 @@ import org.xml.sax.SAXException;
 public class PakettiautomaattiController implements Initializable {
     
     private ArrayList<SmartPost> SPList;
+    private SmartPosts smartPosts = SmartPosts.getInstance();
     
     @FXML
     private ComboBox<String> autoCombo;
@@ -52,20 +53,25 @@ public class PakettiautomaattiController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
         try {
             XMLReader xmlr = new XMLReader();
-            autoCombo.getItems().addAll(xmlr.getSmartPosts().getCities());
-            SPList = xmlr.getSmartPosts().getSmartPosts();
         } catch (IOException | ParserConfigurationException | SAXException ex) {
             Logger.getLogger(PakettiautomaattiController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        autoCombo.getItems().addAll(smartPosts.getCities());
         web.getEngine().load(getClass().getResource("index.html").toExternalForm());
     }    
 
     @FXML
     private void addToMapAction(ActionEvent event) {
         String name = autoCombo.getValue();
+        SPList = smartPosts.getCitySmartPosts(name);
+        for (SmartPost sPost : SPList) {
+            String point = sPost.getAddress() + ", " + sPost.getCode() + " " + sPost.getCity();
+            String open = "Auki: " + sPost.getAvailability();
+            web.getEngine().executeScript("document.goToLocation('" + point + "', '" + open + "', 'blue')");
+        }
+        
         
     }
 
