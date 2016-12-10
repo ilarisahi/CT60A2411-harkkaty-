@@ -30,6 +30,7 @@ import javafx.scene.input.InputMethodEvent;
 import javafx.stage.Stage;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
+import javafx.scene.web.WebView;
 
 /**
  * FXML Controller class
@@ -67,6 +68,8 @@ public class CreateNewController implements Initializable {
     private Button returnBut;
     @FXML
     private Button createBut;
+    @FXML
+    private WebView web;
 
     /**
      * Initializes the controller class.
@@ -102,7 +105,11 @@ public class CreateNewController implements Initializable {
         packageClass.getItems().add("2. luokka");
         packageClass.getItems().add("3. luokka");
         fragile.setSelected(true);
-    }    
+    }
+    
+    public void setWeb(WebView w) {
+        web = w;
+    }
 
     @FXML
     private void infoButAction(ActionEvent event) throws IOException {

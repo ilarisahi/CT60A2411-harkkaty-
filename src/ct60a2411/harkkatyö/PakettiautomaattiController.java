@@ -73,12 +73,13 @@ public class PakettiautomaattiController implements Initializable {
 
     @FXML
     private void createButAction(ActionEvent event) throws IOException {
+        // Web-elementin vienti uuteen ikkunaan matkojen laskutoimitusta varten
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("CreateNew.fxml"));
         Stage newPackage = new Stage();
+        newPackage.setScene(new Scene(loader.load()));
+        CreateNewController controller = loader.<CreateNewController>getController();
+        controller.setWeb(web);
         
-        Parent page = FXMLLoader.load(getClass().getResource("CreateNew.fxml"));
-        Scene scene = new Scene(page);
-        
-        newPackage.setScene(scene);
         newPackage.show();
     }
 
@@ -94,7 +95,7 @@ public class PakettiautomaattiController implements Initializable {
         lel.add("25.6582995");
         lel.add("60.867886");
         lel.add("26.7041295");
-        Object s = web.getEngine().executeScript("document.pathDist('" + lel + "')");
+        Object s = web.getEngine().executeScript("document.pathDist(" + lel + ")");
         System.out.println(s);
         packageCombo.getItems().clear();
         Parcel parcel = new ParcelGrade1();
