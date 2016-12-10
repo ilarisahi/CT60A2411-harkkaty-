@@ -22,7 +22,7 @@ public class Warehouse {
         parcels = new ArrayList<>();
     }
     
-    public Warehouse getInstance() {
+    static public Warehouse getInstance() {
         if (wh == null) {
             wh = new Warehouse();
         }

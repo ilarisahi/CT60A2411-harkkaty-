@@ -72,6 +72,7 @@ public class CreateNewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         XMLReader xmlr = XMLReader.getInstance();
+        Warehouse wh = Warehouse.getInstance();
         startCityCombo.getItems().addAll(smartPosts.getCities());
         endCityCombo.getItems().addAll(smartPosts.getCities());
         objectsCombo.getItems().addAll(Product.getProductList());
@@ -120,6 +121,19 @@ public class CreateNewController implements Initializable {
 
     @FXML
     private void createButAction(ActionEvent event) {
+        if(objectsCombo.getValue().equals(null)) {
+            if (packageClass.getValue().equals("1. luokka")) {
+                
+            } else if (packageClass.getValue().equals("2. luokka")) {
+                
+            } else if (packageClass.getValue().equals("3. luokka")) {
+                
+            } else {
+                System.out.println("Olet huono ihminen");
+            }
+        } else {
+            
+        }
     }
 
     @FXML
@@ -128,10 +142,6 @@ public class CreateNewController implements Initializable {
         for (SmartPost sPost : smartPosts.getCitySmartPosts(place)) {
             startAutoCombo.getItems().add(sPost.getPostoffice() + " " + sPost.getAddress());    
         }
-    }
-
-    @FXML
-    private void startAutoAction(ContextMenuEvent event) {
     }
     
 }
