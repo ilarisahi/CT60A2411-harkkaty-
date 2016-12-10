@@ -6,6 +6,9 @@
 
 package ct60a2411.harkkatyö;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * @author Ilari Sahi
@@ -14,11 +17,14 @@ package ct60a2411.harkkatyö;
  */
 abstract public class Product {
     String name;
-    double weigth;
-    double height;
-    double width;
-    double depth;
+    boolean fragile;
+    int fragile_factor;
+    Map<String, Double> dimension = new HashMap<>();
     
     public Product() {
+        dimension.put("weight", 0.0);
+        dimension.put("height", 0.0);
+        dimension.put("width", 0.0);
+        dimension.put("depth", 0.0);
     }
 }
