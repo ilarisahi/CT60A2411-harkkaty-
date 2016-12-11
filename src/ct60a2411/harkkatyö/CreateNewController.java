@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.web.WebView;
@@ -65,6 +67,10 @@ public class CreateNewController implements Initializable {
     private WebView web;
     @FXML
     private ComboBox parcelBox;
+    
+    PseudoClass errorClass = PseudoClass.getPseudoClass("error");
+    PseudoClass focusClass = PseudoClass.getPseudoClass("focused");
+    private Product item = null;
 
     /**
      * Initializes the controller class.
@@ -89,8 +95,8 @@ public class CreateNewController implements Initializable {
                 
                 if (startAutoCombo.isDisable()) {
                     startAutoCombo.setDisable(false);
-                    startAutoCombo.getSelectionModel().selectFirst();
                 }
+                startAutoCombo.getSelectionModel().selectFirst();
             }
         });
         endCityCombo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
@@ -108,6 +114,36 @@ public class CreateNewController implements Initializable {
                 }
             }
         });
+        objectsCombo.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue ov, Object t, Object t1) {
+                switch (objectsCombo.getValue()) {
+                    case "Valkoiset Vansit":
+                        item = new Vans();
+                        break;
+                    case "Haramben luut":
+                        item = new HarambeBones();
+                        break;
+                    case "Muutama risu":
+                        item = new Twigs();
+                        break;
+                    case "Trumpin tupee":
+                        item = new TrumpWig();
+                        break;
+                    default:
+                        item = null;
+                        break;
+                }                
+                
+                nameField.setText(item.name);
+                nameField.setDisable(true);
+                sizeField.setText(item.dimension.get("height").toString() + "*" + item.dimension.get("width").toString() + "*" + item.dimension.get("depth").toString());
+                sizeField.setDisable(true);
+                massField.setText(item.dimension.get("height").toString());
+                massField.setDisable(true);
+            }        
+        });
+        
         packageClass.getItems().add("1. luokka");
         packageClass.getItems().add("2. luokka");
         packageClass.getItems().add("3. luokka");
@@ -144,30 +180,11 @@ public class CreateNewController implements Initializable {
 
     @FXML
     private void createButAction(ActionEvent event) {
-        Product item;
         Parcel parcel;
         String parcelGrade = packageClass.getValue();
         
         if (testReadyProduct() == null) {
             item = testCustomProduct();
-        } else {
-            switch (objectsCombo.getValue()) {
-                case "Valkoiset Vansit":
-                    item = new Vans();
-                    break;
-                case "Haramben luut":
-                    item = new HarambeBones();
-                    break;
-                case "Muutama risu":
-                    item = new Twigs();
-                    break;
-                case "Trumpin tupee":
-                    item = new TrumpWig();
-                    break;
-                default:
-                    item = null;
-                    break;
-            }
         }
         
         if ((item == null) || (testStartPost() == false) || (testEndPost() == false) || (testParcelGrade() == false)) {
@@ -259,24 +276,30 @@ public class CreateNewController implements Initializable {
     
     private boolean testStartPost() {
         if (startAutoCombo.getSelectionModel().isEmpty()) {
+            changeError(startCityCombo, true);
             return false;
         } else {
+            changeError(startCityCombo, false);
             return true;
         }
     }
     
     private boolean testEndPost() {
         if (endAutoCombo.getSelectionModel().isEmpty()) {
+            changeError(endCityCombo, true);
             return false;
         } else {
+            changeError(endCityCombo, false);
             return true;
         }
     }
     
     private boolean testParcelGrade() {
         if (packageClass.getSelectionModel().isEmpty()) {
+            changeError(packageClass, true);
             return false;
         } else {
+            changeError(packageClass, false);
             return true;
         }
     }
@@ -300,13 +323,18 @@ public class CreateNewController implements Initializable {
         
         for (int i = 0; i < 3; i++) {
             if (parSize.get(i) < proSize.get(i)) {
+                changeError(sizeField, true);
                 return false;
             }
         }
         
+        changeError(sizeField, false);
+        
         if (proWeight > parWeight) {
+            changeError(massField, true);
             return false;
         } else {
+            changeError(massField, false);
             return true;
         }        
     }
@@ -336,5 +364,10 @@ public class CreateNewController implements Initializable {
         if (parcelBox.isDisable()) {
             parcelBox.setDisable(false);
         }
+    }
+    
+    private void changeError(Control c, boolean b) {
+        c.pseudoClassStateChanged(errorClass, b);
+        c.pseudoClassStateChanged(focusClass, b);
     }
 }
