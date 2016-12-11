@@ -67,17 +67,15 @@ public class LokiWriter {
     
     public String reader() throws FileNotFoundException, IOException {
         BufferedReader br = new BufferedReader(new FileReader("loki.txt"));
-        StringBuilder sb = new StringBuilder();
+        String sb = "";
         String line = br.readLine();
         while(line != null) {
-            sb.append(line);
-            sb.append("\n");
+            sb += line + "\n";
             line = br.readLine();
             
         }
-        String log = sb.toString();
         br.close();
-        return log;
+        return sb;
     }
     
 }

@@ -25,6 +25,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
@@ -57,7 +58,7 @@ public class PakettiautomaattiController implements Initializable {
     @FXML
     private Tab log;
     @FXML
-    private TextField logField;
+    private TextArea logArea;
     
     
     @Override
@@ -146,13 +147,13 @@ public class PakettiautomaattiController implements Initializable {
         packageCombo.getItems().clear();
         loadParcels();
         
-        if (!logField.getText().trim().isEmpty()){
-            logField.clear();
+        if (!logArea.getText().trim().isEmpty()){
+            logArea.clear();
         }
             
         try {
             String loggerino = lw.reader();
-            logField.setText(loggerino);
+            logArea.setText(loggerino);
         } catch (IOException ex) {
             Logger.getLogger(PakettiautomaattiController.class.getName()).log(Level.SEVERE, null, ex);
         }
