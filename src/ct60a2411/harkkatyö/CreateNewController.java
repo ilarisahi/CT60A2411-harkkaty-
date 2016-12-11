@@ -180,46 +180,61 @@ public class CreateNewController implements Initializable {
 
     @FXML
     private void createButAction(ActionEvent event) {
-        Parcel parcel;
+        Parcel parcel = null;
+        boolean validParcel = true;
         String parcelGrade = packageClass.getValue();
         
         if (testReadyProduct() == null) {
             item = testCustomProduct();
         }
         
-        if ((item == null) || (testStartPost() == false) || (testEndPost() == false) || (testParcelGrade() == false)) {
-            return;
+        if(item == null) {
+            validParcel = false;
+        }
+        if(testStartPost() == false) {
+            validParcel = false;
+        }
+        if (testEndPost() == false) {
+            validParcel = false;
+        }
+        if (testParcelGrade() == false) {
+            validParcel = false;
         }
         
-        switch (parcelGrade) {
-            case "1. luokka":
-                parcel = new ParcelGrade1();
-                break;
-            case "2. luokka":
-                parcel = new ParcelGrade2();
-                break;
-            case "3. luokka":
-                parcel = new ParcelGrade3();
-                break;
-            default:
-                parcel = null;
-                break;
+        if (validParcel) {
+            switch (parcelGrade) {
+                case "1. luokka":
+                    parcel = new ParcelGrade1();
+                    break;
+                case "2. luokka":
+                    parcel = new ParcelGrade2();
+                    break;
+                case "3. luokka":
+                    parcel = new ParcelGrade3();
+                    break;
+                default:
+                    parcel = null;
+                    break;
+            }
+
+            SmartPost start = startAutoCombo.getValue();
+            SmartPost end = endAutoCombo.getValue();
+            parcel.startPost = start.getId();
+            parcel.endPost = end.getId();
+            parcel.item = item;
+
+            if (!testDistance(start, end, parcel)) {
+                System.out.println("Paketti hylätty (pitkä matka)");
+                validParcel = false;
+            }
+
+            if (!testDimension(item, parcel)) {
+                System.out.println("Paketti hylätty (väärä koko)");
+                validParcel = false;
+            }
         }
-        
-        SmartPost start = startAutoCombo.getValue();
-        SmartPost end = endAutoCombo.getValue();
-        parcel.startPost = start.getId();
-        parcel.endPost = end.getId();
-        parcel.item = item;
-        
-        if (!testDistance(start, end, parcel)) {
-            System.out.println("Paketti hylätty (pitkä matka)");
-            return;
-        }
-        
-        if (!testDimension(item, parcel)) {
-            System.out.println("Paketti hylätty (väärä koko)");
-        } else {
+            
+        if (validParcel) {
             System.out.println("Paketti luotu!");
             Warehouse.wh.addParcel(parcel);
             updateParcelBox();
@@ -251,22 +266,32 @@ public class CreateNewController implements Initializable {
         String productMass = massField.getText().trim();
         boolean valid = true;
         
+        if (productName.equals("")) {
+            changeError(nameField, true);
+            valid = false;
+        } else {
+            changeError(nameField, false);
+        }
+        
         if (!isNumeric(productMass)) {
+            changeError(massField, true);
             valid = false;
         }
         
         if (sizeParts.length == 3) {
             for (String str : sizeParts) {
                 if (!isNumeric(str)) {
+                    changeError(sizeField, true);
                     valid = false;
                     break;
                 }
             }
         } else {
+            changeError(sizeField, true);
             valid = false;
         }
         
-        if (valid == true) {
+        if (valid) {
             return new Product(Double.parseDouble(productMass), Double.parseDouble(sizeParts[0]),
                     Double.parseDouble(sizeParts[1]), Double.parseDouble(sizeParts[2]), productName);
         } else {
