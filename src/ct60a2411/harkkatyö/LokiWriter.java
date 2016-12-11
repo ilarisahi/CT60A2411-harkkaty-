@@ -5,7 +5,10 @@
  */
 package ct60a2411.harkkatyö;
 
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
@@ -41,15 +44,23 @@ public class LokiWriter {
         return lw;
     }
     
-    public void writer(String a, String b, String c, String d) throws FileNotFoundException, UnsupportedEncodingException {
-        PrintWriter wr = new PrintWriter("loki.txt", "UTF-8");
-        wr.println("Nimi: " + a);
-        wr.println("Lähetyspaikka: " + b);
-        wr.println("Saapumispaikka: " + c);
+    public void writer(String a, String b, String c, String d) throws FileNotFoundException, UnsupportedEncodingException, IOException {
+        FileWriter wr = new FileWriter("loki.txt", true);
+        BufferedWriter bw = new BufferedWriter(wr);
+        bw.write("Nimi: ");
+        bw.write(a);
+        bw.write("\n");
+        bw.write("Lähetyspaikka: ");
+        bw.write(b);
+        bw.write("\n");
+        bw.write("Saapumispaikka: ");
+        bw.write(c);
+        bw.write("\n");
         Date date = new Date();
-        wr.println("Lähetysaika: " + df.format(date));
-        wr.println("");
-        wr.close();
+        bw.write("Lähetysaika: ");
+        bw.write(df.format(date));
+        bw.write("\n\n");
+        bw.close();
         
     }
     

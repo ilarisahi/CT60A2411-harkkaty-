@@ -33,6 +33,7 @@ public class PakettiautomaattiController implements Initializable {
     private ArrayList<SmartPost> SPList;
     private SmartPosts smartPosts = SmartPosts.getInstance();
     private Warehouse warehouse = Warehouse.getInstance();
+    private LokiWriter lw;
     
     @FXML
     private ComboBox<String> autoCombo;
@@ -49,7 +50,6 @@ public class PakettiautomaattiController implements Initializable {
     @FXML
     private WebView web;
     
-    private LokiWriter lw;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -125,7 +125,12 @@ public class PakettiautomaattiController implements Initializable {
         
         web.getEngine().executeScript("document.createPath(" + array + ",'" + color + "'," + parcel.grade + ")");
         
-        lw.writer("", "", "", "");
+        String name = parcel.item.name;
+        String start = startPost.getAddress() + ", " + startPost.getCity();
+        String end = endPost.getAddress() + ", " + endPost.getCity();
+        String broke = "lul";
+        
+        lw.writer(name, start, end, broke);
         
     }    
 }
