@@ -63,6 +63,8 @@ public class CreateNewController implements Initializable {
     private Button createBut;
     @FXML
     private WebView web;
+    @FXML
+    private ComboBox parcelBox;
 
     /**
      * Initializes the controller class.
@@ -73,6 +75,8 @@ public class CreateNewController implements Initializable {
         Warehouse wh = Warehouse.getInstance();
         startCityCombo.getItems().addAll(smartPosts.getCities());
         endCityCombo.getItems().addAll(smartPosts.getCities());
+        startAutoCombo.setDisable(true);
+        endAutoCombo.setDisable(true);
         objectsCombo.getItems().addAll(Product.getProductList());
         startCityCombo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
@@ -81,6 +85,11 @@ public class CreateNewController implements Initializable {
                 String place = t1.toString();
                 for (SmartPost sPost : smartPosts.getCitySmartPosts(place)) {
                     startAutoCombo.getItems().add(sPost);    
+                }
+                
+                if (startAutoCombo.isDisable()) {
+                    startAutoCombo.setDisable(false);
+                    startAutoCombo.getSelectionModel().selectFirst();
                 }
             }
         });
@@ -92,23 +101,34 @@ public class CreateNewController implements Initializable {
                 for (SmartPost sPost : smartPosts.getCitySmartPosts(place)) {
                     endAutoCombo.getItems().add(sPost);    
                 }
+                
+                if (endAutoCombo.isDisable()) {
+                    endAutoCombo.setDisable(false);
+                    endAutoCombo.getSelectionModel().selectFirst();
+                }
             }
         });
         packageClass.getItems().add("1. luokka");
         packageClass.getItems().add("2. luokka");
         packageClass.getItems().add("3. luokka");
         fragile.setSelected(true);
+        packageClass.getSelectionModel().selectFirst();
     }
     
     public void setWeb(WebView w) {
         web = w;
+    }
+    
+    public void setParcelBox(ComboBox cb) {
+        parcelBox = cb;
     }
 
     @FXML
     private void infoButAction(ActionEvent event) throws IOException {
         Stage newPackage = new Stage();
         
-        Parent page = FXMLLoader.load(getClass().getResource("InfoBox.fxml"));
+        Parent page = FXMLLoader.load(getClass().getResource("InfoBox.fxml"));        
+        page.getStylesheets().addAll(getClass().getResource("style.css").toExternalForm());
         Scene scene = new Scene(page);
         
         newPackage.setScene(scene);
@@ -173,6 +193,7 @@ public class CreateNewController implements Initializable {
         SmartPost end = endAutoCombo.getValue();
         parcel.startPost = start.getId();
         parcel.endPost = end.getId();
+        parcel.item = item;
         
         if (!testDistance(start, end, parcel)) {
             System.out.println("Paketti hylätty (pitkä matka)");
@@ -184,6 +205,7 @@ public class CreateNewController implements Initializable {
         } else {
             System.out.println("Paketti luotu!");
             Warehouse.wh.addParcel(parcel);
+            updateParcelBox();
         }
     }
     
@@ -303,6 +325,16 @@ public class CreateNewController implements Initializable {
             return false;
         } else {
             return true;
+        }
+    }
+    
+    private void updateParcelBox() {
+        parcelBox.getItems().clear();
+        parcelBox.getItems().addAll(Warehouse.getParcels());
+        parcelBox.getSelectionModel().selectFirst();
+
+        if (parcelBox.isDisable()) {
+            parcelBox.setDisable(false);
         }
     }
 }

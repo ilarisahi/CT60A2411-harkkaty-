@@ -30,4 +30,10 @@ abstract public class Parcel {
         limit_map.put("width", 0.0);
         limit_map.put("depth", 0.0);
     }
+    
+    @Override
+    public String toString() {
+        String s = item.name + " (" + grade + ". luokka)";
+        return s;
+    }
 }

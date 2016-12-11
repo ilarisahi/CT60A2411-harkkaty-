@@ -9,9 +9,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,8 +19,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-import javax.xml.parsers.ParserConfigurationException;
-import org.xml.sax.SAXException;
 
 /**
  *
@@ -46,8 +41,6 @@ public class PakettiautomaattiController implements Initializable {
     @FXML
     private Button removeRoute;
     @FXML
-    private Button refreshBut;
-    @FXML
     private Button sendBut;
     @FXML
     private WebView web;
@@ -57,7 +50,9 @@ public class PakettiautomaattiController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         XMLReader xmlr = XMLReader.getInstance();
         autoCombo.getItems().addAll(smartPosts.getCities());
+        autoCombo.getSelectionModel().selectFirst();
         web.getEngine().load(getClass().getResource("index.html").toExternalForm());
+        loadParcels();
     }    
 
     @FXML
@@ -75,10 +70,13 @@ public class PakettiautomaattiController implements Initializable {
     private void createButAction(ActionEvent event) throws IOException {
         // Web-elementin vienti uuteen ikkunaan matkojen laskutoimitusta varten
         FXMLLoader loader = new FXMLLoader(getClass().getResource("CreateNew.fxml"));
+        Parent root = loader.load();        
+        root.getStylesheets().addAll(getClass().getResource("style.css").toExternalForm());
         Stage newPackage = new Stage();
-        newPackage.setScene(new Scene(loader.load()));
+        newPackage.setScene(new Scene(root));
         CreateNewController controller = loader.<CreateNewController>getController();
         controller.setWeb(web);
+        controller.setParcelBox(packageCombo);
         
         newPackage.show();
     }
@@ -88,11 +86,13 @@ public class PakettiautomaattiController implements Initializable {
         web.getEngine().executeScript("document.deletePaths()");
     }
 
-    @FXML
-    private void refreshAction(ActionEvent event) {
-        packageCombo.getItems().clear();
-        packageCombo.getItems().addAll(warehouse.getParcels());
-        
+    private void loadParcels() {
+        if (Warehouse.getParcels().isEmpty()) {
+            packageCombo.setDisable(true);
+        } else {
+            packageCombo.getItems().addAll(Warehouse.getParcels());
+            packageCombo.getSelectionModel().selectFirst();
+        }
     }
 
     @FXML
@@ -108,6 +108,5 @@ public class PakettiautomaattiController implements Initializable {
         String color = "blue";
         
         web.getEngine().executeScript("document.createPath(" + array + ",'" + color + "'," + parcel.grade + ")");
-    }
-    
+    }    
 }

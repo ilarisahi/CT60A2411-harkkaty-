@@ -19,8 +19,8 @@ public class CT60A2411Harkkatyö extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Pakettiautomaatti.fxml"));
-        
+        Parent root = FXMLLoader.load(getClass().getResource("Pakettiautomaatti.fxml"));        
+        root.getStylesheets().addAll(getClass().getResource("style.css").toExternalForm());
         Scene scene = new Scene(root);
         
         stage.setScene(scene);

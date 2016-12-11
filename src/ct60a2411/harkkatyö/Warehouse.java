@@ -29,7 +29,7 @@ public class Warehouse {
         return wh;
     }
     
-    public ArrayList<Parcel> getParcels() {
+    static public ArrayList<Parcel> getParcels() {
         return parcels;
     }
     
