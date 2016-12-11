@@ -5,10 +5,14 @@
  */
 package ct60a2411.harkkatyö;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,7 +32,7 @@ public class PakettiautomaattiController implements Initializable {
     
     private ArrayList<SmartPost> SPList;
     private SmartPosts smartPosts = SmartPosts.getInstance();
-    private Warehouse warehouse = Warehouse.getInstance(); 
+    private Warehouse warehouse = Warehouse.getInstance();
     
     @FXML
     private ComboBox<String> autoCombo;
@@ -53,6 +57,11 @@ public class PakettiautomaattiController implements Initializable {
         autoCombo.getSelectionModel().selectFirst();
         web.getEngine().load(getClass().getResource("index.html").toExternalForm());
         loadParcels();
+        try {
+            LokiWriter lw = LokiWriter.getInstance();
+        } catch (FileNotFoundException | UnsupportedEncodingException ex) {
+            Logger.getLogger(PakettiautomaattiController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }    
 
     @FXML
@@ -92,6 +101,7 @@ public class PakettiautomaattiController implements Initializable {
         } else {
             packageCombo.getItems().addAll(Warehouse.getParcels());
             packageCombo.getSelectionModel().selectFirst();
+            
         }
     }
 
@@ -113,5 +123,8 @@ public class PakettiautomaattiController implements Initializable {
         web.getEngine().executeScript("document.goToLocation(" + endPost.getLat() + "," + endPost.getLng() + ",'" + open + "', 'blue')");
         
         web.getEngine().executeScript("document.createPath(" + array + ",'" + color + "'," + parcel.grade + ")");
+        
+        
+        
     }    
 }
