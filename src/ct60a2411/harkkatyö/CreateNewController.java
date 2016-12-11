@@ -8,11 +8,8 @@ package ct60a2411.harkkatyö;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -25,11 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.input.ContextMenuEvent;
-import javafx.scene.input.InputMethodEvent;
 import javafx.stage.Stage;
-import javax.xml.parsers.ParserConfigurationException;
-import org.xml.sax.SAXException;
 import javafx.scene.web.WebView;
 
 /**
@@ -131,113 +124,185 @@ public class CreateNewController implements Initializable {
 
     @FXML
     private void createButAction(ActionEvent event) {
-        ArrayList<Double> size = new ArrayList<>();
-        ArrayList<Double> size2 = new ArrayList<>();
-        Product pro = null;
-        String productName = objectsCombo.getValue();
-        boolean valid = true;
+        Product item;
+        Parcel parcel;
+        String parcelGrade = packageClass.getValue();
         
-        if (startAutoCombo.getSelectionModel().isEmpty() || endAutoCombo.getSelectionModel().isEmpty()){
+        if (testReadyProduct() == null) {
+            item = testCustomProduct();
+        } else {
+            switch (objectsCombo.getValue()) {
+                case "Valkoiset Vansit":
+                    item = new Vans();
+                    break;
+                case "Haramben luut":
+                    item = new HarambeBones();
+                    break;
+                case "Muutama risu":
+                    item = new Twigs();
+                    break;
+                case "Trumpin tupee":
+                    item = new TrumpWig();
+                    break;
+                default:
+                    item = null;
+                    break;
+            }
+        }
+        
+        if ((item == null) || (testStartPost() == false) || (testEndPost() == false) || (testParcelGrade() == false)) {
             return;
+        }
+        
+        switch (parcelGrade) {
+            case "1. luokka":
+                parcel = new ParcelGrade1();
+                break;
+            case "2. luokka":
+                parcel = new ParcelGrade2();
+                break;
+            case "3. luokka":
+                parcel = new ParcelGrade3();
+                break;
+            default:
+                parcel = null;
+                break;
         }
         
         SmartPost start = startAutoCombo.getValue();
         SmartPost end = endAutoCombo.getValue();
+        parcel.startPost = start.getId();
+        parcel.endPost = end.getId();
         
+        if (!testDistance(start, end, parcel)) {
+            System.out.println("Paketti hylätty (pitkä matka)");
+            return;
+        }
         
+        if (!testDimension(item, parcel)) {
+            System.out.println("Paketti hylätty (väärä koko)");
+        } else {
+            System.out.println("Paketti luotu!");
+            Warehouse.wh.addParcel(parcel);
+        }
+    }
+    
+    private String testReadyProduct() {
+        if (objectsCombo.getSelectionModel().isEmpty()) {
+            return null;
+        } else {
+            return objectsCombo.getValue();
+        }
+    }
+    
+    // Katsotaan, onko String numero vai ei
+    // http://stackoverflow.com/questions/1102891/how-to-check-if-a-string-is-numeric-in-java
+    private boolean isNumeric(String s) {
+        try {
+            double d = Double.parseDouble(s);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
+    }
+    
+    private Product testCustomProduct() {
+        String[] sizeParts = sizeField.getText().trim().split(",");
+        String productName = nameField.getText().trim();
+        String productMass = massField.getText().trim();
+        boolean valid = true;
         
-        if (!objectsCombo.getSelectionModel().isEmpty()) {
-            switch (objectsCombo.getValue()) {
-                case "Valkoiset Vansit":
-                    pro = new Vans();
+        if (!isNumeric(productMass)) {
+            valid = false;
+        }
+        
+        if (sizeParts.length == 3) {
+            for (String str : sizeParts) {
+                if (!isNumeric(str)) {
+                    valid = false;
                     break;
-                case "Haramben luut":
-                    pro = new HarambeBones();
-                    break;
-                case "Muutama risu":
-                    pro = new Twigs();
-                    break;
-                case "Trumpin tupee":
-                    pro = new TrumpWig();
-                    break;
+                }
             }
         } else {
-            String[] parts = sizeField.getText().split(",");
-            if ((parts.length == 3) && (!massField.getText().isEmpty()) && (!nameField.getText().isEmpty())) {
-                size.add(Double.parseDouble(parts[0]));
-                size.add(Double.parseDouble(parts[1]));
-                size.add(Double.parseDouble(parts[2]));
-                Collections.sort(size);                
-                pro = new Product(Double.parseDouble(massField.getText()), size.get(0), size.get(1), size.get(2), nameField.getText());
-            } else {
-                System.out.println("Olet huono ihminen");
-                return;
+            valid = false;
+        }
+        
+        if (valid == true) {
+            return new Product(Double.parseDouble(productMass), Double.parseDouble(sizeParts[0]),
+                    Double.parseDouble(sizeParts[1]), Double.parseDouble(sizeParts[2]), productName);
+        } else {
+            return null;
+        }
+    }
+    
+    private boolean testStartPost() {
+        if (startAutoCombo.getSelectionModel().isEmpty()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    private boolean testEndPost() {
+        if (endAutoCombo.getSelectionModel().isEmpty()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    private boolean testParcelGrade() {
+        if (packageClass.getSelectionModel().isEmpty()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    private boolean testDimension(Product pr, Parcel pa) {
+        double proWeight = pr.dimension.get("weight");
+        double parWeight = pa.limit_map.get("weight");
+        
+        ArrayList<Double> proSize = new ArrayList();
+        ArrayList<Double> parSize = new ArrayList();
+        
+        proSize.add(pr.dimension.get("depth"));
+        proSize.add(pr.dimension.get("width"));
+        proSize.add(pr.dimension.get("height"));
+        Collections.sort(proSize);
+
+        parSize.add(pa.limit_map.get("depth"));
+        parSize.add(pa.limit_map.get("width"));
+        parSize.add(pa.limit_map.get("height"));
+        Collections.sort(parSize);
+        
+        for (int i = 0; i < 3; i++) {
+            if (parSize.get(i) < proSize.get(i)) {
+                return false;
             }
         }
         
-        String parcelGrade = packageClass.getValue();
-        System.out.println(parcelGrade);
-        Parcel parcel;
+        if (proWeight > parWeight) {
+            return false;
+        } else {
+            return true;
+        }        
+    }
+    
+    private boolean testDistance(SmartPost start, SmartPost end, Parcel par) {
         ArrayList<Double> s = new ArrayList<>();
-        
         s.add(start.getLat());
         s.add(start.getLng());
         s.add(end.getLat());
         s.add(end.getLng());
-        
-        String dist = web.getEngine().executeScript("document.pathDist(" + s + ")").toString();
-        
+
+        String dist = web.getEngine().executeScript("document.pathDist(" + s + ")").toString();        
         Double km = Double.parseDouble(dist);
-        
-        
-        if (!packageClass.getSelectionModel().isEmpty()) {
-            if (parcelGrade.equals("1. luokka") && km <= 150) {
-                parcel = new ParcelGrade1();
-            } else if (parcelGrade.equals("2. luokka")) {
-                parcel = new ParcelGrade2();
-            } else if (parcelGrade.equals("3. luokka")) {
-                parcel = new ParcelGrade3();
-            } else {
-                return;
-            }
-            
-            parcel.startPost = startAutoCombo.getValue().getId();
-            parcel.endPost = endAutoCombo.getValue().getId();
-            
-            if (parcel.limit_map.get("weight") >= pro.dimension.get("weight")) {
-                size.clear();
-                size.add(pro.dimension.get("depth"));
-                size.add(pro.dimension.get("width"));
-                size.add(pro.dimension.get("height"));
-                Collections.sort(size);
-                
-                size2.add(parcel.limit_map.get("depth"));
-                size2.add(parcel.limit_map.get("width"));
-                size2.add(parcel.limit_map.get("height"));
-                Collections.sort(size2);
-                
-                for (int i = 0; i < 3; i++) {
-                    if (size2.get(i) >= size.get(i)) {
-                    } else {
-                        System.out.println("Ei täytä mittoja!");
-                        valid = false;
-                        break;
-                    }
-                }
 
-            } else {
-                System.out.println("Ei täytä painoa!");
-                valid = false;
-            }
-            
-            if (valid == true) {
-                Warehouse.wh.addParcel(parcel);
-            }
+        if ((km > 150.0) && (par.grade == 1)) {
+            return false;
         } else {
-            System.out.println("Olet huono ihminen");
+            return true;
         }
-        
-        
     }
-
 }
