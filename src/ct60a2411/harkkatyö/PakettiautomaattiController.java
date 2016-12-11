@@ -146,11 +146,7 @@ public class PakettiautomaattiController implements Initializable {
         packageCombo.getItems().clear();
         loadParcels();
         
-    }    
-
-    @FXML
-    private void logAction(Event event) throws FileNotFoundException {
-        if (logField.getText().trim().isEmpty()){
+        if (!logField.getText().trim().isEmpty()){
             logField.clear();
         }
             
@@ -160,5 +156,7 @@ public class PakettiautomaattiController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(PakettiautomaattiController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+        
+    }    
+
 }
