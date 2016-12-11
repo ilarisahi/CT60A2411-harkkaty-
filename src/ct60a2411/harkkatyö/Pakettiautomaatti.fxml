@@ -3,61 +3,75 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane id="AnchorPane" prefHeight="706.0" prefWidth="594.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ct60a2411.harkkatyö.PakettiautomaattiController">
+<AnchorPane id="AnchorPane" minHeight="706.0" minWidth="-Infinity" prefHeight="807.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ct60a2411.harkkatyö.PakettiautomaattiController">
    <children>
-      <GridPane prefHeight="556.0" prefWidth="555.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints maxHeight="231.0" minHeight="10.0" prefHeight="227.0" vgrow="NEVER" />
-          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="138.0" prefHeight="327.0" vgrow="ALWAYS" />
-          <RowConstraints maxHeight="156.0" minHeight="77.0" prefHeight="148.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <WebView fx:id="web" prefHeight="279.0" prefWidth="594.0" GridPane.rowIndex="1" />
-            <GridPane GridPane.rowIndex="2">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints maxHeight="150.0" minHeight="150.0" prefHeight="150.0" vgrow="NEVER" />
-              </rowConstraints>
-               <children>
-                  <AnchorPane prefHeight="183.0" prefWidth="509.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+      <TabPane prefHeight="807.0" prefWidth="728.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Untitled Tab 1">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="14.0" layoutY="4.0" text="TIMO Järjestelmä">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="14.0" layoutY="26.0" text="Lisää SmartPost automaatit kartalle:" />
-                        <ComboBox fx:id="autoCombo" layoutX="14.0" layoutY="43.0" prefHeight="25.0" prefWidth="189.0" />
-                        <Button fx:id="addToMap" layoutX="114.0" layoutY="76.0" mnemonicParsing="false" onAction="#addToMapAction" prefHeight="25.0" prefWidth="89.0" text="Lisää kartalle" />
-                        <Label layoutX="231.0" layoutY="26.0" text="Pakettien luonti ja lähetys:" />
-                        <Button fx:id="createBut" layoutX="231.0" layoutY="43.0" mnemonicParsing="false" onAction="#createButAction" prefHeight="25.0" prefWidth="119.0" text="Luo Paketti" />
-                        <ComboBox fx:id="packageCombo" layoutX="231.0" layoutY="76.0" prefHeight="25.0" prefWidth="119.0" promptText="Ei paketteja" />
-                        <Button fx:id="removeRoute" layoutX="231.0" layoutY="113.0" mnemonicParsing="false" onAction="#removeRouteAction" text="Poista reitit kartalta" />
-                        <Button fx:id="sendBut" layoutX="370.0" layoutY="76.0" mnemonicParsing="false" onAction="#sendButAction" text="Lähetä paketti" />
+                        <GridPane minHeight="556.0" minWidth="-Infinity" prefHeight="556.0" prefWidth="555.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="544.0" minWidth="269.0" prefWidth="323.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="325.0" minWidth="10.0" prefWidth="271.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints maxHeight="231.0" minHeight="10.0" prefHeight="227.0" vgrow="NEVER" />
+                            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="138.0" prefHeight="327.0" vgrow="ALWAYS" />
+                            <RowConstraints maxHeight="156.0" minHeight="77.0" prefHeight="148.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <WebView fx:id="web" prefHeight="279.0" prefWidth="594.0" GridPane.rowIndex="1" />
+                              <GridPane GridPane.rowIndex="2">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints maxHeight="150.0" minHeight="150.0" prefHeight="150.0" vgrow="NEVER" />
+                                </rowConstraints>
+                                 <children>
+                                    <AnchorPane prefHeight="183.0" prefWidth="509.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                       <children>
+                                          <Label layoutX="14.0" layoutY="26.0" text="Lisää SmartPost automaatit kartalle:" />
+                                          <ComboBox fx:id="autoCombo" layoutX="14.0" layoutY="43.0" prefHeight="25.0" prefWidth="189.0" />
+                                          <Button fx:id="addToMap" layoutX="114.0" layoutY="76.0" mnemonicParsing="false" onAction="#addToMapAction" prefHeight="25.0" prefWidth="89.0" text="Lisää kartalle" />
+                                          <Label layoutX="231.0" layoutY="26.0" text="Pakettien luonti ja lähetys:" />
+                                          <Button fx:id="createBut" layoutX="231.0" layoutY="43.0" mnemonicParsing="false" onAction="#createButAction" prefHeight="25.0" prefWidth="119.0" text="Luo Paketti" />
+                                          <ComboBox fx:id="packageCombo" layoutX="231.0" layoutY="76.0" prefHeight="25.0" prefWidth="119.0" promptText="Ei paketteja" />
+                                          <Button fx:id="removeRoute" layoutX="231.0" layoutY="113.0" mnemonicParsing="false" onAction="#removeRouteAction" text="Poista reitit kartalta" />
+                                          <Button fx:id="sendBut" layoutX="370.0" layoutY="76.0" mnemonicParsing="false" onAction="#sendButAction" text="Lähetä paketti" />
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </GridPane>
+                              <ImageView fitHeight="226.0" fitWidth="592.0" pickOnBounds="true" preserveRatio="true" smooth="false" GridPane.halignment="CENTER">
+                                 <image>
+                                    <Image url="@TIMO%20logo%20v2.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </GridPane>
                      </children>
                   </AnchorPane>
-               </children>
-            </GridPane>
-            <ImageView fitHeight="226.0" fitWidth="592.0" pickOnBounds="true" preserveRatio="true" smooth="false" GridPane.halignment="CENTER">
-               <image>
-                  <Image url="@TIMO%20logo.png" />
-               </image>
-            </ImageView>
-         </children>
-      </GridPane>
+            </content>
+          </Tab>
+          <Tab text="Untitled Tab 2">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
    </children>
 </AnchorPane>
