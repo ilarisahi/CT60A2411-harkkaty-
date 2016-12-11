@@ -1,2 +1,12 @@
 *** LOKI ***
 
+Nimi: Trumpin tupee
+Lähetyspaikka: Satakunnankatu 4, EURA
+Saapumispaikka: Yrittäjätie 4, AKAA
+Lähetysaika: 11/12/2016 15:40
+
+Nimi: Haramben luut
+Lähetyspaikka: Sibeliuskatu 27, HAMINA
+Saapumispaikka: Merivirta 3, ESPOO
+Lähetysaika: 11/12/2016 15:40
+
