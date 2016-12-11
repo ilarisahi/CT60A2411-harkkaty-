@@ -141,11 +141,19 @@ public class PakettiautomaattiController implements Initializable {
         
         lw.writer(name, start, end, broke);
         
+        warehouse.deleteParcel(parcel);
+        packageCombo.getSelectionModel().clearSelection();
+        packageCombo.getItems().clear();
+        loadParcels();
+        
     }    
 
     @FXML
     private void logAction(Event event) throws FileNotFoundException {
-        logField.clear();
+        if (logField.getText().trim().isEmpty()){
+            logField.clear();
+        }
+            
         try {
             String loggerino = lw.reader();
             logField.setText(loggerino);

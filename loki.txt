@@ -1,5 +1,5 @@
 Nimi: Trumpin tupee
-Lähetyspaikka: Piirantie 1, ALAVUS
-Saapumispaikka: Yrittäjätie 4, AKAA
-Lähetysaika: 11/12/2016 16:59
+Lähetyspaikka: Yrittäjätie 4, AKAA
+Saapumispaikka: Satakunnankatu 4, EURA
+Lähetysaika: 11/12/2016 16:52
 
