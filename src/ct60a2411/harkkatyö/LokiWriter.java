@@ -5,8 +5,10 @@
  */
 package ct60a2411.harkkatyö;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -29,8 +31,6 @@ public class LokiWriter {
         PrintWriter wr;
         try {
             wr = new PrintWriter("loki.txt", "UTF-8");
-            wr.println("*** LOKI ***");
-            wr.println("");
             wr.close();
         } catch (FileNotFoundException | UnsupportedEncodingException ex) {
             Logger.getLogger(LokiWriter.class.getName()).log(Level.SEVERE, null, ex);
@@ -62,6 +62,19 @@ public class LokiWriter {
         bw.write("\n\n");
         bw.close();
         
+    }
+    
+    public String reader() throws FileNotFoundException, IOException {
+        BufferedReader br = new BufferedReader(new FileReader("loki.txt"));
+        StringBuilder sb = new StringBuilder();
+        String line = br.readLine();
+        while(line != null) {
+            sb.append(line);
+            line = br.readLine();
+        }
+        String log = sb.toString();
+        br.close();
+        return log;
     }
     
 }

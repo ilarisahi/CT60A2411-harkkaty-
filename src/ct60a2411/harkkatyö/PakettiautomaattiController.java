@@ -5,7 +5,9 @@
  */
 package ct60a2411.harkkatyö;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
@@ -14,6 +16,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,6 +24,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TextField;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
@@ -49,6 +54,10 @@ public class PakettiautomaattiController implements Initializable {
     private Button sendBut;
     @FXML
     private WebView web;
+    @FXML
+    private Tab log;
+    @FXML
+    private TextField logField;
     
     
     @Override
@@ -133,4 +142,16 @@ public class PakettiautomaattiController implements Initializable {
         lw.writer(name, start, end, broke);
         
     }    
+
+    @FXML
+    private void logAction(Event event) throws FileNotFoundException {
+        logField.clear();
+        try {
+            String loggerino = lw.reader();
+            logField.setText(loggerino);
+        } catch (IOException ex) {
+            Logger.getLogger(PakettiautomaattiController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
 }
