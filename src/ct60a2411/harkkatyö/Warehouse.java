@@ -36,4 +36,8 @@ public class Warehouse {
     public void addParcel(Parcel p) {
         parcels.add(p);
     }
+    
+    public void deleteParcel(Parcel p) {
+        parcels.remove(p);
+    }
 }

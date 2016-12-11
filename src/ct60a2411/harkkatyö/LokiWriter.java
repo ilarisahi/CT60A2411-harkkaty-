@@ -49,17 +49,18 @@ public class LokiWriter {
         BufferedWriter bw = new BufferedWriter(wr);
         bw.write("Nimi: ");
         bw.write(a);
-        bw.write("\n");
+        bw.write(System.getProperty("line.separator"));
         bw.write("Lähetyspaikka: ");
         bw.write(b);
-        bw.write("\n");
+        bw.write(System.getProperty("line.separator"));
         bw.write("Saapumispaikka: ");
         bw.write(c);
-        bw.write("\n");
+        bw.write(System.getProperty("line.separator"));
         Date date = new Date();
         bw.write("Lähetysaika: ");
         bw.write(df.format(date));
-        bw.write("\n\n");
+        bw.write(System.getProperty("line.separator"));
+        bw.write(System.getProperty("line.separator"));
         bw.close();
         
     }
@@ -70,7 +71,9 @@ public class LokiWriter {
         String line = br.readLine();
         while(line != null) {
             sb.append(line);
+            sb.append(System.getProperty("line.separator"));
             line = br.readLine();
+            
         }
         String log = sb.toString();
         br.close();
