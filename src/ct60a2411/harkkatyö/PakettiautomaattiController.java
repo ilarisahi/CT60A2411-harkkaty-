@@ -152,6 +152,5 @@ public class PakettiautomaattiController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(PakettiautomaattiController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
 }
