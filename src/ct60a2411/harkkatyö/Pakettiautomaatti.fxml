@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.web.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -13,11 +19,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane id="AnchorPane" minHeight="706.0" minWidth="-Infinity" prefHeight="807.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ct60a2411.harkkatyö.PakettiautomaattiController">
+<AnchorPane id="AnchorPane" minHeight="706.0" minWidth="-Infinity" prefHeight="807.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ct60a2411.harkkatyö.PakettiautomaattiController">
    <children>
       <TabPane prefHeight="807.0" prefWidth="728.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Untitled Tab 1">
+          <Tab fx:id="log" onSelectionChanged="#logAction" text="SmartPost">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -66,9 +72,17 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="Untitled Tab 2">
+          <Tab text="Loki">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="337.0" layoutY="14.0" text="LOKI">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="logField" alignment="TOP_CENTER" layoutX="13.0" layoutY="70.0" prefHeight="696.0" prefWidth="704.0" />
+                     </children></AnchorPane>
             </content>
           </Tab>
         </tabs>
