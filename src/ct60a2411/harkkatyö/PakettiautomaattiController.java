@@ -105,7 +105,12 @@ public class PakettiautomaattiController implements Initializable {
         array.add(startPost.getLng());
         array.add(endPost.getLat());
         array.add(endPost.getLng());
-        String color = "blue";
+        String color = "red";
+        
+        String open = startPost.getPostoffice() + "Auki: " + startPost.getAvailability();
+        web.getEngine().executeScript("document.goToLocation(" + startPost.getLat() + "," + startPost.getLng() + ",'" + open + "', 'blue')");
+        open = endPost.getPostoffice() + "Auki: " + endPost.getAvailability();
+        web.getEngine().executeScript("document.goToLocation(" + endPost.getLat() + "," + endPost.getLng() + ",'" + open + "', 'blue')");
         
         web.getEngine().executeScript("document.createPath(" + array + ",'" + color + "'," + parcel.grade + ")");
     }    
