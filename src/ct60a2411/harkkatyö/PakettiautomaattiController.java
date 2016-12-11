@@ -107,7 +107,7 @@ public class PakettiautomaattiController implements Initializable {
     }
 
     @FXML
-    private void sendButAction(ActionEvent event) throws FileNotFoundException, UnsupportedEncodingException {
+    private void sendButAction(ActionEvent event) throws FileNotFoundException, UnsupportedEncodingException, IOException {
         Parcel parcel = packageCombo.getValue();
         SmartPost startPost = SmartPosts.getInstance().getSmartPost(parcel.startPost);
         SmartPost endPost = SmartPosts.getInstance().getSmartPost(parcel.endPost);
