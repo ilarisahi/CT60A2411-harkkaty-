@@ -49,6 +49,7 @@ public class PakettiautomaattiController implements Initializable {
     @FXML
     private WebView web;
     
+    private LokiWriter lw;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -58,7 +59,7 @@ public class PakettiautomaattiController implements Initializable {
         web.getEngine().load(getClass().getResource("index.html").toExternalForm());
         loadParcels();
         try {
-            LokiWriter lw = LokiWriter.getInstance();
+            lw = LokiWriter.getInstance();
         } catch (FileNotFoundException | UnsupportedEncodingException ex) {
             Logger.getLogger(PakettiautomaattiController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -106,7 +107,7 @@ public class PakettiautomaattiController implements Initializable {
     }
 
     @FXML
-    private void sendButAction(ActionEvent event) {
+    private void sendButAction(ActionEvent event) throws FileNotFoundException, UnsupportedEncodingException {
         Parcel parcel = packageCombo.getValue();
         SmartPost startPost = SmartPosts.getInstance().getSmartPost(parcel.startPost);
         SmartPost endPost = SmartPosts.getInstance().getSmartPost(parcel.endPost);
@@ -124,7 +125,7 @@ public class PakettiautomaattiController implements Initializable {
         
         web.getEngine().executeScript("document.createPath(" + array + ",'" + color + "'," + parcel.grade + ")");
         
-        
+        lw.writer("", "", "", "");
         
     }    
 }
