@@ -10,6 +10,7 @@
 </script>
 <script type="text/javascript">
   var polyMarkerArray = [];
+  var markerArray = [];
   function initialize() {
     var latlng = new google.maps.LatLng(63.9667, 25.7667);
     var myOptions = {
@@ -50,6 +51,8 @@
     var info = new google.maps.InfoWindow({
       content: infoString
     });
+    
+    markerArray.push(marker);
 
     google.maps.event.addListener(marker, "click", function() {
       info.open(document.map, marker);
@@ -94,7 +97,10 @@
 
   document.deletePaths = function deletePaths() {
     for(var i=0; i<polyMarkerArray.length;i++) {
-      polyMarkerArray[i].setMap(null);
+      polyMarkerArray[i].setMap(null);      
+    }
+    for(var i=0; i<markerArray.length;i++) {
+      markerArray[i].setMap(null);
     }
 } 
 </script>

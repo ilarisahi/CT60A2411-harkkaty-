@@ -13,12 +13,11 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane id="AnchorPane" minHeight="525.0" minWidth="713.0" prefHeight="525.0" prefWidth="713.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ct60a2411.harkkatyö.PakettiautomaattiController">
+<AnchorPane id="AnchorPane" fx:id="mainAnchorPane" minHeight="431.0" minWidth="713.0" prefHeight="431.0" prefWidth="713.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ct60a2411.harkkatyö.PakettiautomaattiController">
    <children>
-      <TabPane prefHeight="480.0" prefWidth="741.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TabPane prefHeight="480.0" prefWidth="741.0" side="RIGHT" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
           <Tab fx:id="smartpost" text="SmartPost">
             <content>
@@ -51,7 +50,7 @@
                                           <Label layoutY="100.0" text="Pakettien luonti ja lähetys:" AnchorPane.leftAnchor="0.0" />
                                           <Button fx:id="createBut" layoutY="120.0" mnemonicParsing="false" onAction="#createButAction" text="Luo Paketti" AnchorPane.leftAnchor="0.0" />
                                           <ComboBox fx:id="packageCombo" layoutY="150.0" prefWidth="283.0" promptText="Ei paketteja" AnchorPane.leftAnchor="0.0" />
-                                          <Button fx:id="removeRoute" layoutY="230.0" mnemonicParsing="false" onAction="#removeRouteAction" text="Poista reitit kartalta" AnchorPane.leftAnchor="0.0" />
+                                          <Button fx:id="removeRoute" layoutY="230.0" mnemonicParsing="false" onAction="#removeRouteAction" text="Tyhjennä kartta" AnchorPane.leftAnchor="0.0" />
                                           <Button fx:id="sendBut" layoutY="180.0" mnemonicParsing="false" onAction="#sendButAction" text="Lähetä paketti" AnchorPane.leftAnchor="0.0" />
                                        </children>
                                        <GridPane.margin>
@@ -66,7 +65,7 @@
                                           <Image url="@TIMO%20logo%20v2.png" />
                                        </image>
                                        <GridPane.margin>
-                                          <Insets left="-20.0" top="10.0" />
+                                          <Insets top="10.0" />
                                        </GridPane.margin>
                                     </ImageView>
                                  </children>
@@ -81,12 +80,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="337.0" layoutY="14.0" text="LOKI">
-                           <font>
-                              <Font name="System Bold" size="24.0" />
-                           </font>
-                        </Label>
-                        <TextArea fx:id="logArea" layoutX="14.0" layoutY="72.0" prefHeight="405.0" prefWidth="682.0" />
+                        <TextArea fx:id="logArea" editable="false" layoutX="5.0" layoutY="4.0" prefHeight="473.0" prefWidth="691.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0" />
                      </children></AnchorPane>
             </content>
           </Tab>

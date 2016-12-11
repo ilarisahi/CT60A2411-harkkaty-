@@ -5,9 +5,7 @@
  */
 package ct60a2411.harkkatyö;
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
@@ -16,7 +14,6 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,8 +23,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.web.WebView;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -97,8 +95,13 @@ public class PakettiautomaattiController implements Initializable {
         CreateNewController controller = loader.<CreateNewController>getController();
         controller.setWeb(web);
         controller.setParcelBox(packageCombo);
-        
-        newPackage.show();
+        controller.setSendBut(sendBut);
+        newPackage.setTitle("TIMO - luo paketti");
+        newPackage.getIcons().add(new Image(getClass().getResourceAsStream("timo_icon.png")));
+        newPackage.getIcons().add(new Image(getClass().getResourceAsStream("timo_icon_big.png")));
+        newPackage.setResizable(false);
+        newPackage.initModality(Modality.APPLICATION_MODAL);
+        newPackage.showAndWait();
     }
 
     @FXML
@@ -109,6 +112,7 @@ public class PakettiautomaattiController implements Initializable {
     private void loadParcels() {
         if (Warehouse.getParcels().isEmpty()) {
             packageCombo.setDisable(true);
+            sendBut.setDisable(true);
         } else {
             packageCombo.getItems().addAll(Warehouse.getParcels());
             packageCombo.getSelectionModel().selectFirst();

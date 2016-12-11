@@ -24,8 +24,10 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.scene.web.WebView;
+import javafx.stage.Modality;
 
 /**
  * FXML Controller class
@@ -67,6 +69,8 @@ public class CreateNewController implements Initializable {
     private WebView web;
     @FXML
     private ComboBox parcelBox;
+    @FXML
+    private Button sendButton;
     
     PseudoClass errorClass = PseudoClass.getPseudoClass("error");
     PseudoClass focusClass = PseudoClass.getPseudoClass("focused");
@@ -158,17 +162,25 @@ public class CreateNewController implements Initializable {
     public void setParcelBox(ComboBox cb) {
         parcelBox = cb;
     }
+    
+    void setSendBut(Button sb) {
+        sendButton = sb;
+    }
 
     @FXML
     private void infoButAction(ActionEvent event) throws IOException {
-        Stage newPackage = new Stage();
-        
+        Stage newPackage = new Stage();        
         Parent page = FXMLLoader.load(getClass().getResource("InfoBox.fxml"));        
         page.getStylesheets().addAll(getClass().getResource("style.css").toExternalForm());
         Scene scene = new Scene(page);
         
         newPackage.setScene(scene);
-        newPackage.show();
+        newPackage.setTitle("TIMO - paketti-info");
+        newPackage.getIcons().add(new Image(getClass().getResourceAsStream("timo_icon.png")));
+        newPackage.getIcons().add(new Image(getClass().getResourceAsStream("timo_icon_big.png")));
+        newPackage.setResizable(false);
+        newPackage.initModality(Modality.APPLICATION_MODAL);
+        newPackage.showAndWait();
     }
 
     @FXML
@@ -261,7 +273,7 @@ public class CreateNewController implements Initializable {
     }
     
     private Product testCustomProduct() {
-        String[] sizeParts = sizeField.getText().trim().split(",");
+        String[] sizeParts = sizeField.getText().trim().split("\\*");
         String productName = nameField.getText().trim();
         String productMass = massField.getText().trim();
         boolean valid = true;
@@ -388,6 +400,10 @@ public class CreateNewController implements Initializable {
 
         if (parcelBox.isDisable()) {
             parcelBox.setDisable(false);
+        }
+        
+        if (sendButton.isDisable()) {
+            sendButton.setDisable(false);
         }
     }
     

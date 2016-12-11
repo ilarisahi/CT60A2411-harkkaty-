@@ -11,3 +11,80 @@ and open the template in the editor.
 *:error {
     -fx-focus-color: red;
 }
+
+Button {
+    -fx-background-color: #cc00cc;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+Button:hover {
+    -fx-background-color: #990099;
+}
+
+#AnchorPane {
+    -fx-background-color: #ffffff;
+}
+
+.combo-box-base {
+    -fx-background-color: #cc00cc;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.combo-box-base:hover, .combo-box-base:hover .list-cell:selected {
+    -fx-background-color: #990099;
+}
+
+.combo-box-base .list-cell {
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #cc00cc;
+    -fx-cursor: hand;
+}
+
+.combo-box-base .list-cell:hover {
+    -fx-background-color: #990099;
+}
+
+.tab-pane .tab-header-area {
+    -fx-background-insets: 0, 0 0 0 0;
+    -fx-padding: 3em 0.0em 0.0em 0.0em;
+}
+
+.tab *.tab-label {
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+}
+
+.tab {
+    -fx-background-radius: 0;
+    -fx-background-color:#f023f0;
+    -fx-cursor: hand;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0.5em;
+    -fx-tab-max-height: 10px;
+    -fx-tab-max-width: 10px;
+}
+
+.tab:selected, .tab:selected:hover {
+    -fx-highlight-fill: none;
+    -fx-background-color: #ffffff;
+}
+
+.tab:selected *.tab-label {
+    -fx-text-fill: #000000;
+}
+
+.tab:hover {
+    -fx-highlight-fill: none;
+    -fx-background-color: #990099;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: #cc00cc;
+}

@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -22,7 +23,10 @@ public class CT60A2411Harkkatyö extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("Pakettiautomaatti.fxml"));        
         root.getStylesheets().addAll(getClass().getResource("style.css").toExternalForm());
         Scene scene = new Scene(root);
-        stage.setMinHeight(530.0);
+        stage.setTitle("TIMO");
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("timo_icon.png")));
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("timo_icon_big.png")));
+        stage.setMinHeight(500.0);
         stage.setMinWidth(760.0);
         stage.setScene(scene);
         stage.show();
