@@ -32,10 +32,10 @@ import javafx.stage.Stage;
  *
  * @author Ilari
  */
-public class PakettiautomaattiController implements Initializable {
+public class MainWindowController implements Initializable {
     
     private ArrayList<SmartPost> SPList;
-    private SmartPosts smartPosts = SmartPosts.getInstance();
+    private SmartPostContainer smartPosts = SmartPostContainer.getInstance();
     private Warehouse warehouse = Warehouse.getInstance();
     private LokiWriter lw;
     
@@ -69,7 +69,7 @@ public class PakettiautomaattiController implements Initializable {
         try {
             lw = LokiWriter.getInstance();
         } catch (FileNotFoundException | UnsupportedEncodingException ex) {
-            Logger.getLogger(PakettiautomaattiController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
 
@@ -87,12 +87,12 @@ public class PakettiautomaattiController implements Initializable {
     @FXML
     private void createButAction(ActionEvent event) throws IOException {
         // Web-elementin vienti uuteen ikkunaan matkojen laskutoimitusta varten
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("CreateNew.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("CreateParcelWindow.fxml"));
         Parent root = loader.load();        
         root.getStylesheets().addAll(getClass().getResource("style.css").toExternalForm());
         Stage newPackage = new Stage();
         newPackage.setScene(new Scene(root));
-        CreateNewController controller = loader.<CreateNewController>getController();
+        CreateParcelWindowController controller = loader.<CreateParcelWindowController>getController();
         controller.setWeb(web);
         controller.setParcelBox(packageCombo);
         controller.setSendBut(sendBut);
@@ -123,8 +123,8 @@ public class PakettiautomaattiController implements Initializable {
     @FXML
     private void sendButAction(ActionEvent event) throws FileNotFoundException, UnsupportedEncodingException, IOException {
         Parcel parcel = packageCombo.getValue();
-        SmartPost startPost = SmartPosts.getInstance().getSmartPost(parcel.startPost);
-        SmartPost endPost = SmartPosts.getInstance().getSmartPost(parcel.endPost);
+        SmartPost startPost = SmartPostContainer.getInstance().getSmartPost(parcel.startPost);
+        SmartPost endPost = SmartPostContainer.getInstance().getSmartPost(parcel.endPost);
         ArrayList<Double> array = new ArrayList();
         array.add(startPost.getLat());
         array.add(startPost.getLng());
@@ -159,7 +159,7 @@ public class PakettiautomaattiController implements Initializable {
             String loggerino = lw.reader();
             logArea.setText(loggerino);
         } catch (IOException ex) {
-            Logger.getLogger(PakettiautomaattiController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }    

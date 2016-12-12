@@ -16,11 +16,11 @@ import javafx.stage.Stage;
  *
  * @author Ilari
  */
-public class CT60A2411Harkkatyö extends Application {
+public class TimoMain extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Pakettiautomaatti.fxml"));        
+        Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));        
         root.getStylesheets().addAll(getClass().getResource("style.css").toExternalForm());
         Scene scene = new Scene(root);
         stage.setTitle("TIMO");

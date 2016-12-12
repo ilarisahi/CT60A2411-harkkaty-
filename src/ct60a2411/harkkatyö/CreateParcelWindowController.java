@@ -34,9 +34,9 @@ import javafx.stage.Modality;
  *
  * @author Petri
  */
-public class CreateNewController implements Initializable {
+public class CreateParcelWindowController implements Initializable {
     
-    private SmartPosts smartPosts = SmartPosts.getInstance();
+    private SmartPostContainer smartPosts = SmartPostContainer.getInstance();
     ArrayList<Double> size;
     
     @FXML
@@ -257,6 +257,7 @@ public class CreateNewController implements Initializable {
         if (objectsCombo.getSelectionModel().isEmpty()) {
             return null;
         } else {
+            changeError(nameField, false);
             return objectsCombo.getValue();
         }
     }

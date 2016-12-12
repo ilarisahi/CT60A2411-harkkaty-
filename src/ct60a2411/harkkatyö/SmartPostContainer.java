@@ -15,17 +15,17 @@ import java.util.Collections;
  * Opiskelijanumero: 0438594
  * 10.12.2016
  */
-public class SmartPosts {
-    static private SmartPosts sps = null;
+public class SmartPostContainer {
+    static private SmartPostContainer sps = null;
     private ArrayList<String> cities = new ArrayList();
     private ArrayList<SmartPost> smartPosts = new ArrayList();
     
-    private SmartPosts() {
+    private SmartPostContainer() {
     }
     
-    static public SmartPosts getInstance() {
+    static public SmartPostContainer getInstance() {
         if (sps == null) {
-            sps = new SmartPosts();
+            sps = new SmartPostContainer();
         }
         return sps;
     }

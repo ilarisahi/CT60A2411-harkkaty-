@@ -33,7 +33,7 @@ public class XMLReader {
     
     private Document doc;
     public SmartPost SP;
-    private SmartPosts smartPosts = SmartPosts.getInstance();
+    private SmartPostContainer smartPosts = SmartPostContainer.getInstance();
     static private XMLReader xmlr = null;
     
     private XMLReader() throws MalformedURLException, IOException, ParserConfigurationException, SAXException {
