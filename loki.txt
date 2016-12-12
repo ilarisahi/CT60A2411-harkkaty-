@@ -1,5 +1,25 @@
+Nimi: Valkoiset Vansit
+Lähetyspaikka: Kylänportti 16, ESPOO
+Saapumispaikka: Länsiranta 10, TORNIO
+Lähetysaika: 13/12/2016 00:18
+
+Nimi: Muutama risu
+Lähetyspaikka: Kylänportti 16, ESPOO
+Saapumispaikka: Orioninkatu 2, LAPPEENRANTA
+Lähetysaika: 13/12/2016 00:18
+
+Nimi: Trumpin tupee
+Lähetyspaikka: Kylänportti 16, ESPOO
+Saapumispaikka: Kinnalantie 4, PAROLA
+Lähetysaika: 13/12/2016 00:18
+
+Nimi: LOL
+Lähetyspaikka: Kylänportti 16, ESPOO
+Saapumispaikka: Isoympyräkatu 15, HAMINA
+Lähetysaika: 13/12/2016 00:18
+
 Nimi: Haramben luut
-Lähetyspaikka: Satamatie 43, AKAA
-Saapumispaikka: Kylänportti 16, ESPOO
-Lähetysaika: 12/12/2016 20:47
+Lähetyspaikka: Kylänportti 16, ESPOO
+Saapumispaikka: Satamatie 43, AKAA
+Lähetysaika: 13/12/2016 00:18
 

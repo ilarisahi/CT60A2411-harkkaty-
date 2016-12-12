@@ -77,7 +77,7 @@ public class MainWindowController implements Initializable {
     private void addToMapAction(ActionEvent event) {
         String name = autoCombo.getValue();
         for (SmartPost sPost : smartPosts.getCitySmartPosts(name)) {
-            String open = sPost.getPostoffice() + "Auki: " + sPost.getAvailability();
+            String open = "<p>" + sPost.getPostoffice() + "</p><p>Auki: " + sPost.getAvailability() + "</p>";
             web.getEngine().executeScript("document.goToLocation(" + sPost.getLat() + "," + sPost.getLng() + ",'" + open + "', 'blue')");
         }
         
@@ -132,12 +132,12 @@ public class MainWindowController implements Initializable {
         array.add(endPost.getLng());
         String color = "red";
         
-        String open = startPost.getPostoffice() + "Auki: " + startPost.getAvailability();
+        String open = "<p>" + startPost.getPostoffice() + "</p><p>Auki: " + startPost.getAvailability() + "</p>";
         web.getEngine().executeScript("document.goToLocation(" + startPost.getLat() + "," + startPost.getLng() + ",'" + open + "', 'blue')");
-        open = endPost.getPostoffice() + "Auki: " + endPost.getAvailability();
+        open = "<p>" + endPost.getPostoffice() + "</p><p>Auki: " + endPost.getAvailability() + "</p>";
         web.getEngine().executeScript("document.goToLocation(" + endPost.getLat() + "," + endPost.getLng() + ",'" + open + "', 'blue')");
         
-        web.getEngine().executeScript("document.createPath(" + array + ",'" + color + "'," + parcel.getGrade() + ")");
+        web.getEngine().executeScript("document.createPath(" + array + ",'" + color + "'," + parcel.getGrade() + ",'" + parcel.getItem().getName() + "')");
         
         String name = parcel.getItem().getName();
         String start = startPost.getAddress() + ", " + startPost.getCity();
