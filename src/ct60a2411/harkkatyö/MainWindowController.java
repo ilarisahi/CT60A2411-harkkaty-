@@ -123,8 +123,8 @@ public class MainWindowController implements Initializable {
     @FXML
     private void sendButAction(ActionEvent event) throws FileNotFoundException, UnsupportedEncodingException, IOException {
         Parcel parcel = packageCombo.getValue();
-        SmartPost startPost = SmartPostContainer.getInstance().getSmartPost(parcel.startPost);
-        SmartPost endPost = SmartPostContainer.getInstance().getSmartPost(parcel.endPost);
+        SmartPost startPost = SmartPostContainer.getInstance().getSmartPost(parcel.getStartPost());
+        SmartPost endPost = SmartPostContainer.getInstance().getSmartPost(parcel.getEndPost());
         ArrayList<Double> array = new ArrayList();
         array.add(startPost.getLat());
         array.add(startPost.getLng());
@@ -137,9 +137,9 @@ public class MainWindowController implements Initializable {
         open = endPost.getPostoffice() + "Auki: " + endPost.getAvailability();
         web.getEngine().executeScript("document.goToLocation(" + endPost.getLat() + "," + endPost.getLng() + ",'" + open + "', 'blue')");
         
-        web.getEngine().executeScript("document.createPath(" + array + ",'" + color + "'," + parcel.grade + ")");
+        web.getEngine().executeScript("document.createPath(" + array + ",'" + color + "'," + parcel.getGrade() + ")");
         
-        String name = parcel.item.name;
+        String name = parcel.getItem().getName();
         String start = startPost.getAddress() + ", " + startPost.getCity();
         String end = endPost.getAddress() + ", " + endPost.getCity();
         String broke = "lul";

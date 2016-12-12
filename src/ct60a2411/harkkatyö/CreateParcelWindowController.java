@@ -114,8 +114,8 @@ public class CreateParcelWindowController implements Initializable {
                 
                 if (endAutoCombo.isDisable()) {
                     endAutoCombo.setDisable(false);
-                    endAutoCombo.getSelectionModel().selectFirst();
                 }
+                endAutoCombo.getSelectionModel().selectFirst();
             }
         });
         objectsCombo.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener() {
@@ -139,11 +139,11 @@ public class CreateParcelWindowController implements Initializable {
                         break;
                 }                
                 
-                nameField.setText(item.name);
+                nameField.setText(item.getName());
                 nameField.setDisable(true);
-                sizeField.setText(item.dimension.get("height").toString() + "*" + item.dimension.get("width").toString() + "*" + item.dimension.get("depth").toString());
+                sizeField.setText(item.getDimension().get("height").toString() + "*" + item.getDimension().get("width").toString() + "*" + item.getDimension().get("depth").toString());
                 sizeField.setDisable(true);
-                massField.setText(item.dimension.get("height").toString());
+                massField.setText(item.getDimension().get("height").toString());
                 massField.setDisable(true);
             }        
         });
@@ -231,9 +231,9 @@ public class CreateParcelWindowController implements Initializable {
 
             SmartPost start = startAutoCombo.getValue();
             SmartPost end = endAutoCombo.getValue();
-            parcel.startPost = start.getId();
-            parcel.endPost = end.getId();
-            parcel.item = item;
+            parcel.setStartPost(start.getId());
+            parcel.setEndPost(end.getId());
+            parcel.setItem(item);
 
             if (!testDistance(start, end, parcel)) {
                 System.out.println("Paketti hylätty (pitkä matka)");
@@ -343,38 +343,49 @@ public class CreateParcelWindowController implements Initializable {
     }
     
     private boolean testDimension(Product pr, Parcel pa) {
-        double proWeight = pr.dimension.get("weight");
-        double parWeight = pa.limit_map.get("weight");
+        boolean validDimension = true;
+        boolean validWeight;
+        double proWeight = pr.getDimension().get("weight");
+        double parWeight = pa.getLimit_map().get("weight");
         
         ArrayList<Double> proSize = new ArrayList();
         ArrayList<Double> parSize = new ArrayList();
         
-        proSize.add(pr.dimension.get("depth"));
-        proSize.add(pr.dimension.get("width"));
-        proSize.add(pr.dimension.get("height"));
+        proSize.add(pr.getDimension().get("depth"));
+        proSize.add(pr.getDimension().get("width"));
+        proSize.add(pr.getDimension().get("height"));
         Collections.sort(proSize);
 
-        parSize.add(pa.limit_map.get("depth"));
-        parSize.add(pa.limit_map.get("width"));
-        parSize.add(pa.limit_map.get("height"));
+        parSize.add(pa.getLimit_map().get("depth"));
+        parSize.add(pa.getLimit_map().get("width"));
+        parSize.add(pa.getLimit_map().get("height"));
         Collections.sort(parSize);
         
         for (int i = 0; i < 3; i++) {
             if (parSize.get(i) < proSize.get(i)) {
                 changeError(sizeField, true);
-                return false;
+                validDimension = false;
+                break;
             }
         }
         
-        changeError(sizeField, false);
+        if (validDimension) {
+            changeError(sizeField, false);
+        }
         
         if (proWeight > parWeight) {
             changeError(massField, true);
-            return false;
+            validWeight = false;
         } else {
             changeError(massField, false);
+            validWeight = true;
+        }
+        
+        if (validDimension && validWeight) {
             return true;
-        }        
+        } else {
+            return false;
+        }
     }
     
     private boolean testDistance(SmartPost start, SmartPost end, Parcel par) {
@@ -387,7 +398,7 @@ public class CreateParcelWindowController implements Initializable {
         String dist = web.getEngine().executeScript("document.pathDist(" + s + ")").toString();        
         Double km = Double.parseDouble(dist);
 
-        if ((km > 150.0) && (par.grade == 1)) {
+        if ((km > 150.0) && (par.getGrade() == 1)) {
             return false;
         } else {
             return true;

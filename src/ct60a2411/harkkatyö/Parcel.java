@@ -16,12 +16,12 @@ import java.util.Map;
  * 10.12.2016
  */
 abstract public class Parcel {
-    int grade;
-    int fragile_factor;
-    Map<String, Double> limit_map = new HashMap<>();
-    Product item;
-    int startPost;
-    int endPost;
+    protected int grade;
+    protected int fragile_factor;
+    protected Map<String, Double> limit_map = new HashMap<>();
+    protected Product item;
+    protected int startPost;
+    protected int endPost;
     
     public Parcel() {
         limit_map.put("distance", 0.0);
@@ -33,7 +33,51 @@ abstract public class Parcel {
     
     @Override
     public String toString() {
-        String s = item.name + " (" + grade + ". luokka)";
+        String s = item.getName() + " (" + grade + ". luokka)";
         return s;
+    }
+    
+    public int getGrade() {
+        return grade;
+    }
+
+    public int getFragile_factor() {
+        return fragile_factor;
+    }
+
+    public Map<String, Double> getLimit_map() {
+        return limit_map;
+    }
+
+    public Product getItem() {
+        return item;
+    }
+
+    public int getStartPost() {
+        return startPost;
+    }
+
+    public int getEndPost() {
+        return endPost;
+    }
+    
+    public void setGrade(int grade) {
+        this.grade = grade;
+    }
+
+    public void setFragile_factor(int fragile_factor) {
+        this.fragile_factor = fragile_factor;
+    }
+
+    public void setItem(Product item) {
+        this.item = item;
+    }
+
+    public void setStartPost(int startPost) {
+        this.startPost = startPost;
+    }
+
+    public void setEndPost(int endPost) {
+        this.endPost = endPost;
     }
 }

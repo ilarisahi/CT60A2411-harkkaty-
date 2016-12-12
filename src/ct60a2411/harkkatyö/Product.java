@@ -17,10 +17,10 @@ import java.util.Map;
  * 10.12.2016
  */
 public class Product {
-    String name;
-    boolean fragile;
-    int fragile_factor;
-    Map<String, Double> dimension = new HashMap<>();
+    protected String name;
+    protected boolean fragile;
+    protected int fragile_factor;
+    protected Map<String, Double> dimension = new HashMap<>();
     
     public Product() {
         dimension.put("weight", 0.0);
@@ -44,5 +44,21 @@ public class Product {
         list.add("Valkoiset Vansit");
         list.add("Trumpin tupee");
         return list;
+    }
+    
+    public String getName() {
+        return name;
+    }
+
+    public boolean isFragile() {
+        return fragile;
+    }
+
+    public int getFragile_factor() {
+        return fragile_factor;
+    }
+
+    public Map<String, Double> getDimension() {
+        return dimension;
     }
 }

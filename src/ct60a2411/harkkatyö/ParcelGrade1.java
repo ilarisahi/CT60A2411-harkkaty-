@@ -18,7 +18,7 @@ public class ParcelGrade1 extends Parcel {
         grade = 1;
         fragile_factor = 100;
         limit_map.put("distance", 150.0);
-        limit_map.put("weight", 20.0);
+        limit_map.put("weight", 10.0);
         limit_map.put("height", 60.0);
         limit_map.put("width", 50.0);
         limit_map.put("depth", 30.0);
