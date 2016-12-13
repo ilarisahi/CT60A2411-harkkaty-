@@ -1,5 +1,25 @@
-Nimi: heh
+Nimi: Valkoiset Vansit
+Lähetyspaikka: Itsenäisyydenkatu 19, LAPPEENRANTA
+Saapumispaikka: Kalevalantie 3, ESPOO
+Lähetysaika: 13/12/2016 22:27
+
+Nimi: Valkoiset Vansit
+Lähetyspaikka: Piirantie 1, ALAVUS
+Saapumispaikka: Laserkatu 10, LAPPEENRANTA
+Lähetysaika: 13/12/2016 22:27
+
+Nimi: Valkoiset Vansit
+Lähetyspaikka: Laserkatu 10, LAPPEENRANTA
+Saapumispaikka: Leppävaarankatu 3 A, ESPOO
+Lähetysaika: 13/12/2016 22:28
+
+Nimi: Haramben luut
 Lähetyspaikka: Satamatie 43, AKAA
 Saapumispaikka: Piirantie 1, ALAVUS
-Lähetysaika: 13/12/2016 20:01
+Lähetysaika: 13/12/2016 22:28
+
+Nimi: Trumpin tupee
+Lähetyspaikka: Piirantie 1, ALAVUS
+Saapumispaikka: Satamatie 43, AKAA
+Lähetysaika: 13/12/2016 22:29
 
