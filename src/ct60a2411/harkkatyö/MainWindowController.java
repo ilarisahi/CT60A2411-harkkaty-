@@ -37,7 +37,7 @@ public class MainWindowController implements Initializable {
     private ArrayList<SmartPost> SPList;
     private SmartPostContainer smartPosts = SmartPostContainer.getInstance();
     private Warehouse warehouse = Warehouse.getInstance();
-    private LokiWriter lw;
+    private LogWriter lw;
     
     @FXML
     private ComboBox<String> autoCombo;
@@ -67,7 +67,7 @@ public class MainWindowController implements Initializable {
         web.getEngine().load(getClass().getResource("index.html").toExternalForm());
         loadParcels();
         try {
-            lw = LokiWriter.getInstance();
+            lw = LogWriter.getInstance();
         } catch (FileNotFoundException | UnsupportedEncodingException ex) {
             Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }

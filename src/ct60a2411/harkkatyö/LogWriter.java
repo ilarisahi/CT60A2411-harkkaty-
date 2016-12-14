@@ -23,23 +23,23 @@ import java.util.logging.Logger;
  *
  * @author Petri
  */
-public class LokiWriter {
-    static LokiWriter lw = null;
+public class LogWriter {
+    static LogWriter lw = null;
     DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm");
     
-    private LokiWriter() {
+    private LogWriter() {
         PrintWriter wr;
         try {
             wr = new PrintWriter("loki.txt", "UTF-8");
             wr.close();
         } catch (FileNotFoundException | UnsupportedEncodingException ex) {
-            Logger.getLogger(LokiWriter.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LogWriter.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    static public LokiWriter getInstance() throws FileNotFoundException, UnsupportedEncodingException {
+    static public LogWriter getInstance() throws FileNotFoundException, UnsupportedEncodingException {
         if (lw == null) {
-            lw = new LokiWriter();
+            lw = new LogWriter();
         }
         return lw;
     }
