@@ -97,8 +97,8 @@ public class MainWindowController implements Initializable {
         controller.setParcelBox(packageCombo);
         controller.setSendBut(sendBut);
         newPackage.setTitle("TIMO - luo paketti");
-        newPackage.getIcons().add(new Image(getClass().getResourceAsStream("timo_icon.png")));
-        newPackage.getIcons().add(new Image(getClass().getResourceAsStream("timo_icon_big.png")));
+        newPackage.getIcons().add(new Image(getClass().getResourceAsStream("assets/timo_icon.png")));
+        newPackage.getIcons().add(new Image(getClass().getResourceAsStream("assets/timo_icon_big.png")));
         newPackage.setResizable(false);
         newPackage.initModality(Modality.APPLICATION_MODAL);
         newPackage.showAndWait();

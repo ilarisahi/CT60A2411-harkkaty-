@@ -65,10 +65,114 @@
     var path = new google.maps.MVCArray();
     var service = new google.maps.DirectionsService();
     
-    if (itemName === "Valkoiset Vansit") {
+    if (itemName === "gabe the doge") {        
+        var audio = new Audio('assets/gabe_final.mp3');
+        audio.play();
+        
+        var packageSymbol1 = {
+            path: "m131.28,168.24a32.54,32.54 0 0 1 -13.28,19.33c-1.29,-2.58 -0.69,-5.58 -2,-8.16c-2.58,4.72 -8.4,7 -13.05,8.16c-3,0.75 -7.94,0 -7.94,0c-4.72,-0.86 -10.48,-3.44 -13.05,-8.16c-1.29,2.58 -0.69,5.58 -2,8.16a32.52,32.52 0 0 1 -13.31,-19.33s-13,-35.6 24,-44.85c0,0 31.09,-4.48 40.44,23.66l0.19,21.19z",
+            scale: 0.2,
+            fillColor: '#dedad5',
+            fillOpacity: 1,
+            strokeColor: '#000000',
+            strokeWeight: 1,
+            anchor: new google.maps.Point(100,100)
+        };
+        var packageSymbol2 = {
+            path: "m21.53,86.81c0,-3.86 1.66,-13.48 1.66,-17.35c-3.19,3.22 -7.73,12.24 -12.88,17.35c0,-6.44 4.34,-17.44 5.15,-25.72c-3.22,3.86 -5.8,7.73 -9,11c0,-7.73 5.15,-14.82 6.44,-21.9c-3.9,2.52 -10.97,7.68 -12.9,12.19c1.29,-11 14.17,-20 12.24,-31.56c-0.64,-6.45 -9.66,-23.82 -1.24,-29.64c11.55,-8.37 50.36,30.06 59.21,42.08l9.37,14.09l-58.05,29.46z",
+            scale: 0.2,
+            fillColor: '#f2f2f2',
+            fillOpacity: 1,
+            strokeColor: '#000000',
+            strokeWeight: 1,
+            anchor: new google.maps.Point(100,100)
+        };
+        var packageSymbol3 = {
+            path: "m174.21,86.81c0,-3.86 -1.66,-13.48 -1.66,-17.35c3.22,3.22 7.73,12.24 12.88,17.35c0,-6.44 -4.34,-17.44 -5.15,-25.72c3.22,3.86 5.8,7.73 9,11c0,-7.73 -5.15,-14.82 -6.44,-21.9c3.87,2.58 11,7.73 12.88,12.24c-1.29,-11 -14.17,-20 -12.24,-31.56c0.64,-6.44 9.66,-23.83 1.29,-29.63c-11.59,-8.37 -50.41,30.06 -59.26,42.07l-9.37,6.51l58.07,36.99z",
+            scale: 0.2,
+            fillColor: '#f2f2f2',
+            fillOpacity: 1,
+            strokeColor: '#000000',
+            strokeWeight: 1,
+            anchor: new google.maps.Point(100,100)
+        };
+        var packageSymbol4 = {
+            path: "m160.23,74.4a69.51,69.51 0 0 1 2.53,-19.58c1.9,-3.79 3.16,-8.84 5.69,-12.63c1.26,-3.16 6,-9.47 6,-12c2.53,-12.63 -9.77,1.26 -13.56,5.69c-5.69,6.95 -10.8,15.79 -15.85,22.74l15.19,15.78z",
+            scale: 0.2,
+            fillColor: '#fc7c7b',
+            fillOpacity: 1,
+            strokeColor: '#000000',
+            strokeWeight: 1,
+            anchor: new google.maps.Point(100,100)
+        };
+        var packageSymbol5 = {
+            path: "m39.45,74.4a69.47,69.47 0 0 0 -2.53,-19.58c-1.92,-3.82 -3.16,-8.82 -5.68,-12.63c-1.26,-3.16 -6,-9.47 -6,-12c-2.51,-12.64 9.76,1.26 13.58,5.68c5.69,6.95 10.8,15.79 15.85,22.74l-15.22,15.79z",
+            scale: 0.2,
+            fillColor: '#fc7c7b',
+            fillOpacity: 1,
+            strokeColor: '#000000',
+            strokeWeight: 1,
+            anchor: new google.maps.Point(100,100)
+        };
+        var packageSymbol6 = {
+            path: "m118.91,144.41c14.56,16.11 12.41,35.43 13.05,49.6a48.38,48.38 0 0 0 14.81,-15.46c1.29,9.66 -4.51,18.68 -6.44,27.05c17.39,-12.24 24.48,-26.41 26.41,-47.67c0,7.09 2.36,9.45 2.58,23.19c7.51,-18 5.8,-25.77 3.87,-49c5.15,6.44 9,15.46 12.24,23.19c-0.64,-19.33 -5.15,-31.75 -15.46,-52.82c4.51,1.93 8.37,6.44 13.53,8.37c-9.66,-21.26 -20,-33.5 -36.72,-49c3.22,0.64 7.73,1.29 11.59,1.93c-8.37,-10.31 -27.05,-19.32 -21.9,-20c-6.19,-2.26 -34.15,-6.25 -39,-4.93l0,0c-14.25,-1.33 -32.07,2.67 -38.26,4.93c5.15,0.64 -13.53,9.66 -21.9,20c3.92,-0.55 8.43,-1.19 11.69,-1.79c-16.75,15.46 -27.06,27.7 -36.72,49c5.15,-1.93 9,-6.44 13.53,-8.37c-10.35,20.98 -14.81,33.37 -15.5,52.73c3.22,-7.73 7.08,-16.75 12.24,-23.19c-1.93,23.19 -3.65,30.92 3.87,49c0.21,-13.78 2.58,-16.17 2.58,-23.24c1.93,21.26 9,35.43 26.41,47.67c-1.93,-8.37 -7.73,-17.39 -6.44,-27.05a48.38,48.38 0 0 0 14.8,15.45c0.64,-14.17 -1.38,-31.78 13.05,-49.6c0,0.01 19.86,-24.58 42.09,0.01z",
+            scale: 0.2,
+            fillColor: '#f2f2f2',
+            fillOpacity: 1,
+            strokeColor: '#000000',
+            strokeWeight: 1,
+            anchor: new google.maps.Point(100,100)
+        };
+        var packageSymbol7 = {
+            path: "m73.4,100.73c-14.13,1.69 -21.25,7.73 -24.48,20.61c-0.64,-5.8 1.29,-11 1.29,-16.75c-3.87,2.58 -7.73,6.44 -11,9.66c-1.21,-17.39 20.19,-37.78 38.7,-19.96c0,0 5.92,5.19 -4.51,6.44z",
+            scale: 0.2,
+            fillColor: '#dedad5',
+            fillOpacity: 1,
+            strokeColor: '#000000',
+            strokeWeight: 1,
+            anchor: new google.maps.Point(100,100)
+        };
+        var packageSymbol8 = {
+            path: "M62.260000000000005,114.13a3.44,3.44 0 1,0 6.88,0a3.44,3.44 0 1,0 -6.88,0",
+            scale: 0.2,
+            fillColor: '#000000',
+            fillOpacity: 1,
+            strokeColor: '#000000',
+            strokeWeight: 1,
+            anchor: new google.maps.Point(100,100)
+        };
+        var packageSymbol9 = {
+            path: "m122.34,100.73c14.13,1.69 21.26,7.73 24.48,20.61c0.64,-5.8 -1.29,-11 -1.29,-16.75c3.87,2.58 7.73,6.44 11,9.66c1.29,-17.39 -20.14,-37.79 -38.65,-20c-0.05,0.04 -5.97,5.23 4.46,6.48z",
+            scale: 0.2,
+            fillColor: '#dedad5',
+            fillOpacity: 1,
+            strokeColor: '#000000',
+            strokeWeight: 1,
+            anchor: new google.maps.Point(100,100)
+        };
+        var packageSymbol10 = {
+            path: "M126.59,114.13a3.44,3.44 0 1,0 6.88,0a3.44,3.44 0 1,0 -6.88,0",
+            scale: 0.2,
+            fillColor: '#000000',
+            fillOpacity: 1,
+            strokeColor: '#000000',
+            strokeWeight: 1,
+            anchor: new google.maps.Point(100,100)
+        };
+        var packageSymbol11 = {
+            path: "m101.59,129.41c17.18,0 9.45,18 -2.58,21.47l-2.3,0c-12,-3.44 -19.75,-21.47 -2.58,-21.47l7.46,0z",
+            scale: 0.2,
+            fillColor: '#CCCCCC',
+            fillOpacity: 1,
+            strokeColor: '#000000',
+            strokeWeight: 1,
+            anchor: new google.maps.Point(100,100)
+        };      
+        var poly = new google.maps.Polyline({map: document.map, strokeColor: pathColor, icons: [{ icon: packageSymbol1, offset: '100%'}, { icon: packageSymbol2, offset: '100%'}, { icon: packageSymbol3, offset: '100%'}, { icon: packageSymbol4, offset: '100%'}, { icon: packageSymbol5, offset: '100%'}, { icon: packageSymbol6, offset: '100%'}, { icon: packageSymbol7, offset: '100%'}, { icon: packageSymbol8, offset: '100%'}, { icon: packageSymbol9, offset: '100%'}, { icon: packageSymbol10, offset: '100%'}, { icon: packageSymbol11, offset: '100%'}]});
+    } else if (itemName === "Valkoiset Vansit") {
         if (((pathArray[2] === 61.0634306) && (pathArray[3] === 28.0964466)) ||
                 ((pathArray[0] === 61.0634306) && (pathArray[1] === 28.0964466))) {
-            var audio = new Audio('damn_daniel_final.mp3');
+            var audio = new Audio('assets/damn_daniel_final.mp3');
             audio.play();
         }
         var packageSymbol1 = {
@@ -131,7 +235,7 @@
     } else if (itemName === "Muutama risu") {
         if (((pathArray[2] < 60.8877367) && (pathArray[2] > 60.8692758) && (pathArray[3] < 26.7258315) && (pathArray[3] > 26.658882)) ||
                 ((pathArray[0] < 60.8877367) && (pathArray[0] > 60.8692758) && (pathArray[1] < 26.7258315) && (pathArray[1] > 26.658882))) {
-            var audio = new Audio('risumies_final.mp3');
+            var audio = new Audio('assets/risumies_final.mp3');
             audio.play();
         }
         var packageSymbol1 = {

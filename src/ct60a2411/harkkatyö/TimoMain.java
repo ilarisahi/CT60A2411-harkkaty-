@@ -24,8 +24,8 @@ public class TimoMain extends Application {
         root.getStylesheets().addAll(getClass().getResource("style.css").toExternalForm());
         Scene scene = new Scene(root);
         stage.setTitle("TIMO");
-        stage.getIcons().add(new Image(getClass().getResourceAsStream("timo_icon.png")));
-        stage.getIcons().add(new Image(getClass().getResourceAsStream("timo_icon_big.png")));
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("assets/timo_icon.png")));
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("assets/timo_icon_big.png")));
         stage.setMinHeight(500.0);
         stage.setMinWidth(760.0);
         stage.setScene(scene);

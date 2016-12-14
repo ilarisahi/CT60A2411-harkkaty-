@@ -176,8 +176,8 @@ public class CreateParcelWindowController implements Initializable {
         
         newPackage.setScene(scene);
         newPackage.setTitle("TIMO - paketti-info");
-        newPackage.getIcons().add(new Image(getClass().getResourceAsStream("timo_icon.png")));
-        newPackage.getIcons().add(new Image(getClass().getResourceAsStream("timo_icon_big.png")));
+        newPackage.getIcons().add(new Image(getClass().getResourceAsStream("assets/timo_icon.png")));
+        newPackage.getIcons().add(new Image(getClass().getResourceAsStream("assets/timo_icon_big.png")));
         newPackage.setResizable(false);
         newPackage.initModality(Modality.APPLICATION_MODAL);
         newPackage.showAndWait();

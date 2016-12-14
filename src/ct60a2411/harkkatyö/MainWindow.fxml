@@ -62,7 +62,7 @@
                                     </AnchorPane>
                                     <ImageView fitHeight="129.0" fitWidth="374.0" pickOnBounds="true" preserveRatio="true" smooth="false" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                                        <image>
-                                          <Image url="@timo_logo_v2.png" />
+                                          <Image url="@assets/timo_logo_v2.png" />
                                        </image>
                                        <GridPane.margin>
                                           <Insets top="10.0" />
