@@ -385,7 +385,7 @@ public class CreateParcelWindowController implements Initializable {
             return true;
         } else {
             return false;
-        }
+        }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
     }
     
     private boolean testDistance(SmartPost start, SmartPost end, Parcel par) {
