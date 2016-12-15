@@ -253,6 +253,8 @@ public class CreateParcelWindowController implements Initializable {
             return null;
         } else {
             changeError(nameField, false);
+            changeError(massField, false);
+            changeError(sizeField, false);
             return objectsCombo.getValue();
         }
     }
