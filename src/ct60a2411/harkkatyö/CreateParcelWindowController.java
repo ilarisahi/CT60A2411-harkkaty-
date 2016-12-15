@@ -10,8 +10,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.ResourceBundle;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Control;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -65,16 +64,15 @@ public class CreateParcelWindowController implements Initializable {
     private Button returnBut;
     @FXML
     private Button createBut;
-    @FXML
     private WebView web;
-    @FXML
     private ComboBox parcelBox;
-    @FXML
     private Button sendButton;
     
     PseudoClass errorClass = PseudoClass.getPseudoClass("error");
     PseudoClass focusClass = PseudoClass.getPseudoClass("focused");
     private Product item = null;
+    @FXML
+    private Label errorLabel;
 
     /**
      * Initializes the controller class.
@@ -87,69 +85,7 @@ public class CreateParcelWindowController implements Initializable {
         endCityCombo.getItems().addAll(smartPosts.getCities());
         startAutoCombo.setDisable(true);
         endAutoCombo.setDisable(true);
-        objectsCombo.getItems().addAll(Product.getProductList());
-        startCityCombo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue ov, Object t, Object t1) {
-                startAutoCombo.getItems().clear();
-                String place = t1.toString();
-                for (SmartPost sPost : smartPosts.getCitySmartPosts(place)) {
-                    startAutoCombo.getItems().add(sPost);    
-                }
-                
-                if (startAutoCombo.isDisable()) {
-                    startAutoCombo.setDisable(false);
-                }
-                startAutoCombo.getSelectionModel().selectFirst();
-            }
-        });
-        endCityCombo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue ov, Object t, Object t1) {
-                endAutoCombo.getItems().clear();
-                String place = t1.toString();
-                for (SmartPost sPost : smartPosts.getCitySmartPosts(place)) {
-                    endAutoCombo.getItems().add(sPost);    
-                }
-                
-                if (endAutoCombo.isDisable()) {
-                    endAutoCombo.setDisable(false);
-                }
-                endAutoCombo.getSelectionModel().selectFirst();
-            }
-        });
-        objectsCombo.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue ov, Object t, Object t1) {
-                switch (objectsCombo.getValue()) {
-                    case "Valkoiset Vansit":
-                        item = new Vans();
-                        break;
-                    case "Haramben luut":
-                        item = new HarambeBones();
-                        break;
-                    case "Muutama risu":
-                        item = new Twigs();
-                        break;
-                    case "Trumpin tupee":
-                        item = new TrumpWig();
-                        break;
-                    default:
-                        item = null;
-                        break;
-                }                
-                
-                nameField.setText(item.getName());
-                nameField.setDisable(true);
-                sizeField.setText(item.getDimension().get("height").toString() + "*" + item.getDimension().get("width").toString() + "*" + item.getDimension().get("depth").toString());
-                sizeField.setDisable(true);
-                massField.setText(item.getDimension().get("height").toString());
-                massField.setDisable(true);
-                fragile.setSelected(item.isFragile());
-                fragile.setDisable(true);
-            }        
-        });
-        
+        objectsCombo.getItems().addAll(Product.getProductList());        
         packageClass.getItems().add("1. luokka");
         packageClass.getItems().add("2. luokka");
         packageClass.getItems().add("3. luokka");
@@ -169,6 +105,64 @@ public class CreateParcelWindowController implements Initializable {
         sendButton = sb;
     }
 
+    @FXML
+    private void objectsComboAction(ActionEvent event) {
+        switch (objectsCombo.getValue()) {
+            case "Valkoiset Vansit":
+                item = new Vans();
+                break;
+            case "Haramben luut":
+                item = new HarambeBones();
+                break;
+            case "Muutama risu":
+                item = new Twigs();
+                break;
+            case "Trumpin tupee":
+                item = new TrumpWig();
+                break;
+            default:
+                item = null;
+                break;
+        }                
+
+        nameField.setText(item.getName());
+        nameField.setDisable(true);
+        sizeField.setText(item.getDimension().get("height").toString() + "*" + item.getDimension().get("width").toString() + "*" + item.getDimension().get("depth").toString());
+        sizeField.setDisable(true);
+        massField.setText(item.getDimension().get("height").toString());
+        massField.setDisable(true);
+        fragile.setSelected(item.isFragile());
+        fragile.setDisable(true);
+    }
+
+    @FXML
+    private void startCityComboAction(ActionEvent event) {
+        startAutoCombo.getItems().clear();
+        String place = startCityCombo.getValue();
+        for (SmartPost sPost : smartPosts.getCitySmartPosts(place)) {
+            startAutoCombo.getItems().add(sPost);    
+        }
+
+        if (startAutoCombo.isDisable()) {
+            startAutoCombo.setDisable(false);
+        }
+        startAutoCombo.getSelectionModel().selectFirst();
+    }
+
+    @FXML
+    private void endCityComboAction(ActionEvent event) {
+        endAutoCombo.getItems().clear();
+        String place = endCityCombo.getValue();
+        for (SmartPost sPost : smartPosts.getCitySmartPosts(place)) {
+            endAutoCombo.getItems().add(sPost);    
+        }
+
+        if (endAutoCombo.isDisable()) {
+            endAutoCombo.setDisable(false);
+        }
+        endAutoCombo.getSelectionModel().selectFirst();
+    }
+    
     @FXML
     private void infoButAction(ActionEvent event) throws IOException {
         Stage newPackage = new Stage();        
@@ -197,6 +191,8 @@ public class CreateParcelWindowController implements Initializable {
         Parcel parcel = null;
         boolean validParcel = true;
         String parcelGrade = packageClass.getValue();
+        
+        errorLabel.setText("");
         
         if (testReadyProduct() == null) {
             item = testCustomProduct();
@@ -238,18 +234,15 @@ public class CreateParcelWindowController implements Initializable {
             parcel.setItem(item);
 
             if (!testDistance(start, end, parcel)) {
-                System.out.println("Paketti hylätty (pitkä matka)");
                 validParcel = false;
             }
 
             if (!testDimension(item, parcel)) {
-                System.out.println("Paketti hylätty (väärä koko)");
                 validParcel = false;
             }
         }
             
         if (validParcel) {
-            System.out.println("Paketti luotu!");
             Warehouse.wh.addParcel(parcel);
             updateParcelBox();
         }
@@ -264,8 +257,6 @@ public class CreateParcelWindowController implements Initializable {
         }
     }
     
-    // Katsotaan, onko String numero vai ei
-    // http://stackoverflow.com/questions/1102891/how-to-check-if-a-string-is-numeric-in-java
     private boolean isNumeric(String s) {
         try {
             double d = Double.parseDouble(s);
@@ -283,6 +274,7 @@ public class CreateParcelWindowController implements Initializable {
         
         if (productName.equals("")) {
             changeError(nameField, true);
+            errorLabel.setText(errorLabel.getText() + "Anna tuotteelle nimi\n");
             valid = false;
         } else {
             changeError(nameField, false);
@@ -290,19 +282,25 @@ public class CreateParcelWindowController implements Initializable {
         
         if (!isNumeric(productMass)) {
             changeError(massField, true);
+            errorLabel.setText(errorLabel.getText() + "Virheellinen massa\n");
             valid = false;
+        } else {
+            changeError(massField, false);
         }
         
         if (sizeParts.length == 3) {
             for (String str : sizeParts) {
                 if (!isNumeric(str)) {
                     changeError(sizeField, true);
+                    errorLabel.setText(errorLabel.getText() + "Virheelliset mitat\n");
                     valid = false;
                     break;
                 }
+                changeError(sizeField, false);
             }
         } else {
             changeError(sizeField, true);
+            errorLabel.setText(errorLabel.getText() + "Virheelliset mitat\n");
             valid = false;
         }
         
@@ -317,6 +315,7 @@ public class CreateParcelWindowController implements Initializable {
     private boolean testStartPost() {
         if (startAutoCombo.getSelectionModel().isEmpty()) {
             changeError(startCityCombo, true);
+            errorLabel.setText(errorLabel.getText() + "Valitse lähetyspaikka\n");
             return false;
         } else {
             changeError(startCityCombo, false);
@@ -327,6 +326,7 @@ public class CreateParcelWindowController implements Initializable {
     private boolean testEndPost() {
         if (endAutoCombo.getSelectionModel().isEmpty()) {
             changeError(endCityCombo, true);
+            errorLabel.setText(errorLabel.getText() + "Valitse vastaanottopaikka\n");
             return false;
         } else {
             changeError(endCityCombo, false);
@@ -366,6 +366,7 @@ public class CreateParcelWindowController implements Initializable {
         for (int i = 0; i < 3; i++) {
             if (parSize.get(i) < proSize.get(i)) {
                 changeError(sizeField, true);
+                errorLabel.setText(errorLabel.getText() + "Tuote on liian iso (vaihda luokkaa)\n");
                 validDimension = false;
                 break;
             }
@@ -377,6 +378,7 @@ public class CreateParcelWindowController implements Initializable {
         
         if (proWeight > parWeight) {
             changeError(massField, true);
+            errorLabel.setText(errorLabel.getText() + "Tuote on liian painava (vaihda luokkaa)\n");
             validWeight = false;
         } else {
             changeError(massField, false);
@@ -401,6 +403,7 @@ public class CreateParcelWindowController implements Initializable {
         Double km = Double.parseDouble(dist);
 
         if ((km > 150.0) && (par.getGrade() == 1)) {
+            errorLabel.setText(errorLabel.getText() + "Liian pitkä matka (vaihda luokkaa)\n");
             return false;
         } else {
             return true;

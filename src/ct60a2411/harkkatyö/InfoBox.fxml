@@ -1,50 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="308.0" maxWidth="455.0" minHeight="308.0" minWidth="455.0" prefHeight="308.0" prefWidth="455.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ct60a2411.harkkatyö.InfoBoxController">
+<AnchorPane id="AnchorPane" maxHeight="308.0" maxWidth="673.0" minHeight="250.0" minWidth="455.0" prefHeight="258.0" prefWidth="532.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ct60a2411.harkkatyö.InfoBoxController">
    <children>
-      <Button fx:id="returnBut" layoutX="199.0" layoutY="269.0" mnemonicParsing="false" onAction="#returnButAction" text="Peruuta" />
-      <GridPane layoutY="-2.0" prefHeight="264.0" prefWidth="455.0">
+      <GridPane fx:id="infoGrid" layoutX="8.0" layoutY="5.0" prefHeight="209.0" prefWidth="673.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="223.0" minWidth="10.0" prefWidth="99.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="331.0" minWidth="10.0" prefWidth="196.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="331.0" minWidth="10.0" prefWidth="164.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="228.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="331.0" minWidth="10.0" prefWidth="227.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="331.0" minWidth="10.0" prefWidth="227.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="1. Luokka" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Label text="1. luokka" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label text="2. Luokka" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Label text="2. luokka" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label text="3. Luokka" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <Label text="3. luokka" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="class1info1" prefHeight="82.0" prefWidth="192.0" GridPane.columnIndex="1" />
-            <Label fx:id="class2info1" prefHeight="86.0" prefWidth="193.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label fx:id="class3info1" prefHeight="86.0" prefWidth="194.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label fx:id="class1info2" prefHeight="79.0" prefWidth="195.0" GridPane.columnIndex="2" />
-            <Label fx:id="class2info2" prefHeight="83.0" prefWidth="162.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Label fx:id="class3info2" prefHeight="84.0" prefWidth="161.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="odd" GridPane.rowIndex="1">
+               <children>
+                  <Label layoutX="49.0" layoutY="9.0" text="nopea toimitus" />
+               </children></Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="odd" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Label layoutX="39.0" layoutY="9.0" text="nopeahko toimitus" />
+               </children></Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="odd" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <children>
+                  <Label layoutX="51.0" layoutY="9.0" text="hidas toimitus" />
+               </children></Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="even" GridPane.rowIndex="2">
+               <children>
+                  <Label layoutX="44.0" layoutY="9.0" text="rikkoutumisvaara" />
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="even" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <Label layoutX="36.0" layoutY="9.0" text="särkymätön kuljetus" />
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="even" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <children>
+                  <Label layoutX="43.0" layoutY="9.0" text="rikkoutumisvaara" />
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="odd" GridPane.rowIndex="3">
+               <children>
+                  <Label layoutX="32.0" layoutY="9.0" text="toimitus max. 150 km" />
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="odd" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <Label layoutX="36.0" layoutY="9.0" text="toimitus mihin vaan" />
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="odd" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <children>
+                  <Label layoutX="36.0" layoutY="9.0" text="toimitus mihin vaan" />
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="even" GridPane.rowIndex="4">
+               <children>
+                  <Label layoutX="44.0" layoutY="9.0" text="max. paino 20 kg" />
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="even" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <children>
+                  <Label layoutX="43.0" layoutY="9.0" text="max. paino 10 kg" />
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="even" GridPane.columnIndex="2" GridPane.rowIndex="4">
+               <children>
+                  <Label layoutX="40.0" layoutY="9.0" text="max. paino 200 kg" />
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="odd" GridPane.rowIndex="5">
+               <children>
+                  <Label layoutX="22.0" layoutY="9.0" text="max. mitat 60x50x30 (cm)" />
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="odd" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <children>
+                  <Label layoutX="21.0" layoutY="9.0" text="max. mitat 20x20x30 (cm)" />
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="odd" GridPane.columnIndex="2" GridPane.rowIndex="5">
+               <children>
+                  <Label layoutX="34.0" layoutY="9.0" text="max. mitat 2x2x2 (m)" />
+               </children>
+            </Pane>
          </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
       </GridPane>
+      <Button fx:id="returnBut" layoutX="476.0" layoutY="219.0" mnemonicParsing="false" onAction="#returnButAction" text="Sulje" />
    </children>
 </AnchorPane>

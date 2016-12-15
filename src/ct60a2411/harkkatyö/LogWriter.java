@@ -44,7 +44,7 @@ public class LogWriter {
         return lw;
     }
     
-    public void writer(String a, String b, String c, boolean d) throws FileNotFoundException, UnsupportedEncodingException, IOException {
+    public void writer(String a, String b, String c, boolean d, String e) throws FileNotFoundException, UnsupportedEncodingException, IOException {
         FileWriter wr = new FileWriter("loki.txt", true);
         BufferedWriter bw = new BufferedWriter(wr);
         bw.write("Nimi: ");
@@ -59,6 +59,9 @@ public class LogWriter {
         Date date = new Date();
         bw.write("Lähetysaika: ");
         bw.write(df.format(date));
+        bw.write(System.getProperty("line.separator"));
+        bw.write("Kuljetettu matka: ");
+        bw.write(e + " km");
         bw.write(System.getProperty("line.separator"));
         if (d) {
             bw.write("Tuote meni rikki kuljetuksen aikana");

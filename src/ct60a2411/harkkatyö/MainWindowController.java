@@ -9,7 +9,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,9 +24,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -57,10 +62,23 @@ public class MainWindowController implements Initializable {
     private Tab log;
     @FXML
     private TextArea logArea;
+    @FXML
+    private AnchorPane mainAnchorPane;
+    @FXML
+    private Tab smartpost;
+    @FXML
+    private Label sessionStarted;
+    @FXML
+    private Label sentParcelCounter;
+    @FXML
+    private Label distanceCounter;
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        Date date = new Date();
+        
         XMLReader xmlr = XMLReader.getInstance();
         autoCombo.getItems().addAll(smartPosts.getCities());
         autoCombo.getSelectionModel().selectFirst();
@@ -71,6 +89,9 @@ public class MainWindowController implements Initializable {
         } catch (FileNotFoundException | UnsupportedEncodingException ex) {
             Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        sessionStarted.setText(df.format(date));
+        sentParcelCounter.setText("0");
+        distanceCounter.setText("0.0");
     }    
 
     @FXML
@@ -132,6 +153,7 @@ public class MainWindowController implements Initializable {
         array.add(startPost.getLng());
         array.add(endPost.getLat());
         array.add(endPost.getLng());
+        String stringDistance = String.valueOf(web.getEngine().executeScript("document.pathDist(" + array + ")"));
         String color = "red";
         
         String open = "<p>" + startPost.getPostoffice() + "</p><p>Auki: " + startPost.getAvailability() + "</p>";
@@ -139,7 +161,10 @@ public class MainWindowController implements Initializable {
         open = "<p>" + endPost.getPostoffice() + "</p><p>Auki: " + endPost.getAvailability() + "</p>";
         web.getEngine().executeScript("document.goToLocation(" + endPost.getLat() + "," + endPost.getLng() + ",'" + open + "', 'blue')");
         
-        web.getEngine().executeScript("document.createPath(" + array + ",'" + color + "'," + parcel.getGrade() + ",'" + parcel.getItem().getName() + "')");
+        web.getEngine().executeScript("document.createPath(" + array + ",'" + color + "'," + parcel.getGrade() + ",'" + parcel.getItem().getName() + "')");        
+        
+        sentParcelCounter.setText(String.valueOf(Integer.parseInt(sentParcelCounter.getText()) + 1));
+        distanceCounter.setText(String.valueOf(Double.parseDouble(distanceCounter.getText()) + Double.parseDouble(stringDistance)));
         
         String name = parcel.getItem().getName();
         String start = startPost.getAddress() + ", " + startPost.getCity();
@@ -151,7 +176,7 @@ public class MainWindowController implements Initializable {
         }
         
         
-        lw.writer(name, start, end, broke);
+        lw.writer(name, start, end, broke, stringDistance);
         
         warehouse.deleteParcel(parcel);
         packageCombo.getSelectionModel().clearSelection();

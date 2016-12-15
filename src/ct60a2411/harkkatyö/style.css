@@ -12,14 +12,14 @@ and open the template in the editor.
     -fx-focus-color: red;
 }
 
-Button {
+.button {
     -fx-background-color: #cc00cc;
     -fx-text-fill: #ffffff;
     -fx-font-weight: bold;
     -fx-cursor: hand;
 }
 
-Button:hover {
+.button:hover {
     -fx-background-color: #990099;
 }
 
@@ -87,4 +87,21 @@ Button:hover {
 
 .tab-pane .tab-header-area .tab-header-background {
     -fx-background-color: #cc00cc;
+}
+
+#infoGrid .label {
+    -fx-font-weight: bold;
+}
+
+#infoGrid .odd {
+    -fx-background-color: #cc00cc;
+}
+
+#infoGrid .odd .label {
+    -fx-text-fill: #ffffff;
+}
+
+#errorLabel {
+    -fx-font-weight: bold;
+    -fx-text-fill: red;
 }
