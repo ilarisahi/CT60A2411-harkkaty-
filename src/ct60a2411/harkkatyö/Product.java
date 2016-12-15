@@ -29,12 +29,16 @@ public class Product {
         dimension.put("depth", 0.0);
     }
     
-    public Product(Double a, Double b, Double c, Double d, String e) {
+    public Product(Double a, Double b, Double c, Double d, String e, boolean f) {
         name = e;
         dimension.put("weight", a);
         dimension.put("height", b);
         dimension.put("width", c);
         dimension.put("depth", d);
+        fragile = f;
+        if (f) {
+            fragile_factor = 50;
+        }
     }
     
     static public ArrayList<String> getProductList() {

@@ -1,5 +1,12 @@
 Nimi: gabe the doge
-Lähetyspaikka: Yrittäjätie 4, AKAA
-Saapumispaikka: Piirantie 1, ALAVUS
-Lähetysaika: 15/12/2016 01:43
+Lähetyspaikka: Soukantie 4, ESPOO
+Saapumispaikka: Itämerentori 2, HELSINKI
+Lähetysaika: 15/12/2016 13:38
+Tuote ei mennyt rikki kuljetuksen aikana
+
+Nimi: gabe the doge
+Lähetyspaikka: Soukantie 4, ESPOO
+Saapumispaikka: Itämerentori 2, HELSINKI
+Lähetysaika: 15/12/2016 13:38
+Tuote meni rikki kuljetuksen aikana
 

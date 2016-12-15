@@ -92,7 +92,7 @@ public class MainWindowController implements Initializable {
         root.getStylesheets().addAll(getClass().getResource("style.css").toExternalForm());
         Stage newPackage = new Stage();
         newPackage.setScene(new Scene(root));
-        CreateParcelWindowController controller = loader.<CreateParcelWindowController>getController();
+        CreateParcelWindowController controller = loader.getController();
         controller.setWeb(web);
         controller.setParcelBox(packageCombo);
         controller.setSendBut(sendBut);
@@ -122,6 +122,8 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private void sendButAction(ActionEvent event) throws FileNotFoundException, UnsupportedEncodingException, IOException {
+        boolean broke;
+        
         Parcel parcel = packageCombo.getValue();
         SmartPost startPost = SmartPostContainer.getInstance().getSmartPost(parcel.getStartPost());
         SmartPost endPost = SmartPostContainer.getInstance().getSmartPost(parcel.getEndPost());
@@ -142,7 +144,12 @@ public class MainWindowController implements Initializable {
         String name = parcel.getItem().getName();
         String start = startPost.getAddress() + ", " + startPost.getCity();
         String end = endPost.getAddress() + ", " + endPost.getCity();
-        String broke = "lul";
+        if (parcel.getItem().isFragile() && (parcel.getItem().getFragile_factor() < parcel.getFragile_factor())) {
+            broke = true;
+        } else {
+            broke = false;
+        }
+        
         
         lw.writer(name, start, end, broke);
         

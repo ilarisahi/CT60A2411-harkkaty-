@@ -145,6 +145,8 @@ public class CreateParcelWindowController implements Initializable {
                 sizeField.setDisable(true);
                 massField.setText(item.getDimension().get("height").toString());
                 massField.setDisable(true);
+                fragile.setSelected(item.isFragile());
+                fragile.setDisable(true);
             }        
         });
         
@@ -306,7 +308,7 @@ public class CreateParcelWindowController implements Initializable {
         
         if (valid) {
             return new Product(Double.parseDouble(productMass), Double.parseDouble(sizeParts[0]),
-                    Double.parseDouble(sizeParts[1]), Double.parseDouble(sizeParts[2]), productName);
+                    Double.parseDouble(sizeParts[1]), Double.parseDouble(sizeParts[2]), productName, fragile.isSelected());
         } else {
             return null;
         }
