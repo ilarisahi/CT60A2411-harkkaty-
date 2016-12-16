@@ -27,10 +27,9 @@ import java.util.logging.Logger;
  */
 
 /**
- * Tämä luokka sisältää loki tiedoston kirjoittamiseen ja lukemiseen tarvittavat
- * funktiot. Tämä luokka on myös singleton, jolloin tuo tiedoston kirjoitus 
- * alustetaan vain kerran.
  * 
+ * This class contains writing and reading to/from log file. This class follows singleton
+ * design and that means that writing is initialized once.
  */
 
 public class LogWriter {
@@ -40,7 +39,7 @@ public class LogWriter {
     private LogWriter() {
         PrintWriter wr;
         try {
-            wr = new PrintWriter("loki.txt", "UTF-8");
+            wr = new PrintWriter("log.txt", "UTF-8");
             wr.close();
         } catch (FileNotFoundException | UnsupportedEncodingException ex) {
             Logger.getLogger(LogWriter.class.getName()).log(Level.SEVERE, null, ex);
@@ -55,7 +54,7 @@ public class LogWriter {
     }
     
     public void writer(String a, String b, String c, boolean d, String e) throws FileNotFoundException, UnsupportedEncodingException, IOException {
-        FileWriter wr = new FileWriter("loki.txt", true);
+        FileWriter wr = new FileWriter("log.txt", true);
         BufferedWriter bw = new BufferedWriter(wr);
         bw.write("Nimi: ");
         bw.write(a);
@@ -95,6 +94,19 @@ public class LogWriter {
         }
         br.close();
         return sb;
+    }
+    
+    
+    public void endWrite(String a, String b) throws IOException {
+        FileWriter wr = new FileWriter("log.txt", true);
+        BufferedWriter bw = new BufferedWriter(wr);
+        bw.write("Lähetettyjen pakettien määrä: ");
+        bw.write(a);
+        bw.write(System.getProperty("line.separator"));
+        bw.write("Lähetettyjen pakettien kilometrit yhteensä: ");
+        bw.write(b);
+        bw.write(System.getProperty("line.separator"));
+        bw.close();
     }
     
 }

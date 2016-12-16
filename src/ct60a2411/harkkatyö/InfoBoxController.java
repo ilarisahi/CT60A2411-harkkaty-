@@ -27,7 +27,7 @@ public class InfoBoxController implements Initializable {
     private Button returnBut;
 
     /**
-     * Sisältää infoboksin funktiot, eli vain peruuta napin funktion.
+     * This class contains function that closes infobox.
      * Initializes the controller class.
      */
     @Override

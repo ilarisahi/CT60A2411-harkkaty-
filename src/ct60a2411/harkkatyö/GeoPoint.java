@@ -11,8 +11,8 @@ package ct60a2411.harkkatyö;
  * opiskelijanro:0438578
  * 16.12.2016
  * 
- * Tämä luokka sisältää tietorakenteen, joka pitää yllä postiautomaattien siajintia
- * leveys- ja pituusasteilla.
+ * This class contains data structure, which maintains all automatons location in longitude
+ * and latitude.
  */
 public class GeoPoint {
     private String lat;

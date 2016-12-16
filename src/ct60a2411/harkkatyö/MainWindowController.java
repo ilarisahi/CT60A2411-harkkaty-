@@ -74,9 +74,8 @@ public class MainWindowController implements Initializable {
     private Label distanceCounter;
     
     /**
-     * Tämä luokka pitää sisällään kaikki ensimmäisen ikkunan toiminnot.
-     * initializessa laitetaan kaikkiin combobokseihin oikeat arvot, alustetaan webview
-     * ja loki.
+     * This class contains all all functions that first window uses. At initialize()
+     * it initializes comboboxes, webview and log file.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -99,7 +98,7 @@ public class MainWindowController implements Initializable {
     }    
 
     /**
-     * Tämä nappi tulostaa halutun kaupungin pakettiautomaatit karttaan.
+     * This button prints all automatons of selected city.
      * @param event 
      */
     @FXML
@@ -114,7 +113,7 @@ public class MainWindowController implements Initializable {
     }
     
     /**
-     * Tämä nappi taas vie uuden paketin luontiin, jolle avautuu oma ikkuna.
+     * This button opens up a window where you can make a new package.
      * @param event
      * @throws IOException 
      */
@@ -141,7 +140,7 @@ public class MainWindowController implements Initializable {
     }
     
     /**
-     * Tämä poistaa kaikki reitit ja automaatit kartalta.
+     * This button all routes and automaton from map.
      * @param event 
      */
     @FXML
@@ -161,8 +160,9 @@ public class MainWindowController implements Initializable {
     }
 
     /**
-     * Tämä nappi lähettää tehdyn paketin matkaan. Tällöin se laittaa kartalle
-     * aloitus ja lopetus pisteen, ja alkaa piirtämään näiden välille syntyvää reittiä.
+     * This button sends the package that you have made and selected. When you do this
+     * it puts beginning and end automaton to the maps and starts drawing route that it uses
+     * to get to these points.
      * @param event
      * @throws FileNotFoundException
      * @throws UnsupportedEncodingException
