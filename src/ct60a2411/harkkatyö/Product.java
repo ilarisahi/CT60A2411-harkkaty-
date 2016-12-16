@@ -47,6 +47,7 @@ public class Product {
         list.add("Muutama risu");
         list.add("Valkoiset Vansit");
         list.add("Trumpin tupee");
+        list.add("Tee oma tuote");
         return list;
     }
     

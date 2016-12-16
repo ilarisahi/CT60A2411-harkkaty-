@@ -16,21 +16,20 @@
    <children>
       <Label layoutX="16.0" layoutY="14.0" text="Valitse esine:" />
       <ComboBox fx:id="objectsCombo" layoutX="15.0" layoutY="31.0" onAction="#objectsComboAction" prefHeight="25.0" prefWidth="299.0" promptText="Esineet" />
-      <Label layoutX="16.0" layoutY="75.0" text="Luo uusi esine:" />
-      <TextField fx:id="nameField" layoutX="16.0" layoutY="95.0" prefHeight="25.0" prefWidth="299.0" promptText="Nimi" />
-      <TextField fx:id="sizeField" layoutX="16.0" layoutY="126.0" prefHeight="25.0" prefWidth="299.0" promptText="Koko cm*cm*cm" />
-      <TextField fx:id="massField" layoutX="16.0" layoutY="157.0" prefHeight="25.0" prefWidth="299.0" promptText="Massa kg" />
-      <CheckBox fx:id="fragile" layoutX="16.0" layoutY="189.0" mnemonicParsing="false" text="Särkyvää" />
+      <TextField fx:id="nameField" layoutX="16.0" layoutY="61.0" prefHeight="25.0" prefWidth="299.0" promptText="Nimi" />
+      <TextField fx:id="sizeField" layoutX="16.0" layoutY="92.0" prefHeight="25.0" prefWidth="299.0" promptText="Koko cm*cm*cm" />
+      <TextField fx:id="massField" layoutX="16.0" layoutY="123.0" prefHeight="25.0" prefWidth="299.0" promptText="Massa kg" />
+      <CheckBox fx:id="fragile" layoutX="16.0" layoutY="155.0" mnemonicParsing="false" text="Särkyvää" />
       <Label layoutX="18.0" layoutY="231.0" text="Valitse pakettiluokka:" />
       <ComboBox fx:id="packageClass" layoutX="16.0" layoutY="248.0" prefHeight="25.0" prefWidth="299.0" />
       <Label layoutX="348.0" layoutY="14.0" text="Paketin lähetystiedot:" />
       <ComboBox fx:id="startCityCombo" layoutX="348.0" layoutY="31.0" onAction="#startCityComboAction" prefHeight="25.0" prefWidth="238.0" promptText="Lähtökaupunki" />
       <ComboBox fx:id="startAutoCombo" layoutX="348.0" layoutY="61.0" prefHeight="25.0" prefWidth="238.0" promptText="Automaatti" />
-      <ComboBox fx:id="endCityCombo" layoutX="348.0" layoutY="126.0" onAction="#endCityComboAction" prefHeight="25.0" prefWidth="238.0" promptText="Kohdekaupunki" />
-      <ComboBox fx:id="endAutoCombo" layoutX="348.0" layoutY="157.0" prefHeight="25.0" prefWidth="238.0" promptText="Automaatti" />
+      <ComboBox fx:id="endCityCombo" layoutX="348.0" layoutY="108.0" onAction="#endCityComboAction" prefHeight="25.0" prefWidth="238.0" promptText="Kohdekaupunki" />
+      <ComboBox fx:id="endAutoCombo" layoutX="348.0" layoutY="139.0" prefHeight="25.0" prefWidth="238.0" promptText="Automaatti" />
       <Button fx:id="infoBut" layoutX="16.0" layoutY="297.0" mnemonicParsing="false" onAction="#infoButAction" text="Infoa luokista" />
       <Button fx:id="returnBut" layoutX="529.0" layoutY="297.0" mnemonicParsing="false" onAction="#returnButAction" text="Peruuta" />
       <Button fx:id="createBut" layoutX="445.0" layoutY="297.0" mnemonicParsing="false" onAction="#createButAction" text="Luo paketti" />
-      <Label fx:id="errorLabel" alignment="TOP_LEFT" layoutX="348.0" layoutY="198.0" prefHeight="87.0" prefWidth="238.0" />
+      <Label fx:id="errorLabel" alignment="TOP_LEFT" layoutX="348.0" layoutY="181.0" prefHeight="104.0" prefWidth="238.0" />
    </children>
 </AnchorPane>

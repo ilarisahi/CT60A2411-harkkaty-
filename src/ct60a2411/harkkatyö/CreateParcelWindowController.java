@@ -86,6 +86,10 @@ public class CreateParcelWindowController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         XMLReader xmlr = XMLReader.getInstance();
         Warehouse wh = Warehouse.getInstance();
+        nameField.setDisable(true);
+        sizeField.setDisable(true);
+        massField.setDisable(true);
+        fragile.setDisable(true);
         startCityCombo.getItems().addAll(smartPosts.getCities());
         endCityCombo.getItems().addAll(smartPosts.getCities());
         startAutoCombo.setDisable(true);
@@ -130,14 +134,25 @@ public class CreateParcelWindowController implements Initializable {
                 break;
         }                
 
-        nameField.setText(item.getName());
-        nameField.setDisable(true);
-        sizeField.setText(item.getDimension().get("height").toString() + "*" + item.getDimension().get("width").toString() + "*" + item.getDimension().get("depth").toString());
-        sizeField.setDisable(true);
-        massField.setText(item.getDimension().get("height").toString());
-        massField.setDisable(true);
-        fragile.setSelected(item.isFragile());
-        fragile.setDisable(true);
+        if (item == null) {
+            nameField.clear();
+            nameField.setDisable(false);
+            sizeField.clear();
+            sizeField.setDisable(false);
+            massField.clear();
+            massField.setDisable(false);
+            fragile.setSelected(false);
+            fragile.setDisable(false);
+        } else {
+            nameField.setText(item.getName());
+            nameField.setDisable(true);
+            sizeField.setText(item.getDimension().get("height").toString() + "*" + item.getDimension().get("width").toString() + "*" + item.getDimension().get("depth").toString());
+            sizeField.setDisable(true);
+            massField.setText(item.getDimension().get("height").toString());
+            massField.setDisable(true);
+            fragile.setSelected(item.isFragile());
+            fragile.setDisable(true);
+        }
     }
 
     
@@ -255,7 +270,7 @@ public class CreateParcelWindowController implements Initializable {
     }
     
     private String testReadyProduct() {
-        if (objectsCombo.getSelectionModel().isEmpty()) {
+        if (objectsCombo.getSelectionModel().isEmpty() || objectsCombo.getValue().equals("Tee oma tuote")) {
             return null;
         } else {
             changeError(nameField, false);
