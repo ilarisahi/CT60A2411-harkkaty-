@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -67,11 +68,11 @@ public class MainWindowController implements Initializable {
     @FXML
     private Tab smartpost;
     @FXML
-    private Label sessionStarted;
-    @FXML
     private Label sentParcelCounter;
     @FXML
     private Label distanceCounter;
+    @FXML
+    private Button endButton;
     
     /**
      * This class contains all all functions that first window uses. At initialize()
@@ -79,8 +80,6 @@ public class MainWindowController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        Date date = new Date();
         
         XMLReader xmlr = XMLReader.getInstance();
         autoCombo.getItems().addAll(smartPosts.getCities());
@@ -92,7 +91,6 @@ public class MainWindowController implements Initializable {
         } catch (FileNotFoundException | UnsupportedEncodingException ex) {
             Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        sessionStarted.setText(df.format(date));
         sentParcelCounter.setText("0");
         distanceCounter.setText("0.0");
     }    
@@ -244,6 +242,11 @@ public class MainWindowController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void endButtonAction(ActionEvent event) {
+        Platform.exit();
     }
 
 }

@@ -41,6 +41,12 @@ public class LogWriter {
         PrintWriter wr;
         try {
             wr = new PrintWriter("log.txt", "UTF-8");
+            Date date = new Date();
+            wr.write("Istunto aloitettu: " + df.format(date));
+            wr.write(System.getProperty("line.separator"));
+            wr.write("Lähetetyt tuotteet:");
+            wr.write(System.getProperty("line.separator"));
+            wr.write(System.getProperty("line.separator"));
             wr.close();
         } catch (FileNotFoundException | UnsupportedEncodingException ex) {
             Logger.getLogger(LogWriter.class.getName()).log(Level.SEVERE, null, ex);
@@ -85,7 +91,7 @@ public class LogWriter {
     }
     
     public String reader() throws FileNotFoundException, IOException {
-        BufferedReader br = new BufferedReader(new FileReader("loki.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("log.txt"));
         String sb = "";
         String line = br.readLine();
         while(line != null) {

@@ -39,7 +39,6 @@ public class TimoMain extends Application {
     
     @Override
     public void stop() {
-        System.out.println("lololo");
         controller.closeAction();
     }
 

@@ -215,6 +215,14 @@ public class CreateParcelWindowController implements Initializable {
         
         errorLabel.setText("");
         
+        if (objectsCombo.getSelectionModel().isEmpty()) {
+            errorLabel.setText("Valitse tuote");
+            changeError(objectsCombo, true);
+            return;
+        } else {
+            changeError(objectsCombo, false);
+        }
+        
         if (testReadyProduct() == null) {
             item = testCustomProduct();
         }
