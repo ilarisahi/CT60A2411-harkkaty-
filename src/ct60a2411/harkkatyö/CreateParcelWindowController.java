@@ -266,6 +266,7 @@ public class CreateParcelWindowController implements Initializable {
         if (validParcel) {
             Warehouse.wh.addParcel(parcel);
             updateParcelBox();
+            errorLabel.setText(errorLabel.getText() + "Tuote on luotu\n");
         }
     }
     
