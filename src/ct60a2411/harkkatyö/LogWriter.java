@@ -15,6 +15,7 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,7 +23,7 @@ import java.util.logging.Logger;
 /**
  *
  * @author Petri Rämö
- * opiskelijanro:0438578
+ * opiskelijanro: 0438578
  * 16.12.2016
  */
 
@@ -96,6 +97,12 @@ public class LogWriter {
         return sb;
     }
     
+    /**
+     * 
+     * These last three functions are used when you close the program and it 
+     * writes to log file amount of packages you have send, total distance and what
+     * has left at warehouse.
+     */
     
     public void endWrite(String a, String b) throws IOException {
         FileWriter wr = new FileWriter("log.txt", true);
@@ -105,6 +112,35 @@ public class LogWriter {
         bw.write(System.getProperty("line.separator"));
         bw.write("Lähetettyjen pakettien kilometrit yhteensä: ");
         bw.write(b);
+        bw.write(System.getProperty("line.separator"));
+        bw.close();
+    }
+    
+    public void endInitWarehouse() throws IOException {
+        FileWriter wr = new FileWriter("log.txt", true);
+        BufferedWriter bw = new BufferedWriter(wr);
+        bw.write("Warehouse:");
+        bw.write(System.getProperty("line.separator"));
+        bw.write(System.getProperty("line.separator"));
+        bw.close();
+
+    }
+    
+    public void endWriteWarehouse(String a, String b, String c, String d) throws IOException {
+        FileWriter wr = new FileWriter("log.txt", true);
+        BufferedWriter bw = new BufferedWriter(wr);
+        bw.write("Nimi: ");
+        bw.write(a);
+        bw.write(System.getProperty("line.separator"));
+        bw.write("Lähetyspaikka: ");
+        bw.write(b);
+        bw.write(System.getProperty("line.separator"));
+        bw.write("Saapumispaikka: ");
+        bw.write(c);
+        bw.write(System.getProperty("line.separator"));
+        bw.write("Kuljetettava matka: ");
+        bw.write(d + " km");
+        bw.write(System.getProperty("line.separator"));
         bw.write(System.getProperty("line.separator"));
         bw.close();
     }
