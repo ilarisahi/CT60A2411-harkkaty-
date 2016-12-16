@@ -73,7 +73,11 @@ public class MainWindowController implements Initializable {
     @FXML
     private Label distanceCounter;
     
-    
+    /**
+     * Tämä luokka pitää sisällään kaikki ensimmäisen ikkunan toiminnot.
+     * initializessa laitetaan kaikkiin combobokseihin oikeat arvot, alustetaan webview
+     * ja loki.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -94,6 +98,10 @@ public class MainWindowController implements Initializable {
         distanceCounter.setText("0.0");
     }    
 
+    /**
+     * Tämä nappi tulostaa halutun kaupungin pakettiautomaatit karttaan.
+     * @param event 
+     */
     @FXML
     private void addToMapAction(ActionEvent event) {
         String name = autoCombo.getValue();
@@ -104,6 +112,13 @@ public class MainWindowController implements Initializable {
         
         
     }
+    
+    /**
+     * Tämä nappi taas vie uuden paketin luontiin, jolle avautuu oma ikkuna.
+     * @param event
+     * @throws IOException 
+     */
+    
 
     @FXML
     private void createButAction(ActionEvent event) throws IOException {
@@ -124,7 +139,11 @@ public class MainWindowController implements Initializable {
         newPackage.initModality(Modality.APPLICATION_MODAL);
         newPackage.showAndWait();
     }
-
+    
+    /**
+     * Tämä poistaa kaikki reitit ja automaatit kartalta.
+     * @param event 
+     */
     @FXML
     private void removeRouteAction(ActionEvent event) {
         web.getEngine().executeScript("document.deletePaths()");
@@ -141,6 +160,14 @@ public class MainWindowController implements Initializable {
         }
     }
 
+    /**
+     * Tämä nappi lähettää tehdyn paketin matkaan. Tällöin se laittaa kartalle
+     * aloitus ja lopetus pisteen, ja alkaa piirtämään näiden välille syntyvää reittiä.
+     * @param event
+     * @throws FileNotFoundException
+     * @throws UnsupportedEncodingException
+     * @throws IOException 
+     */
     @FXML
     private void sendButAction(ActionEvent event) throws FileNotFoundException, UnsupportedEncodingException, IOException {
         boolean broke;

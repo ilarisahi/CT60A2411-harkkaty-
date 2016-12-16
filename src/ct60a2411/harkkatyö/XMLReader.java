@@ -25,7 +25,12 @@ import org.xml.sax.SAXException;
 
 /**
  *
- * @author Petri
+ * @author Petri Rämö
+ * opiskelijanro: 0438578
+ * 16.12.2016
+ * 
+ * Tämä luokka pitää sisällään smartpost datan lukemisen nettisivulta.
+ * Tämä luokka on singleton.
  */
 public class XMLReader {
     

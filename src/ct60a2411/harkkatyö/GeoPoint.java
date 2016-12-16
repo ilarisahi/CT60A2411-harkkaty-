@@ -7,7 +7,12 @@ package ct60a2411.harkkatyö;
 
 /**
  *
- * @author Petri
+ * @author Petri Rämö
+ * opiskelijanro:0438578
+ * 16.12.2016
+ * 
+ * Tämä luokka sisältää tietorakenteen, joka pitää yllä postiautomaattien siajintia
+ * leveys- ja pituusasteilla.
  */
 public class GeoPoint {
     private String lat;

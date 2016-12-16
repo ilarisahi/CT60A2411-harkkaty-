@@ -13,6 +13,9 @@ import java.util.ArrayList;
  * @author Ilari Sahi
  * Opiskelijanumero: 0438594
  * 10.12.2016
+ * 
+ * Tämä luokka pitää sisällää kaikki paketit mitä luodaan. Tätä luokkaa kutsutaan
+ * sigleton perjaatteella, koska on vain yksi varasto.
  */
 public class Warehouse {
     static Warehouse wh = null;

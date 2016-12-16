@@ -7,7 +7,13 @@ package ct60a2411.harkkatyö;
 
 /**
  *
- * @author Petri
+ * @author Petri Rämö
+ * opiskelijanro: 0438578
+ * 16.12.2016
+ * 
+ * Tämä luokka pitää sisällään kaikkien postiautomaattien osoitteet ja muut
+ * tiedot. Olemme myös laittaneet funktiot, jotta pystymme kutsumaan näitä eri
+ * tietoja postiautomaateista. Tämä funktio on tehty singleton muotoon.
  */
 public class SmartPost {
     private String code;
@@ -19,6 +25,8 @@ public class SmartPost {
     private String lng;
     private int id;
     GeoPoint GP;
+    
+    
     
     public SmartPost(String a, String b, String c, String d, String e, String f, String g, int i) {
         code = a;

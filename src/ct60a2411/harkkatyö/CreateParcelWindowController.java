@@ -31,7 +31,9 @@ import javafx.stage.Modality;
 /**
  * FXML Controller class
  *
- * @author Petri
+ * @author Petri Rämö
+ * opiskelijanro:0438578
+ * 16.12.2016
  */
 public class CreateParcelWindowController implements Initializable {
     
@@ -75,6 +77,9 @@ public class CreateParcelWindowController implements Initializable {
     private Label errorLabel;
 
     /**
+     * Tämä luokka sisältää, mitä kaikki näppäimet ja comboboksit tekevät uuden
+     * paketin luonnissa.
+     * 
      * Initializes the controller class.
      */
     @Override
@@ -135,6 +140,7 @@ public class CreateParcelWindowController implements Initializable {
         fragile.setDisable(true);
     }
 
+    
     @FXML
     private void startCityComboAction(ActionEvent event) {
         startAutoCombo.getItems().clear();

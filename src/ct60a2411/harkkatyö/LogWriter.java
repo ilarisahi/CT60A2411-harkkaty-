@@ -21,8 +21,18 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Petri
+ * @author Petri Rämö
+ * opiskelijanro:0438578
+ * 16.12.2016
  */
+
+/**
+ * Tämä luokka sisältää loki tiedoston kirjoittamiseen ja lukemiseen tarvittavat
+ * funktiot. Tämä luokka on myös singleton, jolloin tuo tiedoston kirjoitus 
+ * alustetaan vain kerran.
+ * 
+ */
+
 public class LogWriter {
     static LogWriter lw = null;
     DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm");

@@ -17,7 +17,9 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author Petri
+ * @author Petri Rämö
+ * opiskelijanro:0438578
+ * 16.12.2016
  */
 public class InfoBoxController implements Initializable {
 
@@ -25,6 +27,7 @@ public class InfoBoxController implements Initializable {
     private Button returnBut;
 
     /**
+     * Sisältää infoboksin funktiot, eli vain peruuta napin funktion.
      * Initializes the controller class.
      */
     @Override
