@@ -1,0 +1,16 @@
+Nimi: gabe the doge
+Lähetyspaikka: Yrittäjätie 4, AKAA
+Saapumispaikka: Piirantie 1, ALAVUS
+Lähetysaika: 16/12/2016 17:16
+Kuljetettu matka: 159.83 km
+Tuote ei mennyt rikki kuljetuksen aikana
+
+Lähetettyjen pakettien määrä: 1
+Lähetettyjen pakettien kilometrit yhteensä: 159.83
+Warehouse:
+
+Nimi: Muutama risu
+Lähetyspaikka: Itämerentori 2, HELSINKI
+Saapumispaikka: Soukantie 4, ESPOO
+Kuljetettava matka: 13.66 km
+

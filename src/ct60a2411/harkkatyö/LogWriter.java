@@ -113,12 +113,14 @@ public class LogWriter {
         bw.write("Lähetettyjen pakettien kilometrit yhteensä: ");
         bw.write(b);
         bw.write(System.getProperty("line.separator"));
+        bw.write(System.getProperty("line.separator"));
         bw.close();
     }
     
     public void endInitWarehouse() throws IOException {
         FileWriter wr = new FileWriter("log.txt", true);
         BufferedWriter bw = new BufferedWriter(wr);
+        bw.write(System.getProperty("line.separator"));
         bw.write("Warehouse:");
         bw.write(System.getProperty("line.separator"));
         bw.write(System.getProperty("line.separator"));

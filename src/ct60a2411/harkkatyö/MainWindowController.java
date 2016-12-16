@@ -221,6 +221,29 @@ public class MainWindowController implements Initializable {
             Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-    }    
+    }
+
+    public void closeAction() {
+        try {
+            lw.endWrite(sentParcelCounter.getText(), distanceCounter.getText());
+            lw.endInitWarehouse();
+            
+            for (Parcel p : Warehouse.getParcels()) {
+                SmartPost sP = smartPosts.getSmartPost(p.getStartPost());
+                SmartPost eP = smartPosts.getSmartPost(p.getEndPost());
+                
+                ArrayList<Double> array = new ArrayList();
+                array.add(sP.getLat());
+                array.add(sP.getLng());
+                array.add(eP.getLat());
+                array.add(eP.getLng());
+                String distance = String.valueOf(web.getEngine().executeScript("document.pathDist(" + array + ")"));
+        
+                lw.endWriteWarehouse(p.getItem().getName(), sP.getAddress() + ", " + sP.getCity(), eP.getAddress() + ", " + eP.getCity(), distance);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 }

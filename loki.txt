@@ -1,7 +1,0 @@
-Nimi: Trumpin tupee
-Lähetyspaikka: Piirantie 1, ALAVUS
-Saapumispaikka: Piirantie 1, ALAVUS
-Lähetysaika: 16/12/2016 16:53
-Kuljetettu matka: 0 km
-Tuote meni rikki kuljetuksen aikana
-

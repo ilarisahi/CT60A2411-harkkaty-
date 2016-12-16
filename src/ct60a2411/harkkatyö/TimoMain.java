@@ -18,11 +18,16 @@ import javafx.stage.Stage;
  */
 public class TimoMain extends Application {
     
+    MainWindowController controller;
+    
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainWindow.fxml"));
+        Parent root = loader.load();
         root.getStylesheets().addAll(getClass().getResource("style.css").toExternalForm());
         Scene scene = new Scene(root);
+        controller = loader.getController();
+        
         stage.setTitle("TIMO");
         stage.getIcons().add(new Image(getClass().getResourceAsStream("assets/timo_icon.png")));
         stage.getIcons().add(new Image(getClass().getResourceAsStream("assets/timo_icon_big.png")));
@@ -30,6 +35,12 @@ public class TimoMain extends Application {
         stage.setMinWidth(760.0);
         stage.setScene(scene);
         stage.show();
+    }
+    
+    @Override
+    public void stop() {
+        System.out.println("lololo");
+        controller.closeAction();
     }
 
     /**
