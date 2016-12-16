@@ -14,8 +14,8 @@ import java.util.ArrayList;
  * Opiskelijanumero: 0438594
  * 10.12.2016
  * 
- * Tämä luokka pitää sisällää kaikki paketit mitä luodaan. Tätä luokkaa kutsutaan
- * sigleton perjaatteella, koska on vain yksi varasto.
+ * This class contains all packages that are made and it follows singleton design
+ * because our package machine contains only one warehouse.
  */
 public class Warehouse {
     static Warehouse wh = null;

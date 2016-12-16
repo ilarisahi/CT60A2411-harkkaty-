@@ -29,8 +29,8 @@ import org.xml.sax.SAXException;
  * opiskelijanro: 0438578
  * 16.12.2016
  * 
- * Tämä luokka pitää sisällään smartpost datan lukemisen nettisivulta.
- * Tämä luokka on singleton.
+ * This class contains all the reading from smartpost data from the website, which
+ * is XML format. This class follows singleton design.
  */
 public class XMLReader {
     

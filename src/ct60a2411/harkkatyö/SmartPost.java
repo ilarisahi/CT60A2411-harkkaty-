@@ -11,9 +11,9 @@ package ct60a2411.harkkatyö;
  * opiskelijanro: 0438578
  * 16.12.2016
  * 
- * Tämä luokka pitää sisällään kaikkien postiautomaattien osoitteet ja muut
- * tiedot. Olemme myös laittaneet funktiot, jotta pystymme kutsumaan näitä eri
- * tietoja postiautomaateista. Tämä funktio on tehty singleton muotoon.
+ * This class contains all the information about the post automaton, like their addresses.
+ * We have also put functions for these informations so that we can call them. This class follows
+ * singleton design.
  */
 public class SmartPost {
     private String code;
