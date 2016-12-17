@@ -9,10 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -115,8 +112,6 @@ public class MainWindowController implements Initializable {
      * @param event
      * @throws IOException 
      */
-    
-
     @FXML
     private void createButAction(ActionEvent event) throws IOException {
         // Web-elementin vienti uuteen ikkunaan matkojen laskutoimitusta varten
@@ -221,6 +216,9 @@ public class MainWindowController implements Initializable {
         
     }
 
+    /**
+     *
+     */
     public void closeAction() {
         try {
             lw.endWrite(sentParcelCounter.getText(), distanceCounter.getText());

@@ -21,8 +21,6 @@ public class SmartPost {
     private String address;
     private String availability;
     private String postoffice;
-    private String lat;
-    private String lng;
     private int id;
     GeoPoint GP;
     

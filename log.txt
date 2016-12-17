@@ -1,9 +1,61 @@
-Istunto aloitettu: 16/12/2016 17:38
+Istunto aloitettu: 16/12/2016 18:04
 Lähetetyt tuotteet:
 
-Lähetettyjen pakettien määrä: 0
-Lähetettyjen pakettien kilometrit yhteensä: 0.0
+Nimi: Haramben luut
+Lähetyspaikka: Itämerentori 2, HELSINKI
+Saapumispaikka: Virastotie 5, MUURAME
+Lähetysaika: 16/12/2016 18:15
+Kuljetettu matka: 222.58 km
+Tuote ei mennyt rikki kuljetuksen aikana
+
+Nimi: Valkoiset Vansit
+Lähetyspaikka: Soukantie 4, ESPOO
+Saapumispaikka: Laserkatu 10, LAPPEENRANTA
+Lähetysaika: 16/12/2016 18:15
+Kuljetettu matka: 213.53 km
+Tuote ei mennyt rikki kuljetuksen aikana
+
+Nimi: Muutama risu
+Lähetyspaikka: Itämerentori 2, HELSINKI
+Saapumispaikka: Torikatu 3, KOUVOLA
+Lähetysaika: 16/12/2016 18:16
+Kuljetettu matka: 125.54 km
+Tuote meni rikki kuljetuksen aikana
+
+Nimi: Trumpin tupee
+Lähetyspaikka: Yrittäjätie 4, AKAA
+Saapumispaikka: Satakunnankatu 4, EURA
+Lähetysaika: 16/12/2016 18:16
+Kuljetettu matka: 84.2 km
+Tuote meni rikki kuljetuksen aikana
+
+Nimi: gabe the doge
+Lähetyspaikka: Kauppakatu 16, JOENSUU
+Saapumispaikka: Karjalahdenkatu, KEMI
+Lähetysaika: 16/12/2016 18:17
+Kuljetettu matka: 430.19 km
+Tuote ei mennyt rikki kuljetuksen aikana
+
+Nimi: tikkari
+Lähetyspaikka: Uudenmaankatu 3, HYVINKÄÄ
+Saapumispaikka: Soukantie 4, ESPOO
+Lähetysaika: 16/12/2016 18:17
+Kuljetettu matka: 55.61 km
+Tuote ei mennyt rikki kuljetuksen aikana
+
+Lähetettyjen pakettien määrä: 6
+Lähetettyjen pakettien kilometrit yhteensä: 1131.6499999999999
 
 
 Warehouse:
+
+Nimi: ilarin lapaset
+Lähetyspaikka: Kauppakatu 40, LAPPEENRANTA
+Saapumispaikka: Soukantie 4, ESPOO
+Kuljetettava matka: 217.58 km
+
+Nimi: Muutama risu
+Lähetyspaikka: Soukantie 4, ESPOO
+Saapumispaikka: Sibeliuskatu 27, HAMINA
+Kuljetettava matka: 146.55 km
 
