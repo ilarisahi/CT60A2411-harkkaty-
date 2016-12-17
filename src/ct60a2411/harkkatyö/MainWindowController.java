@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ct60a2411.harkkatyö;
 
 import java.io.FileNotFoundException;
@@ -32,8 +27,15 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- *
- * @author Ilari
+ * FXML Controller class
+ * 
+ * @author Petri Rämö
+ * opiskelijanro: 0438578
+ * 
+ * @author Ilari Sahi
+ * opiskelijanro: 0438594
+ * 
+ * 16.12.2016
  */
 public class MainWindowController implements Initializable {
     

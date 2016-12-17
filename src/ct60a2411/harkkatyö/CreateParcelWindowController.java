@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ct60a2411.harkkatyö;
 
 import java.io.IOException;
@@ -32,13 +27,24 @@ import javafx.stage.Modality;
  * FXML Controller class
  *
  * @author Petri Rämö
- * opiskelijanro:0438578
+ * opiskelijanro: 0438578
+ * 
+ * @author Ilari Sahi
+ * opiskelijanro: 0438594
+ * 
  * 16.12.2016
  */
 public class CreateParcelWindowController implements Initializable {
     
     private SmartPostContainer smartPosts = SmartPostContainer.getInstance();
     ArrayList<Double> size;
+    private WebView web;
+    private ComboBox parcelBox;
+    private Button sendButton;
+    
+    PseudoClass errorClass = PseudoClass.getPseudoClass("error");
+    PseudoClass focusClass = PseudoClass.getPseudoClass("focused");
+    private Product item = null;
     
     @FXML
     private ComboBox<String> objectsCombo;
@@ -66,13 +72,6 @@ public class CreateParcelWindowController implements Initializable {
     private Button returnBut;
     @FXML
     private Button createBut;
-    private WebView web;
-    private ComboBox parcelBox;
-    private Button sendButton;
-    
-    PseudoClass errorClass = PseudoClass.getPseudoClass("error");
-    PseudoClass focusClass = PseudoClass.getPseudoClass("focused");
-    private Product item = null;
     @FXML
     private Label errorLabel;
 

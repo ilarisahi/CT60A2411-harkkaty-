@@ -1,3 +1,15 @@
+<!--
+    Main window fxml
+
+    @author Petri Rämö
+    opiskelijanro: 0438578
+
+    @author Ilari Sahi
+    opiskelijanro: 0438594
+
+    16.12.2016
+-->
+
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>

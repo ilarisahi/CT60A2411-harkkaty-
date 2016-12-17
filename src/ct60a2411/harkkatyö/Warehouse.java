@@ -1,18 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ct60a2411.harkkatyö;
 
 import java.util.ArrayList;
 
 /**
- *
+ * Warehouse class
+ * 
+ * @author Petri Rämö
+ * opiskelijanro: 0438578
+ * 
  * @author Ilari Sahi
- * Opiskelijanumero: 0438594
- * 10.12.2016
+ * opiskelijanro: 0438594
+ * 
+ * 16.12.2016
  * 
  * This class contains all packages that are made and it follows singleton design
  * because our package machine contains only one warehouse.

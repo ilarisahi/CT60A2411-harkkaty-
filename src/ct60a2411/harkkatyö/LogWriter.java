@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ct60a2411.harkkatyö;
 
 import java.io.BufferedReader;
@@ -20,13 +15,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Log writing and reading class
+ * 
  * @author Petri Rämö
  * opiskelijanro: 0438578
+ * 
+ * @author Ilari Sahi
+ * opiskelijanro: 0438594
+ * 
  * 16.12.2016
- */
-
-/**
  * 
  * This class contains writing and reading to/from log file. This class follows singleton
  * design and that means that writing is initialized once.

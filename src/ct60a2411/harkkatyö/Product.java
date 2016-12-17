@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ct60a2411.harkkatyö;
 
 import java.util.ArrayList;
@@ -11,10 +5,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
+ * Product class
+ * 
+ * @author Petri Rämö
+ * opiskelijanro: 0438578
+ * 
  * @author Ilari Sahi
- * Opiskelijanumero: 0438594
- * 10.12.2016
+ * opiskelijanro: 0438594
+ * 
+ * 16.12.2016
  */
 public class Product {
     protected String name;

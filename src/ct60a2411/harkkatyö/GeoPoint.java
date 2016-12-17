@@ -1,14 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ct60a2411.harkkatyö;
 
 /**
- *
+ * GeoPoint class
+ * 
  * @author Petri Rämö
- * opiskelijanro:0438578
+ * opiskelijanro: 0438578
+ * 
+ * @author Ilari Sahi
+ * opiskelijanro: 0438594
+ * 
  * 16.12.2016
  * 
  * This class contains data structure, which maintains all automatons location in longitude
