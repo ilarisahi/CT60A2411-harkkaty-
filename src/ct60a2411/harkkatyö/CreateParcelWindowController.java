@@ -3,6 +3,7 @@ package ct60a2411.harkkatyö;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.ResourceBundle;
 import javafx.css.PseudoClass;
@@ -33,18 +34,23 @@ import javafx.stage.Modality;
  * opiskelijanro: 0438594
  * 
  * 16.12.2016
+ * 
+ * This class contains means to create new items and pack them into parcels
  */
 public class CreateParcelWindowController implements Initializable {
     
     private SmartPostContainer smartPosts = SmartPostContainer.getInstance();
     ArrayList<Double> size;
+    private Product item = null;
+    
+    // Elements from main controller, for updating purposes
     private WebView web;
     private ComboBox parcelBox;
     private Button sendButton;
     
+    // PseudoClasses for css highlighting
     PseudoClass errorClass = PseudoClass.getPseudoClass("error");
     PseudoClass focusClass = PseudoClass.getPseudoClass("focused");
-    private Product item = null;
     
     @FXML
     private ComboBox<String> objectsCombo;
@@ -75,16 +81,9 @@ public class CreateParcelWindowController implements Initializable {
     @FXML
     private Label errorLabel;
 
-    /**
-     * Tämä luokka sisältää, mitä kaikki näppäimet ja comboboksit tekevät uuden
-     * paketin luonnissa.
-     * 
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        XMLReader xmlr = XMLReader.getInstance();
-        Warehouse wh = Warehouse.getInstance();
+        // Initialize fields
         nameField.setDisable(true);
         sizeField.setDisable(true);
         massField.setDisable(true);
@@ -92,28 +91,18 @@ public class CreateParcelWindowController implements Initializable {
         startCityCombo.getItems().addAll(smartPosts.getCities());
         endCityCombo.getItems().addAll(smartPosts.getCities());
         startAutoCombo.setDisable(true);
-        endAutoCombo.setDisable(true);
-        objectsCombo.getItems().addAll(Product.getProductList());        
-        packageClass.getItems().add("1. luokka");
-        packageClass.getItems().add("2. luokka");
-        packageClass.getItems().add("3. luokka");
+        endAutoCombo.setDisable(true);        
+        objectsCombo.getItems().addAll(Arrays.asList("Haramben luut", "Muutama risu", "Valkoiset Vansit", "Trumpin tupee", "Tee oma tuote"));        
+        packageClass.getItems().addAll(Arrays.asList("1. luokka", "2. luokka", "3. luokka"));
         fragile.setSelected(true);
         packageClass.getSelectionModel().selectFirst();
     }
-    
-    public void setWeb(WebView w) {
-        web = w;
-    }
-    
-    public void setParcelBox(ComboBox cb) {
-        parcelBox = cb;
-    }
-    
-    void setSendBut(Button sb) {
-        sendButton = sb;
-    }
 
     @FXML
+    /**
+     * Checks which item user selects
+     * Creates already defined product or lets user create own product
+     */
     private void objectsComboAction(ActionEvent event) {
         switch (objectsCombo.getValue()) {
             case "Valkoiset Vansit":
@@ -156,6 +145,9 @@ public class CreateParcelWindowController implements Initializable {
 
     
     @FXML
+    /**
+     * Updates sending SmartPosts ComboBox based on selected city
+     */
     private void startCityComboAction(ActionEvent event) {
         startAutoCombo.getItems().clear();
         String place = startCityCombo.getValue();
@@ -170,6 +162,9 @@ public class CreateParcelWindowController implements Initializable {
     }
 
     @FXML
+    /**
+     * Updates receiving SmartPosts ComboBox based on selected city
+     */
     private void endCityComboAction(ActionEvent event) {
         endAutoCombo.getItems().clear();
         String place = endCityCombo.getValue();
@@ -184,29 +179,36 @@ public class CreateParcelWindowController implements Initializable {
     }
     
     @FXML
+    /**
+     * Opens info window
+     */
     private void infoButAction(ActionEvent event) throws IOException {
-        Stage newPackage = new Stage();        
-        Parent page = FXMLLoader.load(getClass().getResource("InfoBox.fxml"));        
-        page.getStylesheets().addAll(getClass().getResource("style.css").toExternalForm());
-        Scene scene = new Scene(page);
-        
-        newPackage.setScene(scene);
-        newPackage.setTitle("TIMO - paketti-info");
-        newPackage.getIcons().add(new Image(getClass().getResourceAsStream("assets/timo_icon.png")));
-        newPackage.getIcons().add(new Image(getClass().getResourceAsStream("assets/timo_icon_big.png")));
-        newPackage.setResizable(false);
-        newPackage.initModality(Modality.APPLICATION_MODAL);
-        newPackage.showAndWait();
+        Stage newStage = new Stage();        
+        Parent root = FXMLLoader.load(getClass().getResource("InfoBox.fxml")); 
+        Scene scene = new Scene(root);        
+        newStage.setScene(scene);
+        root.getStylesheets().addAll(getClass().getResource("style.css").toExternalForm());
+        newStage.setTitle("TIMO - paketti-info");
+        newStage.getIcons().add(new Image(getClass().getResourceAsStream("assets/timo_icon.png")));
+        newStage.getIcons().add(new Image(getClass().getResourceAsStream("assets/timo_icon_big.png")));
+        newStage.setResizable(false);
+        newStage.initModality(Modality.APPLICATION_MODAL);
+        newStage.setScene(scene);
+        newStage.showAndWait();
     }
 
     @FXML
     private void returnButAction(ActionEvent event) {
-        Stage stage = (Stage) returnBut.getScene().getWindow();
+        Stage stage = (Stage)returnBut.getScene().getWindow();
         stage.close();
-        
     }
 
     @FXML
+    /**
+     * Handles parcel creation
+     * Checks for errors and creates parcel if everything is valid
+     * All possible errors are checked to get all error messages
+     */
     private void createButAction(ActionEvent event) {
         Parcel parcel = null;
         boolean validParcel = true;
@@ -235,9 +237,6 @@ public class CreateParcelWindowController implements Initializable {
         if (testEndPost() == false) {
             validParcel = false;
         }
-        if (testParcelGrade() == false) {
-            validParcel = false;
-        }
         
         if (validParcel) {
             switch (parcelGrade) {
@@ -251,7 +250,7 @@ public class CreateParcelWindowController implements Initializable {
                     parcel = new ParcelGrade3();
                     break;
                 default:
-                    parcel = null;
+                    parcel = new ParcelGrade3();
                     break;
             }
 
@@ -277,6 +276,38 @@ public class CreateParcelWindowController implements Initializable {
         }
     }
     
+    /**
+     * Sets WebView to use calculate distances
+     * 
+     * @param w
+     */
+    public void setWeb(WebView w) {
+        web = w;
+    }
+    
+    /**
+     * Sets parcel ComboBox to update after parcel creation
+     * 
+     * @param cb
+     */
+    public void setParcelBox(ComboBox cb) {
+        parcelBox = cb;
+    }
+    
+    /**
+     * Sets send button to update after parcel creation
+     * 
+     * @param sb 
+     */
+    void setSendBut(Button sb) {
+        sendButton = sb;
+    }
+    
+    /**
+     * Tests if user has selected ready or custom product
+     * 
+     * @return 
+     */
     private String testReadyProduct() {
         if (objectsCombo.getSelectionModel().isEmpty() || objectsCombo.getValue().equals("Tee oma tuote")) {
             return null;
@@ -297,6 +328,11 @@ public class CreateParcelWindowController implements Initializable {
         return true;
     }
     
+    /**
+     * Tests if user input for custom product is valid
+     * 
+     * @return 
+     */
     private Product testCustomProduct() {
         String[] sizeParts = sizeField.getText().trim().split("\\*");
         String productName = nameField.getText().trim();
@@ -343,6 +379,11 @@ public class CreateParcelWindowController implements Initializable {
         }
     }
     
+    /**
+     * Tests if sending SmartPost is selected
+     * 
+     * @return 
+     */
     private boolean testStartPost() {
         if (startAutoCombo.getSelectionModel().isEmpty()) {
             changeError(startCityCombo, true);
@@ -354,6 +395,11 @@ public class CreateParcelWindowController implements Initializable {
         }
     }
     
+    /**
+     * Tests if receiving SmartPost is selected
+     * 
+     * @return 
+     */
     private boolean testEndPost() {
         if (endAutoCombo.getSelectionModel().isEmpty()) {
             changeError(endCityCombo, true);
@@ -365,16 +411,13 @@ public class CreateParcelWindowController implements Initializable {
         }
     }
     
-    private boolean testParcelGrade() {
-        if (packageClass.getSelectionModel().isEmpty()) {
-            changeError(packageClass, true);
-            return false;
-        } else {
-            changeError(packageClass, false);
-            return true;
-        }
-    }
-    
+    /**
+     * Tests if product's dimensions fit to selected parcel class
+     * 
+     * @param pr
+     * @param pa
+     * @return 
+     */
     private boolean testDimension(Product pr, Parcel pa) {
         boolean validDimension = true;
         boolean validWeight;
@@ -423,6 +466,14 @@ public class CreateParcelWindowController implements Initializable {
         }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
     }
     
+    /**
+     * Tests if parcel grade 1's distance is greater than limit (150 km)
+     * 
+     * @param start
+     * @param end
+     * @param par
+     * @return distance
+     */
     private boolean testDistance(SmartPost start, SmartPost end, Parcel par) {
         ArrayList<Double> s = new ArrayList<>();
         s.add(start.getLat());
@@ -455,6 +506,12 @@ public class CreateParcelWindowController implements Initializable {
         }
     }
     
+    /**
+     * Used to change Control's pseudo class (used in css)
+     * 
+     * @param c fxml element
+     * @param b 
+     */
     private void changeError(Control c, boolean b) {
         c.pseudoClassStateChanged(errorClass, b);
         c.pseudoClassStateChanged(focusClass, b);

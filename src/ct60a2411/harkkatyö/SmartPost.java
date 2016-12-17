@@ -22,9 +22,7 @@ public class SmartPost {
     private String availability;
     private String postoffice;
     private int id;
-    GeoPoint GP;
-    
-    
+    GeoPoint GP;  
     
     public SmartPost(String a, String b, String c, String d, String e, String f, String g, int i) {
         code = a;
@@ -71,6 +69,5 @@ public class SmartPost {
     
     public int getId() {
         return id;
-    }
-    
+    }    
 }

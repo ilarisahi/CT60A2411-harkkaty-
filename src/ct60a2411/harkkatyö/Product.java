@@ -1,6 +1,5 @@
 package ct60a2411.harkkatyö;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,6 +13,9 @@ import java.util.Map;
  * opiskelijanro: 0438594
  * 
  * 16.12.2016
+ * 
+ * Superclass for products
+ * Constructor initializes Map for dimensions
  */
 public class Product {
     protected String name;
@@ -38,16 +40,6 @@ public class Product {
         if (f) {
             fragile_factor = 50;
         }
-    }
-    
-    static public ArrayList<String> getProductList() {
-        ArrayList<String> list = new ArrayList<String>();
-        list.add("Haramben luut");
-        list.add("Muutama risu");
-        list.add("Valkoiset Vansit");
-        list.add("Trumpin tupee");
-        list.add("Tee oma tuote");
-        return list;
     }
     
     public String getName() {

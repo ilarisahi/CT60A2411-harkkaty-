@@ -78,24 +78,26 @@ public class MainWindowController implements Initializable {
      * it initializes comboboxes, webview and log file.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        
+    public void initialize(URL url, ResourceBundle rb) { 
+        web.getEngine().load(getClass().getResource("index.html").toExternalForm());
         XMLReader xmlr = XMLReader.getInstance();
         autoCombo.getItems().addAll(smartPosts.getCities());
         autoCombo.getSelectionModel().selectFirst();
-        web.getEngine().load(getClass().getResource("index.html").toExternalForm());
+        sentParcelCounter.setText("0");
+        distanceCounter.setText("0.0");        
         loadParcels();
+        
         try {
             lw = LogWriter.getInstance();
         } catch (FileNotFoundException | UnsupportedEncodingException ex) {
             Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        sentParcelCounter.setText("0");
-        distanceCounter.setText("0.0");
+        
     }    
 
     /**
      * This button prints all automatons of selected city.
+     * 
      * @param event 
      */
     @FXML
@@ -105,37 +107,42 @@ public class MainWindowController implements Initializable {
             String open = "<p>" + sPost.getPostoffice() + "</p><p>Auki: " + sPost.getAvailability() + "</p>";
             web.getEngine().executeScript("document.goToLocation(" + sPost.getLat() + "," + sPost.getLng() + ",'" + open + "', 'blue')");
         }
-        
-        
     }
     
     /**
      * This button opens up a window where you can make a new package.
+     * 
      * @param event
      * @throws IOException 
      */
     @FXML
     private void createButAction(ActionEvent event) throws IOException {
-        // Web-elementin vienti uuteen ikkunaan matkojen laskutoimitusta varten
         FXMLLoader loader = new FXMLLoader(getClass().getResource("CreateParcelWindow.fxml"));
         Parent root = loader.load();        
-        root.getStylesheets().addAll(getClass().getResource("style.css").toExternalForm());
-        Stage newPackage = new Stage();
-        newPackage.setScene(new Scene(root));
+        Stage newStage = new Stage();
+        
+        // Sends couple of objects to new controller for easier update actions
         CreateParcelWindowController controller = loader.getController();
         controller.setWeb(web);
         controller.setParcelBox(packageCombo);
         controller.setSendBut(sendBut);
-        newPackage.setTitle("TIMO - luo paketti");
-        newPackage.getIcons().add(new Image(getClass().getResourceAsStream("assets/timo_icon.png")));
-        newPackage.getIcons().add(new Image(getClass().getResourceAsStream("assets/timo_icon_big.png")));
-        newPackage.setResizable(false);
-        newPackage.initModality(Modality.APPLICATION_MODAL);
-        newPackage.showAndWait();
+        
+        root.getStylesheets().addAll(getClass().getResource("style.css").toExternalForm());
+        newStage.setTitle("TIMO - luo paketti");
+        newStage.getIcons().add(new Image(getClass().getResourceAsStream("assets/timo_icon.png")));
+        newStage.getIcons().add(new Image(getClass().getResourceAsStream("assets/timo_icon_big.png")));
+        
+        // New window can't be resized and it will remain on top until closed
+        newStage.setResizable(false);
+        newStage.initModality(Modality.APPLICATION_MODAL);
+        
+        newStage.setScene(new Scene(root));
+        newStage.showAndWait();
     }
     
     /**
      * This button all routes and automaton from map.
+     * 
      * @param event 
      */
     @FXML
@@ -143,21 +150,11 @@ public class MainWindowController implements Initializable {
         web.getEngine().executeScript("document.deletePaths()");
     }
 
-    private void loadParcels() {
-        if (Warehouse.getParcels().isEmpty()) {
-            packageCombo.setDisable(true);
-            sendBut.setDisable(true);
-        } else {
-            packageCombo.getItems().addAll(Warehouse.getParcels());
-            packageCombo.getSelectionModel().selectFirst();
-            
-        }
-    }
-
     /**
      * This button sends the package that you have made and selected. When you do this
      * it puts beginning and end automaton to the maps and starts drawing route that it uses
      * to get to these points.
+     * 
      * @param event
      * @throws FileNotFoundException
      * @throws UnsupportedEncodingException
@@ -178,33 +175,39 @@ public class MainWindowController implements Initializable {
         String stringDistance = String.valueOf(web.getEngine().executeScript("document.pathDist(" + array + ")"));
         String color = "red";
         
+        // Insert end and start SmartPosts to map and draw route
         String open = "<p>" + startPost.getPostoffice() + "</p><p>Auki: " + startPost.getAvailability() + "</p>";
         web.getEngine().executeScript("document.goToLocation(" + startPost.getLat() + "," + startPost.getLng() + ",'" + open + "', 'blue')");
         open = "<p>" + endPost.getPostoffice() + "</p><p>Auki: " + endPost.getAvailability() + "</p>";
         web.getEngine().executeScript("document.goToLocation(" + endPost.getLat() + "," + endPost.getLng() + ",'" + open + "', 'blue')");
         
-        web.getEngine().executeScript("document.createPath(" + array + ",'" + color + "'," + parcel.getGrade() + ",'" + parcel.getItem().getName() + "')");        
+        web.getEngine().executeScript("document.createPath(" + array + ",'" + color + "'," + parcel.getGrade() + ",'" + parcel.getItem().getName() + "')");
         
-        sentParcelCounter.setText(String.valueOf(Integer.parseInt(sentParcelCounter.getText()) + 1));
-        distanceCounter.setText(String.valueOf(Double.parseDouble(distanceCounter.getText()) + Double.parseDouble(stringDistance)));
-        
+        // Strings to write log
         String name = parcel.getItem().getName();
         String start = startPost.getAddress() + ", " + startPost.getCity();
         String end = endPost.getAddress() + ", " + endPost.getCity();
+        
+        // Check if item broke
         if (parcel.getItem().isFragile() && (parcel.getItem().getFragile_factor() < parcel.getFragile_factor())) {
             broke = true;
         } else {
             broke = false;
         }
         
-        
+        // Update log accordingly
         lw.writer(name, start, end, broke, stringDistance);
+        sentParcelCounter.setText(String.valueOf(Integer.parseInt(sentParcelCounter.getText()) + 1));
+        distanceCounter.setText(String.valueOf(Double.parseDouble(distanceCounter.getText()) + Double.parseDouble(stringDistance)));
         
+        // Update parcel box and warehouse
         warehouse.deleteParcel(parcel);
         packageCombo.getSelectionModel().clearSelection();
         packageCombo.getItems().clear();
         loadParcels();
         
+        
+        // Update log area
         if (!logArea.getText().trim().isEmpty()){
             logArea.clear();
         }
@@ -214,18 +217,38 @@ public class MainWindowController implements Initializable {
             logArea.setText(loggerino);
         } catch (IOException ex) {
             Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+        }        
+    }
+    
+    @FXML
+    private void endButtonAction(ActionEvent event) {
+        Platform.exit();
+    }
+    
+    /**
+     * Loads parcels in warehouse to the ComboBox (if any)
+     */
+    private void loadParcels() {
+        if (Warehouse.getParcels().isEmpty()) {
+            packageCombo.setDisable(true);
+            sendBut.setDisable(true);
+        } else {
+            packageCombo.getItems().addAll(Warehouse.getParcels());
+            packageCombo.getSelectionModel().selectFirst();
+            
         }
-        
     }
 
     /**
-     *
+     * Writes closing information to log.txt
+     * Writes parcels that were left in the warehouse
      */
     public void closeAction() {
         try {
             lw.endWrite(sentParcelCounter.getText(), distanceCounter.getText());
             lw.endInitWarehouse();
             
+            // Loop for each parcel left in warehouse
             for (Parcel p : Warehouse.getParcels()) {
                 SmartPost sP = smartPosts.getSmartPost(p.getStartPost());
                 SmartPost eP = smartPosts.getSmartPost(p.getEndPost());
@@ -243,10 +266,4 @@ public class MainWindowController implements Initializable {
             Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    @FXML
-    private void endButtonAction(ActionEvent event) {
-        Platform.exit();
-    }
-
 }

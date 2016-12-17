@@ -64,6 +64,7 @@ public class XMLReader {
             Node node = nodes.item(i);
             Element e = (Element) node;
             
+            // Creates new SmartPost from read information and adds it to the container
             SP = new SmartPost(getValue("code", e), getValue("city", e).toUpperCase(), 
                     getValue("address", e), getValue("availability", e), 
                     getValue("postoffice", e), getValue("lat", e), 

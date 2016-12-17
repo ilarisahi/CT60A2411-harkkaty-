@@ -38,6 +38,8 @@ public class LogWriter {
         try {
             wr = new PrintWriter("log.txt", "UTF-8");
             Date date = new Date();
+            
+            // Initialization of log.txt (session starting time)
             wr.write("Istunto aloitettu: " + df.format(date));
             wr.write(System.getProperty("line.separator"));
             wr.write("Lähetetyt tuotteet:");
@@ -56,6 +58,18 @@ public class LogWriter {
         return lw;
     }
     
+    /**
+     * Writes sent parcel information to log.txt
+     * 
+     * @param a product name
+     * @param b sending SmartPost
+     * @param c receiving SmartPost
+     * @param d broken status
+     * @param e distance travelled
+     * @throws FileNotFoundException
+     * @throws UnsupportedEncodingException
+     * @throws IOException
+     */
     public void writer(String a, String b, String c, boolean d, String e) throws FileNotFoundException, UnsupportedEncodingException, IOException {
         FileWriter wr = new FileWriter("log.txt", true);
         BufferedWriter bw = new BufferedWriter(wr);
@@ -86,6 +100,12 @@ public class LogWriter {
         
     }
     
+    /**
+     * 
+     * @return log.txt contents
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
     public String reader() throws FileNotFoundException, IOException {
         BufferedReader br = new BufferedReader(new FileReader("log.txt"));
         String sb = "";

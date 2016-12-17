@@ -13,6 +13,9 @@ import java.util.Map;
  * opiskelijanro: 0438594
  * 
  * 16.12.2016
+ * 
+ * Abstract superclass for parcels of different grade (1, 2 or 3)
+ * Constructor initializes Map for limits
  */
 abstract public class Parcel {
     protected int grade;

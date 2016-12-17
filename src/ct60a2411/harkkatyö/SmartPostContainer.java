@@ -13,6 +13,9 @@ import java.util.Collections;
  * opiskelijanro: 0438594
  * 
  * 16.12.2016
+ * 
+ * Follows singleton design and contains all SmartPosts in an ArrayList
+ * Contains also ArrayList of city names
  */
 public class SmartPostContainer {
     static private SmartPostContainer sps = null;
@@ -48,6 +51,12 @@ public class SmartPostContainer {
         return smartPosts;
     }
     
+    /**
+     * Method to get SmartPosts in given city
+     * 
+     * @param s (city name)
+     * @return ArrayList of SmartPosts in given city
+     */
     public ArrayList<SmartPost> getCitySmartPosts(String s) {
         ArrayList<SmartPost> sp = new ArrayList();
         s = s.toUpperCase();
